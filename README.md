@@ -1,3 +1,3 @@
 1. npm 세팅
-npm install react-router-dom
+npm install react-router-dom \n
 npm install
