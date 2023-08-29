@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import logo from '../assets/images/kkini_logo.png';
 import { useNavigate } from 'react-router-dom';
 
-function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
+const SERVER_URL = "http://localhost:8080";
 
+function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
     const [recentSearches, setRecentSearches] = useState([]);
     const navigate = useNavigate();
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
         const storedSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
         setRecentSearches(storedSearches);
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setAutocompleteItems([]);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
     }, []);
 
     const handleSearchSubmit = (e) => {
@@ -20,35 +35,32 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
             localStorage.setItem('recentSearches', JSON.stringify(newSearches));
         }
 
-        navigate(`/search-results?name=${searchTerm}`);
+        navigate(`/search-results?searchTerm=${searchTerm}`);
     };
 
     const handleInputChange = (e) => {
         const value = e.target.value;
-        console.log(value);
         setSearchTerm(value);
 
-        fetch(`/search/autocomplete?name=${value}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
+        fetch(`${SERVER_URL}/search/autocomplete?name=${value}`)
+            .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (Array.isArray(data)) {
-                    // 중복 항목 제거
                     const uniqueItems = [...new Set(data)];
                     setAutocompleteItems(uniqueItems);
                 } else {
-                    console.error("Expected an array but received:", data);
                     setAutocompleteItems([]);
                 }
             }).catch(error => {
             console.error("Error fetching data:", error);
             setAutocompleteItems([]);
         });
+    };
+
+    const handleItemClick = (productName) => {
+        setSearchTerm(productName);
+        setAutocompleteItems([]);
+        navigate(`/search-results?name=${productName}`);
     };
 
     return (
@@ -64,14 +76,14 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                         onChange={handleInputChange}
                         list="recentSearches"
                     />
-                    <div className="autocomplete-items">
+                    <div className="autocomplete-items" ref={dropdownRef}>
                         {Array.isArray(autocompleteItems) && autocompleteItems.map(productName => (
-                            <div key={productName} onClick={() => setSearchTerm(productName)}>
+                            <div key={productName} onClick={() => handleItemClick(productName)}>
                                 {productName}
                             </div>
                         ))}
                     </div>
-                    <input type="submit" value="Search" />
+                    <input type="submit" value="검색" />
                 </form>
             </div>
             <div className="nav-icons">

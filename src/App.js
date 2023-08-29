@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import MainPage from "./pages/MainPage";
 import SearchResultPage from "./pages/SearchResultPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainPage/>} />
                 <Route path="/search-results" element={<SearchResultPage/>} />
+                <Route path="/products/:productId" element={<ProductDetailPage/>} />
             </Routes>
         </BrowserRouter>
     );

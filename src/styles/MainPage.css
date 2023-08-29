@@ -72,15 +72,19 @@
 
 /* 자동완성 드롭다운 스타일 */
 .autocomplete-items {
+    position: absolute;
     border: 1px solid #d4d4d4;
-    border-bottom: none;
     border-top: none;
     z-index: 99;
-    max-height: 150px;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 150px;  /* 필요에 따라 조절 */
     overflow-y: auto;
-    position: absolute;
-    width: 100%;
-    cursor: pointer;
+}
+
+.search-bar {
+    position: relative;
 }
 
 .autocomplete-items div {

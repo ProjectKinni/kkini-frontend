@@ -1,0 +1,116 @@
+.product-detail {
+    display: flex;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 1000px; /* 필요하다면 최대 너비를 조정하세요 */
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    align-items: flex-start; /* 상단 정렬 */
+    flex-wrap: nowrap; /* 내용이 한 줄로 유지되도록 강제합니다. */
+}
+
+.product-detail img {
+    flex-shrink: 0; /* 이미지 크기가 줄어들지 않게 설정 */
+    width: 30%;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.product-detail .info {
+    flex: 1; /* 남은 공간을 채워서 사용 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: visible; /* 컨텐츠가 이 영역 밖으로 확장될 수 있게 설정 */
+}
+
+.product-detail h2, .product-detail h3,
+.product-detail p {
+    margin: 5px 0;
+}
+
+.product-detail h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-detail h3,
+.product-detail p {
+    font-size: 18px;
+    color: #666;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align the product name and button */
+    width: 100%;
+}
+
+.wishlist-button {
+    padding: 10px 15px;
+    background-color: #f8f8f8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    /* Add additional styles as needed */
+}
+
+.wishlist-button:hover {
+    background-color: #e0e0e0;
+}
+
+.nutrition-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    width: 500px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nutrition-detail h3 {
+    text-align: right;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.nutrition-item {
+    flex: 1; /* 각 항목이 동일한 공간을 차지하도록 설정 */
+    box-sizing: border-box; /* 경계선과 패딩이 너비에 포함되도록 설정 */
+    padding: 0 10px; /* 좌우 패딩 추가 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.nutrition-item:not(:last-child) {
+    border-right: 1px solid #e0e0e0;
+}
+
+.nutrition-row:first-child .nutrition-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.nutrition-row {
+    display: flex; /* 수평 정렬 */
+    justify-content: space-between; /* 항목 간격 동일하게 설정 */
+    width: 100%; /* 전체 너비 사용 */
+}
+
+.nutrition-item span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+
