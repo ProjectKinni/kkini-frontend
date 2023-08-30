@@ -25,7 +25,7 @@ const ProductDetailPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`${SERVER_URL}/search/products/${productId}`)
+        fetch(`${SERVER_URL}/api/search/products/${productId}`)
             .then(response => response.json())
             .then(data => setProduct(data))
             .catch(error => {

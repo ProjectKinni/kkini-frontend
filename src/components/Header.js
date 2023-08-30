@@ -42,7 +42,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         const value = e.target.value;
         setSearchTerm(value);
 
-        fetch(`${SERVER_URL}/search/autocomplete?name=${value}`)
+        fetch(`${SERVER_URL}/api/search/autocomplete?name=${value}`)
             .then(response => response.json())
             .then(data => {
                 if (Array.isArray(data)) {
@@ -75,6 +75,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                         value={searchTerm}
                         onChange={handleInputChange}
                         list="recentSearches"
+                        autoComplete="off"
                     />
                     <div className="autocomplete-items" ref={dropdownRef}>
                         {Array.isArray(autocompleteItems) && autocompleteItems.map(productName => (
