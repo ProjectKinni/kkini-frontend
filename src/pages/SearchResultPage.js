@@ -10,7 +10,7 @@ import Categories from "../components/Categories";
 
 const SERVER_URL = "http://localhost:8080";
 
-function SearchResultPage(searchResults) {
+function SearchResultPage({ searchResults }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [autocompleteItems, setAutocompleteItems] = useState([]);
     const location = useLocation();
@@ -24,23 +24,34 @@ function SearchResultPage(searchResults) {
     const [originalItems, setOriginalItems] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [isChecked, setIsChecked] = useState(false);
+    const [criteria, setCriteria] = useState('');
 
     useEffect(() => {
+        console.log("필터 업데이트~~~~~:", searchResults);
         setFilteredResults(searchResults);
     }, [searchResults]);
 
     useEffect(() => {
-        let endpoint;
+        let endpoint =
+            `${SERVER_URL}/api/products/filter?searchTerm=${searchTermFromParams}`;
 
-        if (isChecked && selectedCategories.length > 0) {
-            endpoint = `${SERVER_URL}/category/categories?isGreen=true&searchTerm=${searchTermFromParams}&categoryName=${selectedCategories.join(",")}`;
-        } else if (isChecked) {
-            endpoint = `${SERVER_URL}/category/kkini?isGreen=true&searchTerm=${searchTermFromParams}`;
-        } else if (selectedCategories.length > 0) {
-            endpoint = `${SERVER_URL}/category/categories?searchTerm=${searchTermFromParams}&categoryName=${selectedCategories.join(",")}`;
-        } else {
-            endpoint = `${SERVER_URL}/api/search/products/?searchTerm=${searchTermFromParams}`;
+        // 끼니 그린 체크
+        if (isChecked) {
+            endpoint += `&isGreen=true`;
         }
+
+        // 카테고리 체크
+        if (selectedCategories.length > 0) {
+            console.log(selectedCategories);
+            endpoint += `&categoryName=${selectedCategories.join(",")}`;
+        }
+
+        // 필터링 기준 체크
+        if (criteria) {
+            console.log(criteria);
+            endpoint += `&criteria=${criteria}`;
+        }
+        console.log("마지막 엔드포인트 ~~~ :", endpoint);
 
         fetch(endpoint)
             .then(response => {
@@ -68,10 +79,13 @@ function SearchResultPage(searchResults) {
             .catch(error => {
                 setError(error.message || "Error fetching products.");
             });
-    }, [searchTermFromParams, selectedCategories, isChecked]);
+    }, [searchTermFromParams, selectedCategories, isChecked, criteria]);
 
     const handleKkiniChecked = (checkedValue) => {
         setIsChecked(checkedValue);
+    }
+    const handleCriteriaChange = (selectedCriteria) => {
+        setCriteria(selectedCriteria);
     }
 
     const handleInputChange = (e) => {
@@ -113,6 +127,7 @@ function SearchResultPage(searchResults) {
                                 setDisplayItems={setDisplayItems}
                                 searchName={searchTermFromParams}
                                 setItems={setItems}
+                                onCriteriaChange={handleCriteriaChange}
                             />
                         </div>
                         <ProductList items={items} />
