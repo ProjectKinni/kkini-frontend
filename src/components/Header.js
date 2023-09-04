@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import logo from '../assets/images/kkini_logo.png';
 import { useNavigate } from 'react-router-dom';
+import logout from "./Logout";
+import getUserInfo from "./GetUserInfo";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -8,6 +10,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
     const [recentSearches, setRecentSearches] = useState([]);
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const storedSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
@@ -25,6 +28,10 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
+    }, []);
+
+    useEffect(() => {
+        getUserInfo().then(userData => setUser(userData));
     }, []);
 
     const handleSearchSubmit = (e) => {
@@ -63,6 +70,14 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         navigate(`/search-results?name=${productName}`);
     };
 
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        await logout();
+        setUser(null);
+        navigate('/');
+    };
+
+
     return (
         <header className="header">
             <img src={logo} className="logo" alt="kkini logo" onClick={() => navigate('/')}/>
@@ -88,12 +103,16 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                 </form>
             </div>
             <div className="nav-icons">
-                <span className="icon">👤</span> {/* 마이페이지 아이콘 */}
+                <span className="icon" onClick={() => user ? navigate('/user') : navigate('/login')}>👤</span> {/* 마이페이지 아이콘 */}
                 <span className="icon"> ♥ </span> {/* 찜하기 아이콘 */}
             </div>
             <div className="nav-links">
-                <a href="#">로그인</a> |
-                <a href="#">소개</a> |
+                {user ? (
+                    <a href="" onClick={(e) => handleLogout(e)}>로그아웃</a>
+                ) : (
+                    <a href="" onClick={() => navigate('/login')}>로그인</a>
+                )}
+                <a href="#">소개</a>
                 <a href="#">도움말</a>
             </div>
         </header>
