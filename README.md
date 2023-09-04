@@ -7,3 +7,6 @@ npm install
 npm install react-router-dom
 <br/>
 npm install axios
+<br/>
+이형승<br/>
+npm install js-cookie
