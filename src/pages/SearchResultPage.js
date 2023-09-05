@@ -18,45 +18,77 @@ function SearchResultPage({ searchResults }) {
     const searchTermFromParams = searchParams.get('searchTerm') || '';
     const navigate = useNavigate();
     const [items, setItems] = useState([]);
-    const [displayedItems, setDisplayItems] = useState([]);
     const [error, setError] = useState(null);
-    const [filteredResults, setFilteredResults] = useState(searchResults);
-    const [originalItems, setOriginalItems] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [isChecked, setIsChecked] = useState(false);
-    const [criteria, setCriteria] = useState('');
+    const [isLowCalorie, setIsLowCalorie] = useState(false);
+    const [isSugarFree, setIsSugarFree] = useState(false);
+    const [isLowSugar, setIsLowSugar] = useState(false);
+    const [isLowCarb, setIsLowCarb] = useState(false);
+    const [isKeto, setIsKeto] = useState(false);
+    const [isTransFat, setIsTransFat] = useState(false);
+    const [isHighProtein, setIsHighProtein] = useState(false);
+    const [isLowSodium, setIsLowSodium] = useState(false);
+    const [isCholesterol, setIsCholesterol] = useState(false);
+    const [isSaturatedFat, setIsSaturatedFat] = useState(false);
+    const [isLowFat, setIsLowFat] = useState(false);
 
     useEffect(() => {
         console.log("필터 업데이트~~~~~:", searchResults);
-        setFilteredResults(searchResults);
     }, [searchResults]);
 
     useEffect(() => {
-        let endpoint =
-            `${SERVER_URL}/api/products/filter?searchTerm=${searchTermFromParams}`;
+        let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${searchTermFromParams}`;
 
-        // 끼니 그린 체크
         if (isChecked) {
             endpoint += `&isGreen=true`;
         }
 
-        // 카테고리 체크
         if (selectedCategories.length > 0) {
             console.log(selectedCategories);
             endpoint += `&categoryName=${selectedCategories.join(",")}`;
         }
 
-        // 필터링 기준 체크
-        if (criteria) {
-            console.log(criteria);
-            endpoint += `&criteria=${criteria}`;
+        if (isLowCalorie) {
+            endpoint += `&isLowCalorie=true`;
         }
+
+        if (isSugarFree) {
+            endpoint += `&isSugarFree=true`;
+        }
+        if (isLowSugar) {
+            endpoint += `&isLowSugar=true`;
+        }
+        if (isLowCarb) {
+            endpoint += `&isLowCarb=true`;
+        }
+        if (isKeto) {
+            endpoint += `&isKeto=true`;
+        }
+        if (isTransFat) {
+            endpoint += `&isTransFat=true`;
+        }
+        if (isHighProtein) {
+            endpoint += `&isHighProtein=true`;
+        }
+        if (isLowSodium) {
+            endpoint += `&isLowSodium=true`;
+        }
+        if (isCholesterol) {
+            endpoint += `&isCholesterol=true`;
+        }
+        if (isSaturatedFat) {
+            endpoint += `&isSaturatedFat=true`;
+        }
+        if (isLowFat) {
+            endpoint += `&isLowFat=true`;
+        }
+
         console.log("마지막 엔드포인트 ~~~ :", endpoint);
 
         fetch(endpoint)
             .then(response => {
                 if (!response.ok) {
-                    // 서버에서 전송된 오류 메시지를 콘솔에 출력
                     return response.text().then(text => {
                         console.error("Server Error:", text);
                         throw new Error('Network response was not ok');
@@ -65,6 +97,7 @@ function SearchResultPage({ searchResults }) {
                 return response.json();
             })
             .then(data => {
+                console.log("Fetched Data:", data);
                 if (data.message) {
                     setError(data.message);
                     setItems([]);
@@ -79,25 +112,76 @@ function SearchResultPage({ searchResults }) {
             .catch(error => {
                 setError(error.message || "Error fetching products.");
             });
-    }, [searchTermFromParams, selectedCategories, isChecked, criteria]);
-
+    }, [searchTermFromParams, selectedCategories, isChecked, isLowCalorie, isSugarFree, isLowSugar,
+        isLowCarb, isKeto, isTransFat, isHighProtein, isLowSodium, isCholesterol, isSaturatedFat, isLowFat]);
     const handleKkiniChecked = (checkedValue) => {
         setIsChecked(checkedValue);
     }
-    const handleCriteriaChange = (selectedCriteria) => {
-        setCriteria(selectedCriteria);
-    }
+
+    const handleLowCalorieChange = (e) => {
+        setIsLowCalorie(e.target.checked);
+    };
+
+    const handleSugarFreeChange = (e) => {
+        setIsSugarFree(e.target.checked);
+    };
+
+    const handleLowSugarChange = (e) => {
+        setIsLowSugar(e.target.checked);
+    };
+
+    const handleLowCarbChange = (e) => {
+        setIsLowCarb(e.target.checked);
+    };
+
+    const handleKetoChange = (e) => {
+        setIsKeto(e.target.checked);
+    };
+
+    const handleTransFatChange = (e) => {
+        setIsTransFat(e.target.checked);
+    };
+
+    const handleHighProteinChange = (e) => {
+        setIsHighProtein(e.target.checked);
+    };
+
+    const handleLowSodiumChange = (e) => {
+        setIsLowSodium(e.target.checked);
+    };
+
+    const handleCholesterolChange = (e) => {
+        setIsCholesterol(e.target.checked);
+    };
+
+    const handleSaturatedFatChange = (e) => {
+        setIsSaturatedFat(e.target.checked);
+    };
+
+    const handleLowFatChange = (e) => {
+        setIsLowFat(e.target.checked);
+    };
 
     const handleInputChange = (e) => {
         const value = e.target.value;
         setSearchTerm(value);
     };
+
     useEffect(() => {
         const categoryNamesFromParams = searchParams.getAll('categoryName');
         if (categoryNamesFromParams.length > 0) {
             setSelectedCategories(categoryNamesFromParams);
         }
     }, [location.search]);
+
+    const categoryGroups = items.reduce((groups, item) => {
+        const category = item.categoryName || 'Others';
+        if (!groups[category]) {
+            groups[category] = [];
+        }
+        groups[category].push(item);
+        return groups;
+    }, {});
 
     return (
         <div className="search-result-page">
@@ -124,13 +208,27 @@ function SearchResultPage({ searchResults }) {
                             />
                             <Filters
                                 items={items}
-                                setDisplayItems={setDisplayItems}
                                 searchName={searchTermFromParams}
                                 setItems={setItems}
-                                onCriteriaChange={handleCriteriaChange}
+                                onLowCalorieChange={handleLowCalorieChange}
+                                onSugarFreeChange={handleSugarFreeChange}
+                                onLowSugarChange={handleLowSugarChange}
+                                onLowCarbChange={handleLowCarbChange}
+                                onKetoChange={handleKetoChange}
+                                onTransFatChange={handleTransFatChange}
+                                onHighProteinChange={handleHighProteinChange}
+                                onLowSodiumChange={handleLowSodiumChange}
+                                onCholesterolChange={handleCholesterolChange}
+                                onSaturatedFatChange={handleSaturatedFatChange}
+                                onLowFatChange={handleLowFatChange}
                             />
                         </div>
-                        <ProductList items={items} />
+                        {Object.keys(categoryGroups).map(category => (
+                            <div key={category}>
+                                <h2>{category}</h2>
+                                <ProductList items={categoryGroups[category]} />
+                            </div>
+                        ))}
                     </>
                 )}
             </div>

@@ -41,7 +41,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
     };
 
     const debouncedFetch = debounce((value) => {
-        fetch(`${SERVER_URL}/api/search/products/autocomplete?searchTerm=${encodeURIComponent(value)}`)
+        fetch(`${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(value)}`)
             .then(response => {
                 if (!response.ok) {
                     return null;
@@ -79,7 +79,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
     const handleItemClick = (productName) => {
         setSearchTerm(productName);
         setAutocompleteItems([]);
-        navigate(`/search-results?name=${productName}`);
+        navigate(`/search-results?searchTerm=${productName}`);
     };
 
     return (
