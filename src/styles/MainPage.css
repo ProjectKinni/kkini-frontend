@@ -201,3 +201,18 @@
 .banner-ad a:hover img {
     transform: scale(1.05);
 }
+
+.error-message {
+    color: #D32F2F;
+    border: 1px solid #D32F2F;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: #FFEBEE;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    z-index: 10;
+}

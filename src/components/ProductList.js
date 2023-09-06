@@ -13,7 +13,7 @@ function ProductList({ items }) {
             {items.map(item => (
                 <div key={item.productId} className="product-item"
                      onClick={() => handleProductClick(item.productId)}>
-                        <img src={item.productImage} alt={item.productName} width="100" />
+                        <img src={item.image} alt={item.productName} width="100" />
                         <h4>{item.productName}</h4>
                         <p className="rating-display">
                             <span>⭐</span>
