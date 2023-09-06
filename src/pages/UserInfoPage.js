@@ -10,7 +10,10 @@ function UserInfoPage() {
     const [user, setUser] = useState(null);
     const [newNickname, setNewNickname] = useState('');
     const [isEditingNickname, setIsEditingNickname] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [isNicknameAvailable, setIsNicknameAvailable] = useState(true);
+    // eslint-disable-next-line no-unused-vars
+    const [alreadyAlerted, setAlreadyAlerted] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -27,22 +30,45 @@ function UserInfoPage() {
 
     async function handleUpdateClick() {
         try {
+
+            if (newNickname.length < 2 || newNickname.length > 10) {
+                alert('닉네임은 최소 2글자에서 최대 10글자여야 합니다.');
+                return;
+            }
+
+            const profanityRegex = /(씨발|시발|병신|개새끼|지랄|니애미|니애비|니할배)/i;
+
+            if (profanityRegex.test(newNickname)) {
+                alert('불순한 언어가 포함된 부적절한 닉네임입니다.');
+                return;
+            }
+
+            const specialChars = /[^A-Za-z0-9가-힣]/;
+            if (specialChars.test(newNickname)) {
+                alert('잘못된 닉네임 형식입니다.');
+                return;
+            }
+
+            if(newNickname === user.nickname){
+                alert('현재 닉네임과 동일한 닉네임입니다. 새로운 닉네임을 입력해주세요.')
+                return;
+            }
+
             const isAvailable = await checkNicknameAvailability(newNickname);
 
             if (!isAvailable) {
                 setIsNicknameAvailable(false);
-                return;
-            }
-
-            if (newNickname === user.nickname) {
-                alert('현재 사용 중인 닉네임과 동일합니다. 다른 닉네임을 선택하세요.');
+                setAlreadyAlerted(false); // 중복된 닉네임일 때 경고를 표시하도록 초기화
+                alert('이미 사용 중인 닉네임입니다. 다른 닉네임을 선택하세요.');
                 return;
             }
 
             await updateUserNickname(newNickname);
             const updatedUserData = await getUserInfo();
             setUser(updatedUserData);
-            setIsEditingNickname(false)
+            setIsEditingNickname(false);
+            setIsNicknameAvailable(true);
+            setAlreadyAlerted(false); // 닉네임 변경 완료 후 경고 초기화
             alert('닉네임 변경이 완료되었습니다.');
         } catch (error) {
             console.error('Failed to update nickname', error);
@@ -51,9 +77,8 @@ function UserInfoPage() {
 
     function handleNicknameChange(e) {
         setNewNickname(e.target.value);
-        if (!isNicknameAvailable) {
-            setIsNicknameAvailable(true);
-        }
+        setIsNicknameAvailable(true); // 닉네임 변경 시 다시 가용한 상태로 설정
+        setAlreadyAlerted(false); // 경고 초기화
     }
 
     async function handleDeleteClick() {
@@ -95,6 +120,9 @@ function UserInfoPage() {
                         placeholder={user.nickname}
                     />
                     <span style={{ cursor: 'default' }}  onClick={handleUpdateClick}>👌</span><br />
+                    {/*{!isNicknameAvailable && (*/}
+                    {/*    <div style={{ color: 'red' }}>이미 사용 중인 닉네임입니다. 다른 닉네임을 선택하세요.</div>*/}
+                    {/*)}*/}
                     <button onClick={() => setIsEditingNickname(false)}>취소</button><br />
                     <a href="/">메인으로</a>
                 </div>
@@ -119,9 +147,6 @@ function UserInfoPage() {
     return (
         <div>
             {renderUserInfo()}
-            {!isNicknameAvailable && (
-                <div style={{ color: 'red' }}>이미 사용 중인 닉네임입니다. 다른 닉네임을 선택하세요.</div>
-            )}
         </div>
     );
 }
