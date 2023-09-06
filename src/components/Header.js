@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import logo from '../assets/images/kkini_logo.png';
 import { useNavigate } from 'react-router-dom';
+import { debounce } from 'lodash';
 import logout from "./Logout";
 import getUserInfo from "./GetUserInfo";
 
@@ -8,6 +9,7 @@ const SERVER_URL = "http://localhost:8080";
 
 function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
     const [recentSearches, setRecentSearches] = useState([]);
+    const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
     const [user, setUser] = useState(null);
@@ -45,29 +47,46 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         navigate(`/search-results?searchTerm=${searchTerm}`);
     };
 
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-
-        fetch(`${SERVER_URL}/api/search/autocomplete?name=${value}`)
-            .then(response => response.json())
+    const debouncedFetch = debounce((value) => {
+        fetch(`${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(value)}`)
+            .then(response => {
+                if (!response.ok) {
+                    return null;
+                }
+                return response.json();
+            })
             .then(data => {
-                if (Array.isArray(data)) {
+                if (data && Array.isArray(data)) {
                     const uniqueItems = [...new Set(data)];
                     setAutocompleteItems(uniqueItems);
                 } else {
                     setAutocompleteItems([]);
                 }
-            }).catch(error => {
-            console.error("Error fetching data:", error);
+            })
+            .catch(() => {
+                setAutocompleteItems([]);
+            });
+    }, 1000);
+
+    const handleInputChange = (e) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+
+        if (value.length < 2) {
+            setErrorMessage("검색어는 최소 2자 이상이어야 합니다.");
             setAutocompleteItems([]);
-        });
-    };
+            return;
+        } else {
+            setErrorMessage(null);
+        }
+
+        debouncedFetch(value);
+    }
 
     const handleItemClick = (productName) => {
         setSearchTerm(productName);
         setAutocompleteItems([]);
-        navigate(`/search-results?name=${productName}`);
+        navigate(`/search-results?searchTerm=${productName}`);
     };
 
     const handleLogout = async (e) => {
@@ -92,14 +111,8 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                         list="recentSearches"
                         autoComplete="off"
                     />
-                    <div className="autocomplete-items" ref={dropdownRef}>
-                        {Array.isArray(autocompleteItems) && autocompleteItems.map(productName => (
-                            <div key={productName} onClick={() => handleItemClick(productName)}>
-                                {productName}
-                            </div>
-                        ))}
-                    </div>
-                    <input type="submit" value="검색" />
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                    <input type="submit" value="Search" />
                 </form>
             </div>
             <div className="nav-icons">

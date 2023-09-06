@@ -3,7 +3,7 @@ import React from 'react';
 const ProductNutrition = ({ nutrition }) => {
     return (
         <div className="nutrition-detail">
-            <h3>열량  {nutrition.calorie}kcal</h3>
+            <h3>열량:  {nutrition.calorie}kcal</h3>
             <div className="nutrition-row top-row">
                 <div className="nutrition-item">
                     <span>탄수화물: </span>{nutrition.carb}g
@@ -23,7 +23,7 @@ const ProductNutrition = ({ nutrition }) => {
                     <span>나트륨: </span>{nutrition.sodium}mg
                 </div>
                 <div className="nutrition-item">
-                    <span>콜레스테롤?: </span>{}mg
+                    <span>콜레스테롤: </span>{nutrition.cholesterol}mg
                 </div>
                 <div className="nutrition-item">
                     <span>포화지방: </span>{nutrition.saturatedFat}g
