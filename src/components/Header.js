@@ -1,12 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import logo from '../assets/images/kkini_logo.png';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
 import { debounce } from 'lodash';
-=======
 import logout from "./Logout";
 import getUserInfo from "./GetUserInfo";
->>>>>>> develop
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -119,7 +116,6 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                 </form>
             </div>
             <div className="nav-icons">
-<<<<<<< HEAD
                 <span className="icon">👤</span>
                 <span className="icon"> ♥ </span>
             </div>
@@ -127,7 +123,6 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                 <a href="#">Login</a> |
                 <a href="#">About</a> |
                 <a href="#">Help</a>
-=======
                 <span className="icon" onClick={() => user ? navigate('/user') : navigate('/login')}>👤</span> {/* 마이페이지 아이콘 */}
                 <span className="icon"> ♥ </span> {/* 찜하기 아이콘 */}
             </div>
@@ -139,7 +134,6 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                 )}
                 <a href="#">소개</a>
                 <a href="#">도움말</a>
->>>>>>> develop
             </div>
         </header>
     );
