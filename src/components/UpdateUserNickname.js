@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import checkNicknameAvailability from "./CheckNickname";
+import IsNicknameAvailable from "./IsNicknameAvailable";
 
 const SERVER_URL = 'http://localhost:8080';
 
@@ -9,7 +9,7 @@ async function UpdateUserNickname(newNickname) {
 
     try {
         // 서버에 닉네임 중복 여부를 확인하는 요청을 보냅니다.
-        const isNicknameAvailable = await checkNicknameAvailability(newNickname);
+        const isNicknameAvailable = await IsNicknameAvailable(newNickname);
 
         if (!isNicknameAvailable) {
             throw new Error('이미 사용 중인 닉네임입니다.');

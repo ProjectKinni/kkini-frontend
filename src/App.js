@@ -4,7 +4,7 @@ import React from "react";
 import MainPage from "./pages/MainPage";
 import SearchResultPage from "./pages/SearchResultPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import UserInfoPage from "./pages/UserInfoPage";
+import MyPage from "./pages/MyPage";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
                 <Route path="/" element={<MainPage/>} />
                 <Route path="/search-results" element={<SearchResultPage/>} />
                 <Route path="/products/:productId" element={<ProductDetailPage/>} />
-                <Route path="/user" element={<UserInfoPage />}/>
+                <Route path="/user" element={<MyPage />}/>
                 <Route path="/login" element={<LoginPage />}/>
             </Routes>
         </BrowserRouter>
