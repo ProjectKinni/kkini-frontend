@@ -19,23 +19,4 @@ async function deleteUser() {
     }
 }
 
-async function handleDeleteClick(callback) {
-    const confirmation = window.confirm('정말 탈퇴하시겠습니까?');
-
-    if (confirmation) {
-        try {
-            await deleteUser();
-
-            // 삭제 후 추가 작업 수행
-            callback();
-
-            Cookies.remove('access_token');
-
-            alert('회원 탈퇴가 완료되었습니다.');
-        } catch (error) {
-            console.error('유저 삭제 실패', error);
-        }
-    }
-}
-
-export default handleDeleteClick;
+export default deleteUser;

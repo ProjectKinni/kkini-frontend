@@ -1,17 +1,12 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import updateUserNickname from "../components/UpdateUserNickname";
 import IsNicknameAvailable from "./IsNicknameAvailable";
 import getUserInfo from "../components/GetUserInfo";
+import handleNicknameChange from "./HandleNicknameChange";
 
-function UpdateCheckUserNickname({ user, onUpdateSuccess }) {
+function UpdateCheckUserNickname({ user, setUser, setIsEditingNickname }) {
     const [newNickname, setNewNickname] = useState('');
     const [isNicknameAvailable, setIsNicknameAvailable] = useState(true);
-
-    const handleNicknameChange = (e) => {
-        setNewNickname(e.target.value);
-        setIsNicknameAvailable(true);
-    };
-
 
     const handleUpdateClick = async () => {
         try {
@@ -48,7 +43,9 @@ function UpdateCheckUserNickname({ user, onUpdateSuccess }) {
 
             await updateUserNickname(newNickname);
             const updatedUserData = await getUserInfo();
-            onUpdateSuccess(updatedUserData);
+            setUser(updatedUserData);
+            setIsEditingNickname(false);
+            alert('닉네임 변경이 완료되었습니다.');
         } catch (error) {
             console.error('Failed to update nickname', error);
         }
@@ -60,7 +57,7 @@ function UpdateCheckUserNickname({ user, onUpdateSuccess }) {
             <input
                 id="nickname"
                 value={newNickname}
-                onChange={handleNicknameChange}
+                onChange={(e) => handleNicknameChange(e, setNewNickname, setIsNicknameAvailable)}
                 placeholder={user.nickname}
             />
             <span style={{ cursor: 'pointer' }} onClick={handleUpdateClick}>👌</span>

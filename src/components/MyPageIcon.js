@@ -1,8 +1,13 @@
 import React from 'react';
 
-function MyPageIcon({ user, navigate }) {
+function MyPageIcon({ navigate }) {
+
+    const handleNavigate = () => {
+        navigate('/user');
+    };
+
     return (
-        <span className="icon" onClick={() => user ? navigate('/user') : navigate('/login')}>
+        <span className="icon" onClick={handleNavigate}>
             👤
         </span>
     );

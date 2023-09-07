@@ -2,10 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import logo from '../assets/images/kkini_logo.png';
 import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
-import logout from "./Logout";
-import getUserInfo from "./GetUserInfo";
+// import logout from "./Logout";
+// import getUserInfo from "./GetUserInfo";
 import IsLogin from "./IsLogin";
 import MyPageIcon from "./MyPageIcon";
+import handleLogoutButton from "./HandleLogoutButton";
+// import useFetchUserInfo from "./UseFetchUserInfo";
+import {useUser} from "./UserContext";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -14,7 +17,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
-    const [user, setUser] = useState(null);
+    const { user, setUser } = useUser();
 
     useEffect(() => {
         const storedSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
@@ -32,10 +35,6 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []);
-
-    useEffect(() => {
-        getUserInfo().then(userData => setUser(userData));
     }, []);
 
     const handleSearchSubmit = (e) => {
@@ -90,13 +89,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         setAutocompleteItems([]);
         navigate(`/search-results?searchTerm=${productName}`);
     };
-
-    const handleLogout = async (e) => {
-        e.preventDefault();
-        await logout();
-        setUser(null);
-        navigate('/');
-    };
+    const handleLogout = handleLogoutButton(navigate,setUser);
 
     return (
         <header className="header">
