@@ -1,13 +1,9 @@
-// ProductDetailPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import ProductDetail from '../components/ProductDetail';
 import Header from "../components/Header";
-import Filters from "../components/Filters";
-import ProductList from "../components/ProductList";
 import "../styles/ProductDetail.css"
 import NavigationBar from "../components/NavigationBar";
-import ProductNutrition from "../components/ProductNutrition";
 
 const SERVER_URL = "http://localhost:8080";
 

@@ -116,15 +116,8 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                 </form>
             </div>
             <div className="nav-icons">
-                <span className="icon">👤</span>
+                <span className="icon" onClick={() => user ? navigate('/user') : navigate('/login')}>👤</span>
                 <span className="icon"> ♥ </span>
-            </div>
-            <div className="nav-links">
-                <a href="#">Login</a> |
-                <a href="#">About</a> |
-                <a href="#">Help</a>
-                <span className="icon" onClick={() => user ? navigate('/user') : navigate('/login')}>👤</span> {/* 마이페이지 아이콘 */}
-                <span className="icon"> ♥ </span> {/* 찜하기 아이콘 */}
             </div>
             <div className="nav-links">
                 {user ? (
