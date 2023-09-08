@@ -3,7 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import ProductDetail from '../components/ProductDetail';
 import Header from "../components/Header";
 import "../styles/ProductDetail.css"
-import NavigationBar from "../components/NavigationBar";
+import NavigationBarContainer from "../containers/NavigationBarContainer";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -38,7 +38,7 @@ const ProductDetailPage = () => {
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            <NavigationBar/>
+            <NavigationBarContainer/>
             <ProductDetail product={product} />
             <h1>제품설명&상세정보</h1>
             <h1>리뷰~!</h1>

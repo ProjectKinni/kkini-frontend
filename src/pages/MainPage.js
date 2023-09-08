@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import '../styles/MainPage.css';
 import MainPageContainer from '../containers/MainPageContainer';
+import NavigationContainer from "../containers/NavigationBarContainer";
 
-function MainPage() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [autocompleteItems, setAutocompleteItems] = useState([]);
-
+function MainPage({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
     return (
-        <div className="main-page">
-            <MainPageContainer
+        <>
+            <NavigationContainer
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-        </div>
+            <BannerAd/>
+            <RankingSection/>
+            <Footer/>
+        </>
     );
 }
+
 
 export default MainPage;

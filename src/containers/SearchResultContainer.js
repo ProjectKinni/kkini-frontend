@@ -2,7 +2,6 @@ import React from 'react';
 import Categories from "../components/Categories";
 import Filters from "../components/Filters";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 import KkiniChecked from "../components/KkiniChecked";
 import ProductList from "../components/ProductList";
 import { useCategoryFromSearchParams } from '../components/useCategoryFromSearchParams';

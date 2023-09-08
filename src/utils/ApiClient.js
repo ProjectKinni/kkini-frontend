@@ -25,3 +25,23 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories) =>
         return { error: error.message || "Error fetching products.", items: [] };
     }
 };
+
+export const fetchAutocompleteSuggestions = async (searchTerm) => {
+    const SERVER_URL = "http://localhost:8080";
+    let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
+
+    try {
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            return { error: "Network response was not ok", items: [] };
+        }
+        const data = await response.json();
+        if (Array.isArray(data)) {
+            return { items: [...new Set(data)] };
+        } else {
+            return { error: "Unexpected response format.", items: [] };
+        }
+    } catch (error) {
+        return { error: error.message || "Error fetching autocomplete suggestions.", items: [] };
+    }
+};
