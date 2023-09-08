@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/MainPage.css';
-import Header from "../components/Header";
-import NavigationBar from "../components/NavigationBar";
-import RankingSection from "../components/RankingSection";
-import Footer from "../components/Footer";
-import BannerAd from "../components/BannerAd";
+import MainPageContainer from '../containers/MainPageContainer';
 
 function MainPage() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -12,16 +8,12 @@ function MainPage() {
 
     return (
         <div className="main-page">
-            <Header
+            <MainPageContainer
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            <NavigationBar/>
-            <BannerAd/>
-            <RankingSection/>
-            <Footer/>
         </div>
     );
 }
