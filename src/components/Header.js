@@ -2,8 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import logo from '../assets/images/kkini_logo.png';
 import { useNavigate } from 'react-router-dom';
 import { debounce } from 'lodash';
-import logout from "./Logout";
-import getUserInfo from "./GetUserInfo";
+// import logout from "./Logout";
+// import getUserInfo from "./GetUserInfo";
+import IsLogin from "./IsLogin";
+import MyPageIcon from "./MyPageIcon";
+import handleLogoutButton from "./HandleLogoutButton";
+// import useFetchUserInfo from "./UseFetchUserInfo";
+import {useUser} from "./UserContext";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -12,7 +17,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
-    const [user, setUser] = useState(null);
+    const { user, setUser } = useUser();
 
     useEffect(() => {
         const storedSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
@@ -30,10 +35,6 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []);
-
-    useEffect(() => {
-        getUserInfo().then(userData => setUser(userData));
     }, []);
 
     const handleSearchSubmit = (e) => {
@@ -88,14 +89,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
         setAutocompleteItems([]);
         navigate(`/search-results?searchTerm=${productName}`);
     };
-
-    const handleLogout = async (e) => {
-        e.preventDefault();
-        await logout();
-        setUser(null);
-        navigate('/');
-    };
-
+    const handleLogout = handleLogoutButton(navigate,setUser);
 
     return (
         <header className="header">
@@ -116,22 +110,11 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                 </form>
             </div>
             <div className="nav-icons">
-                <span className="icon">👤</span>
-                <span className="icon"> ♥ </span>
-            </div>
-            <div className="nav-links">
-                <a href="#">Login</a> |
-                <a href="#">About</a> |
-                <a href="#">Help</a>
-                <span className="icon" onClick={() => user ? navigate('/user') : navigate('/login')}>👤</span> {/* 마이페이지 아이콘 */}
+
                 <span className="icon"> ♥ </span> {/* 찜하기 아이콘 */}
             </div>
             <div className="nav-links">
-                {user ? (
-                    <a href="" onClick={(e) => handleLogout(e)}>로그아웃</a>
-                ) : (
-                    <a href="" onClick={() => navigate('/login')}>로그인</a>
-                )}
+                <IsLogin user={user} navigate={navigate} handleLogout={handleLogout} />
                 <a href="#">소개</a>
                 <a href="#">도움말</a>
             </div>
