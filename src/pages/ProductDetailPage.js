@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import ProductDetail from '../components/ProductDetail';
-import Header from "../components/Header";
 import "../styles/ProductDetail.css"
 import NavigationBarContainer from "../containers/NavigationBarContainer";
 
@@ -32,12 +31,7 @@ const ProductDetailPage = () => {
 
     return (
         <div className="product-detail-page">
-            <Header
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
+
             <NavigationBarContainer/>
             <ProductDetail product={product} />
             <h1>제품설명&상세정보</h1>

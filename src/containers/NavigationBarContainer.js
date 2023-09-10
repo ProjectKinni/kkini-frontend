@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import logout from "./Logout";
-// import getUserInfo from "./GetUserInfo";
-// import SearchBar from './SearchBar';
 import LogoComponent from '../components/Logo';
-import NavButtonsComponent from '../components/NavButtons';
+import logout from "../components/Logout";
+import getUserInfo from "../components/GetUserInfo";
 import SearchBar from "../components/SearchBar";
+import NavButtonsComponent from '../components/NavButtons';
+
 
 function NavigationContainer({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
     const navigate = useNavigate();

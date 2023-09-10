@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import '../styles/MainPage.css';
-import MainPageContainer from '../containers/MainPageContainer';
 import NavigationContainer from "../containers/NavigationBarContainer";
+import BannerAd from "../components/BannerAd";
+import RankingSection from "../components/RankingSection";
+import Footer from "../components/Footer";
 
-function MainPage({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
+function MainPage({ searchTerm: initialSearchTerm, setSearchTerm: initialSetSearchTerm,
+                      autocompleteItems: initialAutocompleteItems,
+                      setAutocompleteItems: initialSetAutocompleteItems }) {
+    const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+    const [autocompleteItems, setAutocompleteItems] = useState(initialAutocompleteItems);
+
+
     return (
         <>
             <NavigationContainer
@@ -12,9 +20,9 @@ function MainPage({ searchTerm, setSearchTerm, autocompleteItems, setAutocomplet
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            <BannerAd/>
-            <RankingSection/>
-            <Footer/>
+            <BannerAd className="banner-ad"/>
+            <RankingSection className="ranking-section"/>
+            <Footer className="footer"/>
         </>
     );
 }

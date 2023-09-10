@@ -1,20 +1,34 @@
-import React, { useState } from 'react';
-import '../styles/SearchResultPage.css';
-import SearchResultContainer from '../containers/SearchResultContainer';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function SearchResultPage({ searchResults }) {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [autocompleteItems, setAutocompleteItems] = useState([]);
+import NavigationContainer from '../containers/NavigationBarContainer';
+import CategoryBarContainer from '../containers/CategoryBarContainer';
+import ProductList from '../components/ProductList';
+import Footer from '../components/Footer';
+
+function SearchResultPage({ searchTerm: initialSearchTerm, setSearchTerm: initialSetSearchTerm,
+                              autocompleteItems: initialAutocompleteItems,
+                              setAutocompleteItems: initialSetAutocompleteItems }) {
+    const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+    const [autocompleteItems, setAutocompleteItems] = useState(initialAutocompleteItems);
+    const navigate = useNavigate();
+    const [categoryGroups, setCategoryGroups] = useState({});
+
+    useEffect(() => {
+
+    }, []);
 
     return (
         <div className="search-result-page">
-            <SearchResultContainer
+            <NavigationContainer
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
-                searchResults={searchResults}
             />
+            <CategoryBarContainer />
+            <ProductList categoryGroups={categoryGroups} />
+            <Footer />
         </div>
     );
 }
