@@ -110,7 +110,7 @@ function Header({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteI
                 </form>
             </div>
             <div className="nav-icons">
-                <MyPageIcon user={user} navigate={navigate} />
+
                 <span className="icon"> ♥ </span> {/* 찜하기 아이콘 */}
             </div>
             <div className="nav-links">
