@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Categories() {
+function Categories({ onCategoryChange, searchTerm }) {
     const [selectedCategories, setSelectedCategories] = useState([]);
 
-    const handleCategoryChange = (selectedOptions) => {
-        setSelectedCategories(selectedOptions);
+    useEffect(() => {
+        onCategoryChange(selectedCategories);
+    }, [selectedCategories, onCategoryChange]);
+
+    useEffect(() => {
+        if (searchTerm) {
+            const matchingCategory = ["간식", "육가공", "음료", "즉석섭취식품"].find(category => category === searchTerm);
+            if (matchingCategory) {
+                setSelectedCategories([matchingCategory]);
+            }
+        }
+    }, [searchTerm]);
+
+    const handleCategoryChange = (category) => {
+        setSelectedCategories(prevCategories => {
+            if (prevCategories.includes(category)) {
+                return prevCategories.filter(item => item !== category);
+            } else {
+                return [...prevCategories, category];
+            }
+        });
     };
 
     return (
         <div>
-            <select multiple value={selectedCategories}
-                    onChange={(e) =>
-                        handleCategoryChange(Array.from(e.target.selectedOptions,
-                                option => option.value))}>
-                <option value="간식">간식</option>
-                <option value="육가공">육가공</option>
-                <option value="음료">음료</option>
-                <option value="즉석섭취식품">즉석섭취식품</option>
-            </select>
+            <h3>카테고리</h3>
+            {["간식", "육가공", "음료", "즉석섭취식품"].map(category => (
+                <label key={category}>
+                    <input
+                        type="checkbox"
+                        value={category}
+                        checked={selectedCategories.includes(category)}
+                        onChange={() => handleCategoryChange(category)}
+                    />
+                    {category}
+                </label>
+            ))}
         </div>
     );
 }

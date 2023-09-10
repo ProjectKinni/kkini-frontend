@@ -8,27 +8,22 @@ function ProductList({ categoryGroups }) {
         navigate(`/products/${productId}`);
     };
 
+    const allProducts = Object.values(categoryGroups).flat();
+
     return (
-        <>
-            {Object.keys(categoryGroups).map(category => (
-                <div key={category}>
-                    <h2>{category}</h2>
-                    <main className="product-list">
-                        {categoryGroups[category].map(item => (
-                            <div key={item.productId} className="product-item"
-                                 onClick={() => handleProductClick(item.productId)}>
-                                <img src={item.image} alt={item.productName} width="100" />
-                                <h4>{item.productName}</h4>
-                                <p className="rating-display">
-                                    <span>⭐</span>
-                                    {item.averageRating.toFixed(2)} ({item.reviewCount} reviews)
-                                </p>
-                            </div>
-                        ))}
-                    </main>
+        <main className="product-list">
+            {allProducts.map(item => (
+                <div key={item.productId} className="product-item"
+                     onClick={() => handleProductClick(item.productId)}>
+                    <img src={item.image} alt={item.productName} width="100" />
+                    <h4>{item.productName}</h4>
+                    <p className="rating-display">
+                        <span>⭐</span>
+                        {item.averageRating ? item.averageRating.toFixed(2) : "0.00"} ({item.reviewCount} reviews)
+                    </p>
                 </div>
             ))}
-        </>
+        </main>
     );
 }
 

@@ -1,22 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import useSearchResults from '../components/UseSearchResults';
 
 import NavigationContainer from '../containers/NavigationBarContainer';
 import CategoryBarContainer from '../containers/CategoryBarContainer';
 import ProductList from '../components/ProductList';
 import Footer from '../components/Footer';
 
-function SearchResultPage({ searchTerm: initialSearchTerm, setSearchTerm: initialSetSearchTerm,
-                              autocompleteItems: initialAutocompleteItems,
-                              setAutocompleteItems: initialSetAutocompleteItems }) {
+function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const initialSearchTerm = queryParams.get('searchTerm');
+
     const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-    const [autocompleteItems, setAutocompleteItems] = useState(initialAutocompleteItems);
-    const navigate = useNavigate();
-    const [categoryGroups, setCategoryGroups] = useState({});
+    const [autocompleteItems, setAutocompleteItems] = useState([]);
+    const [kkiniGreenCheck, setKkiniGreenCheck] = useState(false);
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [filters, setFilters] = useState({
+        isLowCalorie: false,
+        isSugarFree: false,
+        isLowSugar: false,
+        isLowCarb: false,
+        isKeto: false,
+        isTransFat: false,
+        isHighProtein: false,
+        isLowSodium: false,
+        isCholesterol: false,
+        isSaturatedFat: false,
+        isLowFat: false,
+    });
 
     useEffect(() => {
+        setSearchTerm(initialSearchTerm);
+    }, [location]);
 
-    }, []);
+    const { categoryGroups, loading, error } = useSearchResults(searchTerm, selectedCategories, filters);
+
+    const handleFilterChange = (updatedFilters) => {
+        setFilters(updatedFilters);
+    };
+
+    const handleKkiniGreenCheckChange = (value) => {
+        setKkiniGreenCheck(value);
+    };
 
     return (
         <div className="search-result-page">
@@ -26,8 +52,17 @@ function SearchResultPage({ searchTerm: initialSearchTerm, setSearchTerm: initia
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            <CategoryBarContainer />
-            <ProductList categoryGroups={categoryGroups} />
+            <CategoryBarContainer
+                onKkiniChecked={handleKkiniGreenCheckChange}
+                onCategoryChange={setSelectedCategories}
+                onFilterChange={handleFilterChange}
+                searchTerm={searchTerm}
+                filters={filters}
+                kkiniGreenCheck={kkiniGreenCheck}
+            />
+            <div className="product-list-wrapper">
+                <ProductList categoryGroups={categoryGroups} />
+            </div>
             <Footer />
         </div>
     );

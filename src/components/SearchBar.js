@@ -5,7 +5,8 @@ import { fetchAutocompleteSuggestions} from "../utils/ApiClient";
 
 const SERVER_URL = "http://localhost:8080";
 
-function SearchBar({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
+function SearchBar({ autocompleteItems, setAutocompleteItems }) {
+    const [searchTerm, setSearchTerm] = useState('');
     const [recentSearches, setRecentSearches] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();

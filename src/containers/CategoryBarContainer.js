@@ -3,12 +3,12 @@ import KkiniChecked from '../components/KkiniChecked';
 import Categories from '../components/Categories';
 import Filters from '../components/Filters';
 
-function CategoryBarContainer() {
+function CategoryBarContainer({ onKkiniChecked, onCategoryChange, onFilterChange, filters }) {
     return (
         <div className="category-bar-container">
-            <KkiniChecked />
-            <Categories />
-            <Filters />
+            <KkiniChecked onKkiniChecked={onKkiniChecked} />
+            <Categories onCategoryChange={onCategoryChange} />
+            <Filters onFilterChange={onFilterChange} filters={filters}/>
         </div>
     );
 }

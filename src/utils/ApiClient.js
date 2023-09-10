@@ -1,10 +1,20 @@
-export const fetchProducts = async (searchTermFromParams, selectedCategories) => {
-    const SERVER_URL = "http://localhost:8080";
-    let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${searchTermFromParams}`;
+const SERVER_URL = "http://localhost:8080";
 
-    if (selectedCategories.length > 0) {
+export const fetchProducts = async (searchTermFromParams, selectedCategories, filters) => {
+    let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}`;
+
+    if (selectedCategories && selectedCategories.length > 0) {
         endpoint += `&categoryName=${selectedCategories.join(",")}`;
     }
+
+    if (filters.isKkiniChecked) {
+        endpoint += `&isGreen=true`;
+    }
+    Object.entries(filters).forEach(([key, value]) => {
+        if (value) {
+            endpoint += `&${key}=${value}`;
+        }
+    });
 
     try {
         const response = await fetch(endpoint);
@@ -27,7 +37,6 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories) =>
 };
 
 export const fetchAutocompleteSuggestions = async (searchTerm) => {
-    const SERVER_URL = "http://localhost:8080";
     let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
 
     try {
@@ -45,3 +54,18 @@ export const fetchAutocompleteSuggestions = async (searchTerm) => {
         return { error: error.message || "Error fetching autocomplete suggestions.", items: [] };
     }
 };
+
+export const fetchProductDetail = async (productId) => {
+    try {
+        const response = await fetch(`${SERVER_URL}/api/products/${productId}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return { data };
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        return { error: error.message || "Error fetching product." };
+    }
+};
+
