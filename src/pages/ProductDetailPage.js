@@ -1,13 +1,9 @@
-// ProductDetailPage.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import ProductDetail from '../components/ProductDetail';
-import Header from "../components/Header";
-import Filters from "../components/Filters";
-import ProductList from "../components/ProductList";
-import "../styles/ProductDetail.css"
-import NavigationBar from "../components/NavigationBar";
-import ProductNutrition from "../components/ProductNutrition";
+import "../styles/ProductDetail.css";
+import NavigationBarContainer from "../containers/NavigationBarContainer";
+import { fetchProductDetail } from '../utils/ApiClient';
+import ProductDetailContainer from '../containers/ProductDetailContainer'; // 여기에 컴포넌트를 임포트합니다.
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -25,28 +21,23 @@ const ProductDetailPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`${SERVER_URL}/api/search/products/${productId}`)
-            .then(response => response.json())
-            .then(data => setProduct(data))
-            .catch(error => {
-                console.error('Error fetching product:', error);
-                setError(error.message || "Error fetching product.");
-            });
+        const fetchProductData = async () => {
+            const { data, error } = await fetchProductDetail(productId);
+            if (error) {
+                setError(error);
+            } else {
+                setProduct(data);
+            }
+        };
+
+        fetchProductData();
     }, [productId]);
 
     return (
         <div className="product-detail-page">
-            <Header
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
-            <NavigationBar/>
-            <ProductDetail product={product} />
-            <h1>제품설명&상세정보</h1>
-            <h1>리뷰~!</h1>
-            </div>
+            <NavigationBarContainer/>
+            <ProductDetailContainer product={product} />
+        </div>
     );
 }
 

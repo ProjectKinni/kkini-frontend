@@ -1,35 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Filters({ onLowCalorieChange, onSugarFreeChange, onLowSugarChange, onLowCarbChange,
-                     onKetoChange, onTransFatChange, onHighProteinChange, onLowSodiumChange,
-                     onCholesterolChange, onSaturatedFatChange, onLowFatChange}) {
+function Filters({ onFilterChange, searchTerm, selectedCategories, categoryGroups, loading, error }) {
+    const [filters, setFilters] = useState({
+        isLowCalorie: false,
+        isSugarFree: false,
+        isLowSugar: false,
+        isLowCarb: false,
+        isKeto: false,
+        isTransFat: false,
+        isHighProtein: false,
+        isLowSodium: false,
+        isCholesterol: false,
+        isSaturatedFat: false,
+        isLowFat: false,
+    });
 
-    const filters =
-        [{label : "저칼로리", handler: onLowCalorieChange},
-        {label : "슈가프리", handler: onSugarFreeChange},
-        {label : "로우슈가", handler: onLowSugarChange},
-        {label : "저탄수화물", handler: onLowCarbChange},
-        {label : "키토", handler: onKetoChange},
-        {label : "트랜스지방", handler: onTransFatChange},
-        {label : "고단백", handler: onHighProteinChange},
-        {label : "저나트륨", handler: onLowSodiumChange},
-        {label : "콜레스테롤", handler: onCholesterolChange},
-        {label : "포화지방", handler: onSaturatedFatChange},
-        {label : "저지방", handler: onLowFatChange}];
+    const handleFilterChange = (filterName, value) => {
+        console.log(`Filter Changed in Filters Component: ${filterName} - ${value ? 'Checked' : 'Unchecked'}`);
+        setFilters(prevFilters => {
+            const updatedFilters = { ...prevFilters, [filterName]: value };
+            onFilterChange(updatedFilters);
+            return updatedFilters;
+        });
+    };
 
     return (
-        <div className="filters">
-            <h3>필터</h3>
-            {filters.map(filter => (
-                <div key={filter.label} className="filter-selection">
-                    <label>
-                        <input
-                            type="checkbox"
-                            value={filter.label}
-                            onChange={filter.handler}
-                        />
-                        {filter.label}
-                    </label>
+        <div>
+            <h3>필터링</h3>
+            {Object.entries(filters).map(([filterName, isChecked]) => (
+                <div key={filterName}>
+                    <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={(e) =>
+                            handleFilterChange(filterName, e.target.checked)}
+                    />
+                    {filterName}
                 </div>
             ))}
         </div>
@@ -37,3 +43,4 @@ function Filters({ onLowCalorieChange, onSugarFreeChange, onLowSugarChange, onLo
 }
 
 export default Filters;
+
