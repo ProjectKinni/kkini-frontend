@@ -34,7 +34,9 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
         setSearchTerm(initialSearchTerm);
     }, [location]);
 
-    const { categoryGroups, loading, error } = useSearchResults(searchTerm, selectedCategories, filters);
+    const { categoryGroups, loading, error } =
+        useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenCheck);
+
 
     const handleFilterChange = (updatedFilters) => {
         setFilters(updatedFilters);

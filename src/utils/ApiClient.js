@@ -1,13 +1,13 @@
 const SERVER_URL = "http://localhost:8080";
 
-export const fetchProducts = async (searchTermFromParams, selectedCategories, filters) => {
+export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked) => {
     let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}`;
 
     if (selectedCategories && selectedCategories.length > 0) {
         endpoint += `&categoryName=${selectedCategories.join(",")}`;
     }
 
-    if (filters.isKkiniChecked) {
+    if (isKkiniChecked) {
         endpoint += `&isGreen=true`;
     }
     Object.entries(filters).forEach(([key, value]) => {
