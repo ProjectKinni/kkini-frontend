@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function ProductList({ categoryGroups }) {
+function ProductList({ categoryGroups, noProductsFound }) {
     const navigate = useNavigate();
 
     const handleProductClick = (productId) => {
@@ -9,6 +9,10 @@ function ProductList({ categoryGroups }) {
     };
 
     const allProducts = Object.values(categoryGroups).flat();
+
+    if (noProductsFound) {
+        return <p>해당 상품이 없습니다</p>;
+    }
 
     return (
         <main className="product-list">

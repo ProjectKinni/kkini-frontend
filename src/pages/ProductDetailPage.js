@@ -3,7 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import "../styles/ProductDetail.css";
 import NavigationBarContainer from "../containers/NavigationBarContainer";
 import { fetchProductDetail } from '../utils/ApiClient';
-import ProductDetailContainer from '../containers/ProductDetailContainer'; // 여기에 컴포넌트를 임포트합니다.
+import ProductDetailContainer from '../containers/ProductDetailContainer'; 
 
 const SERVER_URL = "http://localhost:8080";
 

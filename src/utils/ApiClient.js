@@ -15,7 +15,6 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
             endpoint += `&${key}=${value}`;
         }
     });
-
     try {
         const response = await fetch(endpoint);
         if (!response.ok) {
@@ -23,8 +22,11 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
             console.error("Server Error:", text);
             throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        if (data.message) {
+        const text = await response.text();
+        const data = text ? JSON.parse(text) : null;
+        if (data === null) {
+            return { noProductsFound: true, items: [] };
+        } else if (data.message) {
             return { error: data.message, items: [] };
         } else if (Array.isArray(data)) {
             return { items: data };
