@@ -5,16 +5,21 @@ function useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenChe
     const [categoryGroups, setCategoryGroups] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [noProductsFound, setNoProductsFound] = useState(false);
 
     useEffect(() => {
         const fetchSearchResults = async () => {
             setLoading(true);
             setError(null);
+            setNoProductsFound(false);
             console.log("Fetching results for:", searchTerm);
-            const { error, items } = await fetchProducts(searchTerm, selectedCategories, filters, kkiniGreenCheck);
+            const { error, items, noProductsFound } =
+                await fetchProducts(searchTerm, selectedCategories, filters, kkiniGreenCheck);
             if (error) {
                 console.error("Error fetching search results:", error);
                 setError(error);
+            } else if (noProductsFound) {
+                setNoProductsFound(true);
             } else {
                 const groupedItems = items.reduce((groups, item) => {
                     const category = item.categoryName;
@@ -26,7 +31,6 @@ function useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenChe
                 }, {});
                 setCategoryGroups(groupedItems);
             }
-            setLoading(false);
         };
 
         if (searchTerm) {
@@ -34,7 +38,7 @@ function useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenChe
         }
     }, [searchTerm, selectedCategories, filters, kkiniGreenCheck]);
 
-    return { categoryGroups, loading, error };
+    return { categoryGroups, loading, error, noProductsFound };
 }
+    export default useSearchResults;
 
-export default useSearchResults;

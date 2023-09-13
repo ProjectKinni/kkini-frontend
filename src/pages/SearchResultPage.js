@@ -34,9 +34,8 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
         setSearchTerm(initialSearchTerm);
     }, [location]);
 
-    const { categoryGroups, loading, error } =
+    const { categoryGroups, loading, error, noProductsFound } =
         useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenCheck);
-
 
     const handleFilterChange = (updatedFilters) => {
         setFilters(updatedFilters);
@@ -63,7 +62,7 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
                 kkiniGreenCheck={kkiniGreenCheck}
             />
             <div className="product-list-wrapper">
-                <ProductList categoryGroups={categoryGroups} />
+                <ProductList categoryGroups={categoryGroups} noProductsFound={noProductsFound}/>
             </div>
             <Footer />
         </div>

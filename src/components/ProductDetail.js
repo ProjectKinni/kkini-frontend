@@ -9,7 +9,6 @@ const ProductDetail = ({ product }) => {
                     <h2>{product.productName}</h2>
                     <button className="wishlist-button">♥</button>
                 </div>
-                <h4>제조사: {product.makerName}</h4>
                 <h2>평점: ⭐{product.averageRating}  +리뷰개수</h2>
                 <input type="submit" value="리뷰적기" />
                 <h3>카테고리: {product.categoryName}</h3>
