@@ -8,6 +8,9 @@ import MyPage from "./pages/MyPage";
 import LoginPage from "./pages/LoginPage";
 import {UserProvider} from "./components/UserContext";
 
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
+
 function App() {
     return (
         <BrowserRouter>
@@ -18,6 +21,9 @@ function App() {
                     <Route path="/products/:productId" element={<ProductDetailPage/>} />
                     <Route path="/user" element={<MyPage />}/>
                     <Route path="/login" element={<LoginPage />}/>
+
+                    <Route path="/privacy" element={<PrivacyPolicyPage/>}/>
+                    <Route path="/terms" element={<TermsOfServicePage/>}/>
                 </Routes>
             </UserProvider>
         </BrowserRouter>

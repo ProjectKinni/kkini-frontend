@@ -7,7 +7,7 @@ import ProductDetailContainer from '../containers/ProductDetailContainer';
 
 const SERVER_URL = "http://localhost:8080";
 
-const ProductDetailPage = () => {
+const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
     const { productId } = useParams();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -35,7 +35,12 @@ const ProductDetailPage = () => {
 
     return (
         <div className="product-detail-page">
-            <NavigationBarContainer/>
+            <NavigationBarContainer
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                autocompleteItems={autocompleteItems}
+                setAutocompleteItems={setAutocompleteItems}
+            />
             <ProductDetailContainer product={product} />
         </div>
     );
