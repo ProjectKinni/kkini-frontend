@@ -7,7 +7,6 @@ const ProductNutrition = ({ nutrition }) => {
 
     return (
         <div className="nutrition-detail">
-            <h3>열량:  {nutrition.kcal}kcal</h3>
             <div className="nutrition-row top-row">
                 <div className="nutrition-item">
                     <span>탄수화물: </span>{nutrition.carbohydrate}g

@@ -10,9 +10,10 @@ const ProductDetail = ({ product }) => {
                     <button className="wishlist-button">♥</button>
                 </div>
                 <h2>평점: ⭐{product.averageRating}  +리뷰개수</h2>
+                <h3>랭킹: </h3>
                 <input type="submit" value="리뷰적기" />
-                <h3>카테고리: {product.categoryName}</h3>
                 <h3>중량: {product.servingSize}g</h3>
+                <h2>열량: {product.kcal}kcal</h2>
 
                 <ProductNutrition nutrition={product} />
             </div>

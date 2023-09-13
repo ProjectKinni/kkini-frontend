@@ -10,6 +10,9 @@ import {UserProvider} from "./components/UserContext";
 import InformationPage from "./pages/InformationPage";
 import HelpPage from "./pages/HelpPage";
 
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
+
 function App() {
     return (
         <BrowserRouter>
@@ -22,6 +25,8 @@ function App() {
                     <Route path="/login" element={<LoginPage />}/>
                     <Route path="/information" element={<InformationPage />}/>
                     <Route path="/help" element={<HelpPage />}/>
+                    <Route path="/privacy" element={<PrivacyPolicyPage/>}/>
+                    <Route path="/terms" element={<TermsOfServicePage/>}/>
                 </Routes>
             </UserProvider>
         </BrowserRouter>
