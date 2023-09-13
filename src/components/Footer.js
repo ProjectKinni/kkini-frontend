@@ -1,4 +1,7 @@
 import React from "react";
+import PrivacyPolicyPage from '../pages/PrivacyPolicyPage';
+import TermsOfServicePage from '../pages/TermsOfServicePage';
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return(
@@ -18,7 +21,7 @@ function Footer() {
             <div className="footer-bottom">
                 <p>© 2023 KKINI. All rights reserved.</p>
                 <div className="footer-links">
-                    <a href="/privacy">개인정보처리</a> | <a href="/terms">이용약관</a>
+                    <Link to="/privacy">개인정보처리</Link> | <Link to="/terms">이용약관</Link>
                 </div>
             </div>
         </footer>
