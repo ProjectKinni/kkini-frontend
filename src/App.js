@@ -7,6 +7,8 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import MyPage from "./pages/MyPage";
 import LoginPage from "./pages/LoginPage";
 import {UserProvider} from "./components/UserContext";
+import InformationPage from "./pages/InformationPage";
+import HelpPage from "./pages/HelpPage";
 
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
@@ -21,7 +23,8 @@ function App() {
                     <Route path="/products/:productId" element={<ProductDetailPage/>} />
                     <Route path="/user" element={<MyPage />}/>
                     <Route path="/login" element={<LoginPage />}/>
-
+                    <Route path="/information" element={<InformationPage />}/>
+                    <Route path="/help" element={<HelpPage />}/>
                     <Route path="/privacy" element={<PrivacyPolicyPage/>}/>
                     <Route path="/terms" element={<TermsOfServicePage/>}/>
                 </Routes>

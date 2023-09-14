@@ -42,8 +42,8 @@ function NavigationContainer({ searchTerm, setSearchTerm, autocompleteItems, set
                     ) : (
                         <a href="" onClick={() => navigate('/login')}>로그인</a>
                     )}
-                    <a href="#">소개</a>
-                    <a href="#">도움말</a>
+                    <a href="/information">소개</a>
+                    <a href="/help">도움말</a>
                 </div>
             </div>
             <NavButtonsComponent />
