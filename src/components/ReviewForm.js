@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const SERVER_URL = 'http://localhost:8080';
 
-const ReviewForm = ({ userId, productId }) => {
+const ReviewForm = ({ userId, productId, onSubmit }) => {
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState('');
 
@@ -15,6 +15,7 @@ const ReviewForm = ({ userId, productId }) => {
                 content,
             });
             console.log('리뷰 작성 성공:', response.data);
+            onSubmit();
         } catch (error) {
             console.error('리뷰 작성 실패:', error);
         }

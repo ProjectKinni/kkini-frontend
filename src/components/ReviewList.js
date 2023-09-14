@@ -4,7 +4,7 @@ import ReviewCard from './ReviewCard';
 
 const SERVER_URL = "http://localhost:8080";
 
-const ReviewList = ({ productId }) => {
+const ReviewList = ({ productId, refreshReviews }) => {
     const [reviews, setReviews] = useState([]);
     const [error, setError] = useState(null);
 
@@ -17,7 +17,7 @@ const ReviewList = ({ productId }) => {
                 console.error('Error fetching reviews:', error);
                 setError(error.message || "Error fetching reviews.");
             });
-    }, [productId]);
+    }, [productId, refreshReviews]);
 
     return (
         <div className="review-list">
