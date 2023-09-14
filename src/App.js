@@ -12,6 +12,8 @@ import HelpPage from "./pages/HelpPage";
 
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import ReviewList from './components/ReviewList'
+
 
 function App() {
     return (

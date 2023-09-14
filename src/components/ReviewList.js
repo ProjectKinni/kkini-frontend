@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import ReviewCard from './ReviewCard';
-import '../styles/ReviewList.css';
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -9,9 +9,10 @@ const ReviewList = ({ productId }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`${SERVER_URL}/reviews/${productId}`)
-            .then(response => response.json())
-            .then(data => setReviews(data))
+        axios.get(`${SERVER_URL}/reviews/${productId}`)
+            .then(response => {
+                setReviews(response.data);
+            })
             .catch(error => {
                 console.error('Error fetching reviews:', error);
                 setError(error.message || "Error fetching reviews.");

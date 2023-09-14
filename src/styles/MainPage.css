@@ -182,8 +182,8 @@
 }
 
 .banner-ad {
-    width: 100%;
-    max-width: 1200px;
+    width: 1000px;
+    height: 200px;
     margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
