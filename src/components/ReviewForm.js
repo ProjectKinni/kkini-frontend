@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SERVER_URL = 'http://localhost:8080';
+const SERVER_URL = 'http://223.130.138.156:8080';
 
 const ReviewForm = ({ userId, productId, onSubmit }) => {
     const [rating, setRating] = useState(0);
