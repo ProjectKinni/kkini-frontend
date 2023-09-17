@@ -8,7 +8,7 @@ import ReviewList from '../components/ReviewList'
 import getUserInfo from '../components/GetUserInfo'
 import ReviewForm from '../components/ReviewForm'
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "http://223.130.138.156:8080";
 
 const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
     const {productId} = useParams();
@@ -23,6 +23,7 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
     const [displayedItems, setDisplayItems] = useState([]);
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
+    const [refreshReviews, setRefreshReviews] = useState(false);
 
     useEffect(() => {
         const fetchProductData = async () => {
@@ -35,7 +36,12 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
         };
 
         fetchProductData();
-    }, [productId]);
+        setRefreshReviews(false);
+    }, [productId, refreshReviews]);
+
+    const handleReviewSubmit = () => {
+        setRefreshReviews(true);
+    }
 
     useEffect(() => {
         getUserInfo().then(userData => setUser(userData));
@@ -50,8 +56,8 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
                 setAutocompleteItems={setAutocompleteItems}
             />
             <ProductDetailContainer product={product}/>
-            {user && <ReviewForm userId={user.userId} productId={productId}/>}
-            <ReviewList productId={productId}/>
+            {user && <ReviewForm userId={user.userId} productId={productId} onSubmit={handleReviewSubmit}/>}
+            <ReviewList productId={productId} refreshReviews={refreshReviews} />
         </div>
     );
 }
