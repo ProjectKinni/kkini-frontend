@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import IsNicknameAvailable from "./IsNicknameAvailable";
 
-const SERVER_URL = 'http://223.130.138.156:8080';
+const SERVER_URL = 'http://localhost:8080';
 
 async function UpdateUserNickname(newNickname) {
     const token = Cookies.get('access_token');
