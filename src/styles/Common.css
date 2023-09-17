@@ -23,6 +23,12 @@
 .icon {
   cursor: pointer;
 }
+.icon:hover {
+  filter: brightness(0.95);
+}
+button:hover {
+  filter: brightness(0.95);
+}
 .mb5 {
   margin-bottom: 5px;
 }
@@ -367,6 +373,9 @@
   }
   .nav-icons .icon {
     height: 20px;
+  }
+  .navigation-container + div {
+    padding-top: 92px;
   }
 }
 @media only screen and (max-width: 400px) {
