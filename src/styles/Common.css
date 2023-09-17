@@ -252,6 +252,13 @@ button:hover {
     padding-left: 16px;
     padding-right: 16px;
   }
+  .page-tit h1 {
+    font-size: 23px;
+    margin-bottom: 16px;
+  }
+  .page-tit p {
+    font-size: 14px;
+  }
   .navigation-container {
     width: 100%;
     position: fixed;
