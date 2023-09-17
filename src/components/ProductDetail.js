@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ProductNutrition from "./ProductNutrition";
 import ProductLikeButton from "./ProductLikeButton";
 import { useUser } from "./UserContext";
 
 const ProductDetail = ({ product }) => {
-    const { user, setUser } = useUser();
+    const { user } = useUser();
+    const [userId, setUserId] = useState(user ? user.userId : null);
+
+    useEffect(() => {
+        setUserId(user ? user.userId : null);
+    }, [user]);
 
     return product ? (
         <div className="product-detail">
