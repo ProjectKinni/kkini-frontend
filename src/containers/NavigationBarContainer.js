@@ -5,6 +5,7 @@ import logout from "../components/Logout";
 import getUserInfo from "../components/GetUserInfo";
 import SearchBar from "../components/SearchBar";
 import NavButtonsComponent from '../components/NavButtons';
+import handleLogoutButton from "../components/HandleLogoutButton";
 
 
 function NavigationContainer({ searchTerm, setSearchTerm, autocompleteItems, setAutocompleteItems }) {
@@ -15,12 +16,6 @@ function NavigationContainer({ searchTerm, setSearchTerm, autocompleteItems, set
         getUserInfo().then(userData => setUser(userData));
     }, []);
 
-    const handleLogout = async (e) => {
-        e.preventDefault();
-        await logout();
-        setUser(null);
-        navigate('/');
-    };
 
     return (
         <div className="navigation-container">
@@ -38,7 +33,7 @@ function NavigationContainer({ searchTerm, setSearchTerm, autocompleteItems, set
                 </div>
                 <div className="nav-links">
                     {user ? (
-                        <a href="" onClick={(e) => handleLogout(e)}>로그아웃</a>
+                        <a href="" onClick={(e) => handleLogoutButton(navigate, setUser)(e)}>로그아웃</a>
                     ) : (
                         <a href="" onClick={() => navigate('/login')}>로그인</a>
                     )}
