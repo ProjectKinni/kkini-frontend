@@ -263,7 +263,7 @@
     width: calc(100% - 124px);
   }
   .header .logo {
-    height: 30px;
+    height: 28px;
   }
   .search-bar {
     margin-left: 18px;
@@ -353,14 +353,28 @@
   }
   .search-bar form input[type="text"] {
     min-width: auto;
+    height: 32px;
+    padding-left: 14px;
+    font-size: 12px;
+  }
+  .search-bar form .btn-search {
+    top: 3px;
+    right: 8px;
+    background-size: 18px;
   }
   .nav-icons {
     gap: 10px;
   }
+  .nav-icons .icon {
+    height: 20px;
+  }
 }
 @media only screen and (max-width: 400px) {
   .search-bar form input[type="text"]::placeholder {
-    font-size: 0;
+    max-width: calc(100% - 26px);
+  }
+  .search-bar form input[type="text"]:placeholder-shown {
+    text-overflow: ellipsis;
   }
   .nav-icons .icon img {
     height: 20px;
