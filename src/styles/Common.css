@@ -6,7 +6,9 @@
 .content-max {
   max-width: 1200px;
   text-align: center;
+  line-height: 1.5em;
   margin: 0 auto;
+  word-break: keep-all;
 }
 .error-message {
   color: #d32f2f;
@@ -143,12 +145,27 @@
   background-color: #ff6600;
 }
 
+/* content */
+.page-tit {
+  margin-top: 120px;
+  margin-bottom: 60px;
+}
+.page-tit h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+.page-tit p {
+  font-size: 16px;
+  color: #8a8a8a;
+}
+
 /* footer */
 .footer {
   background-color: #f8f8f8;
   color: #8a8a8a;
   padding: 62px 0 10px;
-  margin-top: 40px;
+  margin-top: 120px;
 }
 .footer p {
   font-size: 13px;
@@ -232,7 +249,11 @@
   .navigation-container {
     width: 100%;
     position: fixed;
+    top: 0;
     z-index: 1;
+  }
+  .navigation-container + div {
+    padding-top: 102px;
   }
   .header {
     position: relative;
