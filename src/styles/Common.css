@@ -252,6 +252,10 @@ button:hover {
     padding-left: 16px;
     padding-right: 16px;
   }
+  .page-tit {
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
   .page-tit h1 {
     font-size: 23px;
     margin-bottom: 16px;
