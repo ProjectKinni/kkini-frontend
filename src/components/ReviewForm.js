@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SERVER_URL = 'http://223.130.138.156:8080';
+const SERVER_URL = 'http://localhost:8080';
 
 const ReviewForm = ({ userId, productId, onSubmit }) => {
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(5);
     const [content, setContent] = useState('');
 
     const handleSubmit = async () => {
@@ -16,6 +16,8 @@ const ReviewForm = ({ userId, productId, onSubmit }) => {
             });
             console.log('리뷰 작성 성공:', response.data);
             onSubmit();
+            setRating(5);
+            setContent('');
         } catch (error) {
             console.error('리뷰 작성 실패:', error);
         }
