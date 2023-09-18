@@ -44,16 +44,49 @@ input[type="checkbox"] {
   display: none;
 }
 input[type="checkbox"] + label {
+  position: relative;
   display: inline-block;
   cursor: pointer;
   font-size: 14px;
   line-height: 24px;
-  padding-left: 32px;
+  padding-left: 30px;
   background: url(../assets/images/check_off.png) left center no-repeat;
-  background-size: 22px;
+  background-size: 20px;
 }
 input[type="checkbox"]:checked + label {
   background-image: url(../assets/images/check_on.png);
+}
+.icon input[type="checkbox"] + label {
+  padding-left: 54px;
+}
+.icon input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 32px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px;
+}
+.green input[type="checkbox"]:checked + label {
+  background-image: url(../assets/images/check_green.png);
+}
+.icon.green input[type="checkbox"] + label::before {
+  background-image: url(../assets/images/ic_green.png);
+}
+.icon input[value="간식"] + label::before {
+  background-image: url(../assets/images/ic_cookie.png);
+}
+.icon input[value="육가공"] + label::before {
+  background-image: url(../assets/images/ic_meat.png);
+}
+.icon input[value="음료"] + label::before {
+  background-image: url(../assets/images/ic_drink.png);
+}
+.icon input[value="즉석섭취식품"] + label::before {
+  background-image: url(../assets/images/ic_pizza.png);
 }
 
 /* content */
@@ -77,6 +110,7 @@ input[type="checkbox"]:checked + label {
   width: 100%;
   height: 0;
   padding-bottom: 100%;
+  border-radius: 6px;
   overflow: hidden;
 }
 .img-wrapper img {
@@ -86,6 +120,22 @@ input[type="checkbox"]:checked + label {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* accordion */
+.accordion-tit {
+  display: flex;
+  justify-content: space-between;
+}
+.accordion .accordion-tit button {
+  padding: 0 10px;
+}
+.accordion.on .accordion-tit button img {
+  width: 10px;
+  transform: rotate(270deg);
+}
+.accordion.off .accordion-tit button img {
+  width: 10px;
 }
 
 /* header */
