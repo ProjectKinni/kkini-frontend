@@ -1,4 +1,44 @@
+import axios from 'axios';
+
 const SERVER_URL = "http://223.130.138.156:8080";
+
+
+export function fetchPickProducts() {
+    return axios.get('http://localhost:8080/products')
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            throw error;
+        });
+};
+
+export function fetchRankingProducts() {
+    return axios.get('http://localhost:8080/products')
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            throw error;
+        });
+};
+
+export function fetchGreenProducts() {
+    return axios.get('http://localhost:8080/products')
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            throw error;
+        });
+};
+
 
 export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked) => {
     let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}`;
