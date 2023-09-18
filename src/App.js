@@ -4,19 +4,33 @@ import React from "react";
 import MainPage from "./pages/MainPage";
 import SearchResultPage from "./pages/SearchResultPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import UserInfoPage from "./pages/UserInfoPage";
+import MyPage from "./pages/MyPage";
 import LoginPage from "./pages/LoginPage";
+import {UserProvider} from "./components/UserContext";
+import InformationPage from "./pages/InformationPage";
+import HelpPage from "./pages/HelpPage";
+
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
+import ReviewList from './components/ReviewList'
+
 
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<MainPage/>} />
-                <Route path="/search-results" element={<SearchResultPage/>} />
-                <Route path="/products/:productId" element={<ProductDetailPage/>} />
-                <Route path="/user" element={<UserInfoPage />}/>
-                <Route path="/login" element={<LoginPage />}/>
-            </Routes>
+            <UserProvider>
+                <Routes>
+                    <Route path="/" element={<MainPage/>} />
+                    <Route path="/search-results" element={<SearchResultPage/>} />
+                    <Route path="/products/:productId" element={<ProductDetailPage/>} />
+                    <Route path="/user" element={<MyPage />}/>
+                    <Route path="/login" element={<LoginPage />}/>
+                    <Route path="/information" element={<InformationPage />}/>
+                    <Route path="/help" element={<HelpPage />}/>
+                    <Route path="/privacy" element={<PrivacyPolicyPage/>}/>
+                    <Route path="/terms" element={<TermsOfServicePage/>}/>
+                </Routes>
+            </UserProvider>
         </BrowserRouter>
     );
 }

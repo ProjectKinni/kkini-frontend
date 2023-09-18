@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Filters() {
+function Filters({ onFilterChange, searchTerm, selectedCategories, categoryGroups, loading, error }) {
+    const [filters, setFilters] = useState({
+        isLowCalorie: false,
+        isSugarFree: false,
+        isLowSugar: false,
+        isLowCarb: false,
+        isKeto: false,
+        isTransFat: false,
+        isHighProtein: false,
+        isLowSodium: false,
+        isCholesterol: false,
+        isSaturatedFat: false,
+        isLowFat: false,
+    });
 
-    const filters = ["저칼로리", "슈가프리", "로우슈가", "저탄수화물", "키토", "트랜스지방",
-        "고단백", "저나트륨", "포화지방", "저지방"];
+    const handleFilterChange = (filterName, value) => {
+        console.log(`Filter Changed in Filters Component: ${filterName} - ${value ? 'Checked' : 'Unchecked'}`);
+        setFilters(prevFilters => {
+            const updatedFilters = { ...prevFilters, [filterName]: value };
+            onFilterChange(updatedFilters);
+            return updatedFilters;
+        });
+    };
 
     return (
-        <div className="filters">
-            <h3>필터</h3>
-            {filters.map(filter => (
-                <div key={filter} className="filter-selection">
-                    <label>
-                        <input
-                            type="checkbox"
-                            value={filter}
-                        />
-                        {filter}
-                    </label>
+        <div>
+            <h3>필터링</h3>
+            {Object.entries(filters).map(([filterName, isChecked]) => (
+                <div key={filterName}>
+                    <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={(e) =>
+                            handleFilterChange(filterName, e.target.checked)}
+                    />
+                    {filterName}
                 </div>
             ))}
         </div>
@@ -24,3 +43,4 @@ function Filters() {
 }
 
 export default Filters;
+

@@ -1,0 +1,121 @@
+@import url(./Reset.css);
+
+/* banner */
+.info-banner {
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* information */
+.information {
+  padding-top: 80px;
+}
+.information-introduce {
+  margin-bottom: 60px;
+}
+.information-introduce img {
+  width: 120px;
+  margin-bottom: 20px;
+}
+.information-introduce .txt {
+  white-space: break-spaces;
+  font-size: 16px;
+  line-height: 1.7em;
+}
+
+.information-kkini > .info-section {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 60px 0;
+}
+.info-section + .info-section {
+  border-top: 1px solid #cdcdcd;
+}
+.info-section .info-illust {
+  width: 370px;
+}
+.info-section .info-txt {
+  text-align: left;
+}
+.info-section .info-txt .tit {
+  justify-content: flex-start;
+  margin-bottom: 22px;
+}
+.info-section .info-txt .tit h2 {
+  color: #ff6600;
+  font-weight: 800;
+}
+.info-section.green .info-txt .tit h2 {
+  color: #69cf23;
+  padding-left: 26px;
+}
+.info-section.green .tit h2::before {
+  left: 0;
+}
+.info-section .info-txt .txt {
+  white-space: break-spaces;
+  font-size: 15px;
+  line-height: 1.9em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .information-kkini > .info-section {
+    gap: 40px;
+  }
+  .info-section img {
+    width: 34%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .info-banner {
+    height: 280px;
+  }
+  .information-introduce img {
+    width: 80px;
+  }
+  .information {
+    padding-top: 60px;
+  }
+  .information-introduce .txt {
+    font-size: 14px;
+    white-space: normal;
+    padding: 0 20px;
+  }
+  .information-kkini > .info-section {
+    flex-direction: column;
+    padding: 60px 12px;
+  }
+  .info-section .info-illust {
+    width: 70%;
+    max-width: 370px;
+  }
+  .info-section .info-txt .tit {
+    margin-bottom: 15px;
+    justify-content: center;
+  }
+  .info-section .info-txt .txt {
+    white-space: normal;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.7em;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .information-introduce .txt {
+    padding: 0;
+  }
+  .information-kkini > .info-section {
+    padding: 60px 0;
+  }
+}

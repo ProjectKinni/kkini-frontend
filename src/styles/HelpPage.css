@@ -1,0 +1,69 @@
+@import url(./Reset.css);
+
+/* help-card */
+.help-card {
+  text-align: left;
+}
+.accordion {
+  border-top: 1px solid #cdcdcd;
+}
+.accordion:first-child,
+.accordion:last-child {
+  border-bottom: none;
+}
+.help-qust-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.accordion .help-qust-wrap button {
+  margin-right: 14px;
+  padding: 0 10px;
+}
+.accordion.on .help-qust-wrap button img {
+  width: 10px;
+  transform: rotate(270deg);
+}
+.accordion.off .help-qust-wrap button img {
+  width: 10px;
+}
+.help-question {
+  position: relative;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4em;
+  padding: 18px 6px 18px 56px;
+}
+.help-content {
+  position: relative;
+  font-size: 16px;
+  padding: 22px 20px 22px 56px;
+  color: #757575;
+  background: #fafafa;
+}
+.accordion.on .help-content {
+  display: block;
+}
+.accordion.off .help-content {
+  display: none;
+}
+.help-question::before,
+.help-content::before {
+  content: "";
+  width: 17px;
+  height: 20px;
+  background: url(../assets/images/ic_q.png) no-repeat center;
+  position: absolute;
+  left: 18px;
+  top: 18px;
+}
+.help-content::before {
+  background-image: url(../assets/images/ic_a.png);
+  top: 22px;
+}
+
+@media only screen and (max-width: 768px) {
+  .help-question,
+  .help-content {
+    font-size: 14px;
+  }
+}

@@ -3,12 +3,6 @@ import Cookies from 'js-cookie';
 
 const SERVER_URL = 'http://localhost:8080';
 
-// 아래 주석처럼 하면 user에 로그인한 회원의 정보 저장 가능
-// const [user, setUser] = useState(null);
-
-// useEffect(() => {
-//     getUserInfo().then(userData => setUser(userData));
-// }, []);
 async function getUserInfo() {
     const token = Cookies.get('access_token');
 
@@ -18,6 +12,7 @@ async function getUserInfo() {
                 headers: { 'Authorization': `Bearer ${token}` },
                 withCredentials: true,
             });
+            console.log("가져와짐");
 
             return response.data;
         } catch (error) {

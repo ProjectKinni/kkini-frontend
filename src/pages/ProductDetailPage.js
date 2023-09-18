@@ -1,18 +1,17 @@
-// ProductDetailPage.js
-import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import ProductDetail from '../components/ProductDetail';
-import Header from "../components/Header";
-import Filters from "../components/Filters";
-import ProductList from "../components/ProductList";
-import "../styles/ProductDetail.css"
-import NavigationBar from "../components/NavigationBar";
-import ProductNutrition from "../components/ProductNutrition";
+import React, {useState, useEffect} from 'react';
+import {useParams, useLocation} from 'react-router-dom';
+import "../styles/ProductDetail.css";
+import NavigationBarContainer from "../containers/NavigationBarContainer";
+import {fetchProductDetail} from '../utils/ApiClient';
+import ProductDetailContainer from '../containers/ProductDetailContainer';
+import ReviewList from '../components/ReviewList'
+import getUserInfo from '../components/GetUserInfo'
+import ReviewForm from '../components/ReviewForm'
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "http://223.130.138.156:8080";
 
-const ProductDetailPage = () => {
-    const { productId } = useParams();
+const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
+    const {productId} = useParams();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const searchTermFromParams = searchParams.get('searchTerm') || '';
@@ -23,30 +22,43 @@ const ProductDetailPage = () => {
     const [items, setItems] = useState([]);
     const [displayedItems, setDisplayItems] = useState([]);
     const [error, setError] = useState(null);
+    const [user, setUser] = useState(null);
+    const [refreshReviews, setRefreshReviews] = useState(false);
 
     useEffect(() => {
-        fetch(`${SERVER_URL}/api/search/products/${productId}`)
-            .then(response => response.json())
-            .then(data => setProduct(data))
-            .catch(error => {
-                console.error('Error fetching product:', error);
-                setError(error.message || "Error fetching product.");
-            });
-    }, [productId]);
+        const fetchProductData = async () => {
+            const {data, error} = await fetchProductDetail(productId);
+            if (error) {
+                setError(error);
+            } else {
+                setProduct(data);
+            }
+        };
+
+        fetchProductData();
+        setRefreshReviews(false);
+    }, [productId, refreshReviews]);
+
+    const handleReviewSubmit = () => {
+        setRefreshReviews(true);
+    }
+
+    useEffect(() => {
+        getUserInfo().then(userData => setUser(userData));
+    }, []);
 
     return (
         <div className="product-detail-page">
-            <Header
+            <NavigationBarContainer
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            <NavigationBar/>
-            <ProductDetail product={product} />
-            <h1>제품설명&상세정보</h1>
-            <h1>리뷰~!</h1>
-            </div>
+            <ProductDetailContainer product={product}/>
+            {user && <ReviewForm userId={user.userId} productId={productId} onSubmit={handleReviewSubmit}/>}
+            <ReviewList productId={productId} refreshReviews={refreshReviews} />
+        </div>
     );
 }
 

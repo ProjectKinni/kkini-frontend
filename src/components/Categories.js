@@ -1,55 +1,44 @@
-import React, {useEffect} from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
-function Categories({ onCategoryChange, selected, location, searchParams }) {
-    const navigate = useNavigate();
+function Categories({ onCategoryChange, searchTerm }) {
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
     useEffect(() => {
-        const categoryNamesFromParams = searchParams.getAll('categoryName');
-        if (categoryNamesFromParams.length > 0) {
-            onCategoryChange(categoryNamesFromParams);
+        onCategoryChange(selectedCategories);
+    }, [selectedCategories, onCategoryChange]);
+
+    useEffect(() => {
+        if (searchTerm) {
+            const matchingCategory = ["간식", "육가공", "음료", "즉석섭취식품"].find(category => category === searchTerm);
+            if (matchingCategory) {
+                setSelectedCategories([matchingCategory]);
+            }
         }
-    }, [location.search]);
+    }, [searchTerm]);
 
-    const handleCategoryChange = (e) => {
-        const category = e.target.value;
-        let updatedCategories;
-        if (e.target.checked) {
-            updatedCategories = [...selected, category];
-        } else {
-            updatedCategories = selected.filter(cat => cat !== category);
-        }
-
-        onCategoryChange(updatedCategories);
-
-        // Update URL params
-        searchParams.delete('categoryName'); // 기존의 카테고리 삭제
-        updatedCategories.forEach(cat => {
-            searchParams.append('categoryName', cat); // 새로 업데이트된 카테고리 추가
+    const handleCategoryChange = (category) => {
+        setSelectedCategories(prevCategories => {
+            if (prevCategories.includes(category)) {
+                return prevCategories.filter(item => item !== category);
+            } else {
+                return [...prevCategories, category];
+            }
         });
-        navigate({
-            pathname: location.pathname,
-            search: searchParams.toString()
-        });
-    }
-
-    const categories = ["간식", "육가공", "음료", "즉석섭취식품"];
+    };
 
     return (
-        <div className="category-selection">
+        <div>
             <h3>카테고리</h3>
-            {categories.map(category => (
-                <div key={category} className="category-selection-item">
-                    <label>
-                        <input
-                            type="checkbox"
-                            value={category}
-                            onChange={handleCategoryChange}
-                            checked={selected.includes(category)}
-                        />
-                        {category}
-                    </label>
-                </div>
+            {["간식", "육가공", "음료", "즉석섭취식품"].map(category => (
+                <label key={category}>
+                    <input
+                        type="checkbox"
+                        value={category}
+                        checked={selectedCategories.includes(category)}
+                        onChange={() => handleCategoryChange(category)}
+                    />
+                    {category}
+                </label>
             ))}
         </div>
     );

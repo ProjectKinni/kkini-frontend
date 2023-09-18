@@ -1,29 +1,34 @@
-import React, { useState } from 'react';
-import '../styles/MainPage.css';
-import Header from "../components/Header";
-import NavigationBar from "../components/NavigationBar";
+import React, { useState } from "react";
+import "../styles/MainPage.css";
+import NavigationContainer from "../containers/NavigationBarContainer";
+import BannerAd from "../components/BannerAd";
 import RankingSection from "../components/RankingSection";
 import Footer from "../components/Footer";
-import BannerAd from "../components/BannerAd";
 
-function MainPage() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [autocompleteItems, setAutocompleteItems] = useState([]);
+function MainPage({
+  searchTerm: initialSearchTerm,
+  setSearchTerm: initialSetSearchTerm,
+  autocompleteItems: initialAutocompleteItems,
+  setAutocompleteItems: initialSetAutocompleteItems,
+}) {
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+  const [autocompleteItems, setAutocompleteItems] = useState(
+    initialAutocompleteItems
+  );
 
-    return (
-        <div className="main-page">
-            <Header
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
-            <NavigationBar/>
-            <BannerAd/>
-            <RankingSection/>
-            <Footer/>
-        </div>
-    );
+  return (
+    <>
+      <NavigationContainer
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        autocompleteItems={autocompleteItems}
+        setAutocompleteItems={setAutocompleteItems}
+      />
+      <BannerAd className="banner-ad" />
+      <RankingSection className="ranking-section" />
+      <Footer className="footer" />
+    </>
+  );
 }
 
 export default MainPage;
