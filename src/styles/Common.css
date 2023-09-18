@@ -347,6 +347,10 @@ input[type="checkbox"]:checked + label {
   .page-tit p {
     font-size: 14px;
   }
+  .accordion.off .accordion-tit button img,
+  .accordion.on .accordion-tit button img {
+    width: 8px;
+  }
   .navigation-container {
     width: 100%;
     position: fixed;

@@ -7,10 +7,6 @@
 .help-card .accordion {
   border-top: 1px solid #cdcdcd;
 }
-.help-card .accordion:first-child,
-.help-card .accordion:last-child {
-  border-bottom: none;
-}
 .help-card .accordion .accordion-tit button {
   margin-right: 14px;
 }
