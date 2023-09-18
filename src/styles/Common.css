@@ -23,6 +23,12 @@
 .icon {
   cursor: pointer;
 }
+.icon:hover {
+  filter: brightness(0.95);
+}
+button:hover {
+  filter: brightness(0.95);
+}
 .mb5 {
   margin-bottom: 5px;
 }
@@ -246,6 +252,17 @@
     padding-left: 16px;
     padding-right: 16px;
   }
+  .page-tit {
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
+  .page-tit h1 {
+    font-size: 23px;
+    margin-bottom: 16px;
+  }
+  .page-tit p {
+    font-size: 14px;
+  }
   .navigation-container {
     width: 100%;
     position: fixed;
@@ -263,7 +280,7 @@
     width: calc(100% - 124px);
   }
   .header .logo {
-    height: 30px;
+    height: 28px;
   }
   .search-bar {
     margin-left: 18px;
@@ -353,14 +370,31 @@
   }
   .search-bar form input[type="text"] {
     min-width: auto;
+    height: 32px;
+    padding-left: 14px;
+    font-size: 12px;
+  }
+  .search-bar form .btn-search {
+    top: 3px;
+    right: 8px;
+    background-size: 18px;
   }
   .nav-icons {
     gap: 10px;
   }
+  .nav-icons .icon {
+    height: 20px;
+  }
+  .navigation-container + div {
+    padding-top: 92px;
+  }
 }
 @media only screen and (max-width: 400px) {
   .search-bar form input[type="text"]::placeholder {
-    font-size: 0;
+    max-width: calc(100% - 26px);
+  }
+  .search-bar form input[type="text"]:placeholder-shown {
+    text-overflow: ellipsis;
   }
   .nav-icons .icon img {
     height: 20px;

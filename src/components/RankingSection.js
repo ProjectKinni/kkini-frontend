@@ -12,11 +12,11 @@ function RankingSection() {
         <div className="tit">
           <h2>끼니 PICK</h2>
           {/* 로그인시 */}
-          {/* <button onClick={() => navigate("/ranking")}>
-            <img src={icLink} alt="끼니 랭킹 바로가기" />
+          {/* <button onClick={() => navigate("/pick")}>
+            <img src={icLink} alt="끼니 PICK 바로가기" />
           </button> */}
           {/* 비로그인시 */}
-          <button className="btn-login" onClick={() => navigate("/pick")}>
+          <button className="btn-login" onClick={() => navigate("/login")}>
             로그인
           </button>
         </div>
