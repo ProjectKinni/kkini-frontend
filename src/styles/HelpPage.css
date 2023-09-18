@@ -4,39 +4,27 @@
 .help-card {
   text-align: left;
 }
-.accordion {
+.help-card .accordion {
   border-top: 1px solid #cdcdcd;
 }
-.accordion:first-child,
-.accordion:last-child {
+.help-card .accordion:first-child,
+.help-card .accordion:last-child {
   border-bottom: none;
 }
-.help-qust-wrap {
-  display: flex;
-  justify-content: space-between;
-}
-.accordion .help-qust-wrap button {
+.help-card .accordion .accordion-tit button {
   margin-right: 14px;
-  padding: 0 10px;
-}
-.accordion.on .help-qust-wrap button img {
-  width: 10px;
-  transform: rotate(270deg);
-}
-.accordion.off .help-qust-wrap button img {
-  width: 10px;
 }
 .help-question {
   position: relative;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.4em;
   padding: 18px 6px 18px 56px;
 }
 .help-content {
   position: relative;
-  font-size: 16px;
-  padding: 22px 20px 22px 56px;
+  font-size: 15px;
+  padding: 20px 20px 20px 56px;
   color: #757575;
   background: #fafafa;
 }
@@ -65,5 +53,8 @@
   .help-question,
   .help-content {
     font-size: 14px;
+  }
+  .help-card .accordion .accordion-tit button {
+    margin-right: 8px;
   }
 }
