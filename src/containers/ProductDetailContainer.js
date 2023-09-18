@@ -9,10 +9,11 @@ const ProductDetailContainer = ({ product }) => {
 
     return (
         <div className="product-detail-container">
-            <ProductDetail product={product} />
+            <ProductDetail product={product}/>
             <ProductNutrition nutrition={product.nutrition} />
         </div>
     );
 };
 
 export default ProductDetailContainer;
+

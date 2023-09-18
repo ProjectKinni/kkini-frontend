@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductNutrition from "./ProductNutrition";
+import ViewCount from "./ViewCount";
 
 const ProductDetail = ({ product }) => {
     return product ? (
@@ -9,7 +10,9 @@ const ProductDetail = ({ product }) => {
                     <h2>{product.productName}</h2>
                     <button className="wishlist-button">♥</button>
                 </div>
-                <h2>평점: ⭐{product.averageRating}  +리뷰개수</h2>
+                <h2>평점: ⭐{product.averageRating}</h2>
+                <h2>상품번호: {product.productId}</h2>
+                <ViewCount productId={product.productId} viewCount={product.viewCount}/>
                 <h3>랭킹: </h3>
                 <input type="submit" value="리뷰적기" />
                 <h3>중량: {product.servingSize}g</h3>

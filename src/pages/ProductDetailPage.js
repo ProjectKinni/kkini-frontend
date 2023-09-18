@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import {useParams, useLocation} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import "../styles/ProductDetail.css";
 import NavigationBarContainer from "../containers/NavigationBarContainer";
-import {fetchProductDetail} from '../utils/ApiClient';
+import { fetchProductDetail } from '../utils/ApiClient';
 import ProductDetailContainer from '../containers/ProductDetailContainer';
-import ReviewList from '../components/ReviewList'
-import getUserInfo from '../components/GetUserInfo'
-import ReviewForm from '../components/ReviewForm'
+import ReviewList from '../components/ReviewList';
+import getUserInfo from '../components/GetUserInfo';
+import ReviewForm from '../components/ReviewForm';
 
 const SERVER_URL = "http://223.130.138.156:8080";
 
-const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
-    const {productId} = useParams();
+const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
+    const { productId } = useParams();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const searchTermFromParams = searchParams.get('searchTerm') || '';
@@ -27,21 +27,22 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
 
     useEffect(() => {
         const fetchProductData = async () => {
-            const {data, error} = await fetchProductDetail(productId);
+            const { data, error } = await fetchProductDetail(productId, user ? user.userId : null);
             if (error) {
                 setError(error);
             } else {
                 setProduct(data);
+                console.log('Product Data:', data);  // 상품 데이터 로깅
             }
         };
 
         fetchProductData();
         setRefreshReviews(false);
-    }, [productId, refreshReviews]);
+    }, [productId, refreshReviews, user]);
 
     const handleReviewSubmit = () => {
         setRefreshReviews(true);
-    }
+    };
 
     useEffect(() => {
         getUserInfo().then(userData => setUser(userData));
@@ -55,11 +56,11 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            <ProductDetailContainer product={product}/>
-            {user && <ReviewForm userId={user.userId} productId={productId} onSubmit={handleReviewSubmit}/>}
+            {product && <ProductDetailContainer product={product}/>}
+            {user && <ReviewForm userId={user.userId} productId={productId} onSubmit={handleReviewSubmit} />}
             <ReviewList productId={productId} refreshReviews={refreshReviews} />
         </div>
     );
-}
+};
 
 export default ProductDetailPage;
