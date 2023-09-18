@@ -4,6 +4,8 @@ import CategoryBarContainer from "../containers/CategoryBarContainer";
 import Help from "../components/Help";
 import BannerAd from "../components/BannerAd";
 import Footer from "../components/Footer";
+import RankingList from "../components/rankinglist/RankingList"
+import { fetchPickProducts } from "../utils/ApiClient"
 
 
 function KkiniPickPage({
@@ -38,8 +40,7 @@ function KkiniPickPage({
     const handleKkiniGreenCheckChange = (value) => {
         setKkiniGreenCheck(value);
     };
-
-
+    
     return(
         <>
             {/*기본속성*/}
@@ -50,6 +51,11 @@ function KkiniPickPage({
                 setAutocompleteItems={setAutocompleteItems}
             />
 
+            {/*로그인이 안되어있는 상태라면 로그인 창 띄워주기.*/}
+            {/*if (!isLoggedIn) {*/}
+            {/*    return <Redirect to="/login" />;*/}
+            {/*}*/}
+
             <div className="page-tit content-max">
                 <h1>끼니 PICK</h1>
                 <p>
@@ -57,14 +63,18 @@ function KkiniPickPage({
                 </p>
             </div>
 
-            <CategoryBarContainer
-                onKkiniChecked={handleKkiniGreenCheckChange}
-                onCategoryChange={setSelectedCategories}
-                onFilterChange={handleFilterChange}
+            <div className="ranking-layout">
+                <CategoryBarContainer
+                    onKkiniChecked={handleKkiniGreenCheckChange}
+                    onCategoryChange={setSelectedCategories}
+                    onFilterChange={handleFilterChange}
 
-                filters={filters}
-                kkiniGreenCheck={kkiniGreenCheck}
-            />
+                    filters={filters}
+                    kkiniGreenCheck={kkiniGreenCheck}
+                />
+
+                <RankingList fetchFunction={fetchPickProducts}/>
+            </div>
 
 
             <Footer className="footer" />
