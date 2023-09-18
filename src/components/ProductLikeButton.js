@@ -107,22 +107,37 @@ function ProductLikeButton({ userId, productId }) {
     //     }
     // }, [userId, productId]);
 
+    // useEffect(() => {
+    //     // 서버에서 현재 좋아요 상태를 가져와 설정
+    //     const fetchLikeStatus = async () => {
+    //         try {
+    //             const response = await axios.get(`${SERVER_URL}/like/${userId}/${productId}`);
+    //             setIsLiked(response.data);
+    //         } catch (error) {
+    //             console.error('Error fetching like status:', error);
+    //         }
+    //     };
+    //
+    //     if (userId) {
+    //         fetchLikeStatus();
+    //     } else {
+    //         // 유저가 로그인하지 않은 경우 좋아요 상태를 false로 설정
+    //         setIsLiked(false);
+    //     }
+    // }, [userId, productId]);
+
     useEffect(() => {
         // 서버에서 현재 좋아요 상태를 가져와 설정
-        const fetchLikeStatus = async () => {
-            try {
-                const response = await axios.get(`${SERVER_URL}/like/${userId}/${productId}`);
-                setIsLiked(response.data);
-            } catch (error) {
-                console.error('Error fetching like status:', error);
-            }
-        };
-
         if (userId) {
-            fetchLikeStatus();
+            axios.get(`${SERVER_URL}/like/${userId}/${productId}`)
+                .then(response => {
+                    setIsLiked(response.data);
+                })
+                .catch(error => {
+                    console.error('Error fetching like status:', error);
+                });
         } else {
-            // 유저가 로그인하지 않은 경우 좋아요 상태를 false로 설정
-            setIsLiked(false);
+            setIsLiked(false); // Add this line
         }
     }, [userId, productId]);
 

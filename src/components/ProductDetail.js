@@ -1,22 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ProductNutrition from "./ProductNutrition";
 import ProductLikeButton from "./ProductLikeButton";
 import { useUser } from "./UserContext";
 
 const ProductDetail = ({ product }) => {
     const { user } = useUser();
-    const [userId, setUserId] = useState(user ? user.userId : null);
-
-    useEffect(() => {
-        setUserId(user ? user.userId : null);
-    }, [user]);
 
     return product ? (
         <div className="product-detail">
             <div className="info">
                 <div className="product-header">
                     <h2>{product.productName}</h2>
-                    {user && user.userId && ( // user가 로그인한 경우에만 ProductLikeButton 렌더링
+                    {user && ( // Only render the LikeButton if there's a logged-in user
                         <ProductLikeButton userId={user.userId} productId={product.productId} />
                     )}
                 </div>
