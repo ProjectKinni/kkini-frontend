@@ -79,7 +79,7 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
 };
 
 export const fetchAutocompleteSuggestions = async (searchTerm) => {
-    let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
+    let endpoint = `http://localhost:8080/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
 
     try {
         const response = await fetch(endpoint);
@@ -99,7 +99,8 @@ export const fetchAutocompleteSuggestions = async (searchTerm) => {
 
 export const fetchProductDetail = async (productId, userId) => {
     try {
-        const response = await fetch(`${SERVER_URL}/api/products/${productId}${userId ? `?userId=${userId}` : ''}`);
+        const response =
+            await fetch(`http://localhost:8080/api/products/${productId}${userId ? `?userId=${userId}` : ''}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -112,10 +113,10 @@ export const fetchProductDetail = async (productId, userId) => {
 };
 
 
-export const incrementViewCount = async (productId, user) => {
+export const incrementViewCount = async (productId, userId) => {
     try {
         const response =
-            await fetch(`${SERVER_URL}/api/products/${productId}/viewCount?userId=${user.userId}`, {
+            await fetch(`http://localhost:8080/api/products/${productId}/viewCount?userId=${userId}`, {
             method: 'POST'
         });
         if (!response.ok) {
@@ -128,6 +129,7 @@ export const incrementViewCount = async (productId, user) => {
         return { error: error.message || "Error incrementing view count." };
     }
 };
+
 
 
 

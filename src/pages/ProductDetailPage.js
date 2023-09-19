@@ -60,7 +60,7 @@ const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            {product && <ProductDetailContainer productId={product.productId} product={product} viewCount={viewCount} // 수정된 조회수 상태를 전달
+            {product && <ProductDetailContainer productId={product.productId} product={product} viewCount={viewCount}
                                                 userId={user ? user.userId : null}/>}
             {user && <ReviewForm userId={user.userId} productId={productId} onSubmit={handleReviewSubmit} />}
             <ReviewList productId={productId} refreshReviews={refreshReviews} />

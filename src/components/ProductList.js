@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import IcStar from "../assets/images/star_on.png";
-import getUserInfo from "./GetUserInfo";
 import {incrementViewCount} from "../utils/ApiClient";
 import {useUser} from "./UserContext";
 import ProductLikeButton from "./ProductLikeButton";
@@ -11,10 +10,10 @@ function ProductList({ categoryGroups, noProductsFound }) {
   const { user } = useUser();
 
   const handleProductClick = async (productId) => {
-    const userId = getUserInfo();
-    if(userId) {
+    console.log("user: ", user.userId);
+    if(user && user.userId) {
       try {
-        await incrementViewCount(productId, userId);
+        await incrementViewCount(productId, user.userId);
       } catch (error) {
         console.error('Error incrementing view count:', error);
       }

@@ -1,15 +1,17 @@
 import React from 'react';
 import ProductDetail from '../components/ProductDetail';
 import ProductNutrition from '../components/ProductNutrition';
+import {useUser} from "../components/UserContext";
 
 const ProductDetailContainer = ({ product, viewCount }) => {
+    const { user } = useUser();
     if (!product) {
         return <div>Loading...</div>;
     }
 
     return (
         <div className="product-detail-container">
-            <ProductDetail product={product} productId={product.productId} viewCount={viewCount}/>
+            <ProductDetail product={product} userId={user.userId} productId={product.productId} viewCount={viewCount}/>
             <ProductNutrition nutrition={product.nutrition} />
         </div>
     );
