@@ -4,7 +4,8 @@ import CategoryBarContainer from "../containers/CategoryBarContainer";
 import Help from "../components/Help";
 import BannerAd from "../components/BannerAd";
 import Footer from "../components/Footer";
-
+import RankingList from "../components/rankinglist/RankingList"
+import { fetchGreenProducts } from "../utils/ApiClient"
 
 function GreenRankingPage({
   searchTerm: initialSearchTerm,
@@ -57,14 +58,18 @@ function GreenRankingPage({
                 </p>
             </div>
 
-            <CategoryBarContainer
-                onKkiniChecked={handleKkiniGreenCheckChange}
-                onCategoryChange={setSelectedCategories}
-                onFilterChange={handleFilterChange}
+            <div className="ranking-layout">
+                <CategoryBarContainer
+                    onKkiniChecked={handleKkiniGreenCheckChange}
+                    onCategoryChange={setSelectedCategories}
+                    onFilterChange={handleFilterChange}
+                    
+                    filters={filters}
+                    kkiniGreenCheck={kkiniGreenCheck}
+                />
                 
-                filters={filters}
-                kkiniGreenCheck={kkiniGreenCheck}
-            />
+                <RankingList fetchFunction={fetchGreenProducts}/>
+            </div>
 
 
             <Footer className="footer" />
