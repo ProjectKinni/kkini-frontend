@@ -39,6 +39,107 @@ button:hover {
   color: #000;
 }
 
+/* checkbox */
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"] + label {
+  width: calc(100% - 30px);
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 24px;
+  padding-left: 30px;
+  background: url(../assets/images/check_off.png) left center no-repeat;
+  background-size: 20px;
+}
+input[type="checkbox"]:checked + label {
+  background-image: url(../assets/images/check_on.png);
+}
+.icon input[type="checkbox"] + label {
+  width: calc(100% - 54px);
+  padding-left: 54px;
+}
+.icon input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 32px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px;
+}
+.green input[type="checkbox"]:checked + label {
+  background-image: url(../assets/images/check_green.png);
+}
+.icon.green input[type="checkbox"] + label::before {
+  background-image: url(../assets/images/ic_green.png);
+}
+.icon input[value="간식"] + label::before {
+  background-image: url(../assets/images/ic_cookie.png);
+}
+.icon input[value="육가공"] + label::before {
+  background-image: url(../assets/images/ic_meat.png);
+}
+.icon input[value="음료"] + label::before {
+  background-image: url(../assets/images/ic_drink.png);
+}
+.icon input[value="즉석섭취식품"] + label::before {
+  background-image: url(../assets/images/ic_pizza.png);
+}
+
+/* content */
+.page-tit {
+  margin-top: 100px;
+  margin-bottom: 60px;
+}
+.page-tit h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+.page-tit p {
+  font-size: 16px;
+  color: #8a8a8a;
+}
+
+/* img */
+.img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.img-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* accordion */
+.accordion-tit {
+  display: flex;
+  justify-content: space-between;
+}
+.accordion .accordion-tit button {
+  padding: 0 10px;
+}
+.accordion.on .accordion-tit button img {
+  width: 10px;
+  transform: rotate(270deg);
+}
+.accordion.off .accordion-tit button img {
+  width: 10px;
+}
+
 /* header */
 .navigation-container {
   border-bottom: 1px solid #cdcdcd;
@@ -151,21 +252,6 @@ button:hover {
   background-color: #ff6600;
 }
 
-/* content */
-.page-tit {
-  margin-top: 120px;
-  margin-bottom: 60px;
-}
-.page-tit h1 {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 22px;
-}
-.page-tit p {
-  font-size: 16px;
-  color: #8a8a8a;
-}
-
 /* footer */
 .footer {
   background-color: #f8f8f8;
@@ -249,19 +335,23 @@ button:hover {
 }
 @media only screen and (max-width: 768px) {
   .content-max {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
   .page-tit {
-    margin-top: 80px;
-    margin-bottom: 50px;
+    margin-top: 8vh;
+    margin-bottom: 44px;
   }
   .page-tit h1 {
-    font-size: 23px;
-    margin-bottom: 16px;
+    font-size: 18px;
+    margin-bottom: 6px;
   }
   .page-tit p {
-    font-size: 14px;
+    font-size: 13px;
+  }
+  .accordion.off .accordion-tit button img,
+  .accordion.on .accordion-tit button img {
+    width: 8px;
   }
   .navigation-container {
     width: 100%;
@@ -354,10 +444,6 @@ button:hover {
   }
 }
 @media only screen and (max-width: 460px) {
-  .content-max {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
   .header {
     padding-top: 12px;
   }
@@ -398,8 +484,5 @@ button:hover {
   }
   .nav-icons .icon img {
     height: 20px;
-  }
-  .nav-buttons button {
-    font-size: 12px;
   }
 }
