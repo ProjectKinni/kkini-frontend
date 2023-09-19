@@ -101,12 +101,24 @@ input[type="checkbox"]:checked + label {
   margin-bottom: 60px;
 }
 .page-tit h1 {
-  font-size: 28px;
+  position: relative;
+  display: inline-block;
+  font-size: 26px;
   font-weight: 800;
-  margin-bottom: 22px;
+  margin-bottom: 15px;
+}
+.green.page-tit h1::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0px;
+  left: -30px;
+  background: url(../assets/images/ic_green.png) no-repeat center;
 }
 .page-tit p {
-  font-size: 16px;
+  font-size: 15px;
   color: #8a8a8a;
 }
 
