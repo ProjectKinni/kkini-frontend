@@ -55,6 +55,7 @@
 .product-item h4 {
   font-size: 17px;
   margin: 16px 0 8px;
+  word-break: break-all;
 }
 .product-item .rating-display {
   display: flex;

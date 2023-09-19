@@ -20,6 +20,10 @@
   font-size: 13px;
   z-index: 10;
 }
+.bg-grey {
+  width: 100%;
+  background: #f8f8f8;
+}
 .icon {
   cursor: pointer;
 }
@@ -410,6 +414,7 @@ input[type="checkbox"]:checked + label {
     font-size: 14px;
   }
   .footer {
+    margin-top: 60px;
     padding-top: 42px;
   }
   .footer p {
