@@ -21,7 +21,7 @@ function MainSliderSection({
         case 'pick':
             title = "끼니 PICK";
             subtitle = isLoggedIn ? "끼니의 취향저격 상품" : "끼니의 친구가 되어, 나를 위한 상품들을 만나보세요!";
-            buttonLink = "/login";
+            buttonLink = isLoggedIn ? "/pick" : "/login";
             buttonText = "로그인";
             buttonImage = icLink;
             fetchFunction = fetchPickProducts;
