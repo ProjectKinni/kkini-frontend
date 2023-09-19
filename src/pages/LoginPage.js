@@ -10,7 +10,7 @@ function LoginPage() {
   return (
     <>
       <NavigationContainer />
-      <div className="page-tit content-max">
+      <div className="login page-tit content-max">
         <h1>로그인</h1>
         <p>
           로그인하여 회원 맞춤 간편식 상품을 추천해주는 끼니 PICK을 이용해보세요
