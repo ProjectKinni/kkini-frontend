@@ -241,11 +241,13 @@ input[type="checkbox"]:checked + label {
   font-weight: 800;
   transition: color 0.2s;
 }
-.nav-buttons button:hover {
-  color: #ff6600;
-}
+.nav-buttons button:hover,
 .nav-buttons button.on {
   color: #ff6600;
+}
+.nav-buttons button.tab-green:hover,
+.nav-buttons button.tab-green.on {
+  color: #69cf23;
 }
 .nav-buttons button.on::after {
   content: "";
@@ -255,6 +257,9 @@ input[type="checkbox"]:checked + label {
   width: 100%;
   height: 3px;
   background-color: #ff6600;
+}
+.nav-buttons button.tab-green.on::after {
+  background-color: #69cf23;
 }
 
 /* footer */
