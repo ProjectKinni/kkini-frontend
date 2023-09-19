@@ -1,8 +1,10 @@
 import React from 'react';
 import ProductNutrition from "./ProductNutrition";
-import ViewCount from "./ViewCount";
 
-const ProductDetail = ({ product }) => {
+const SERVER_URL = "http://223.130.138.156:8080"; // 서버 URL을 정의합니다.
+
+const ProductDetail = ({ product, viewCount }) => {
+
     return product ? (
         <div className="product-detail">
             <div className="info">
@@ -12,7 +14,7 @@ const ProductDetail = ({ product }) => {
                 </div>
                 <h2>평점: ⭐{product.averageRating}</h2>
                 <h2>상품번호: {product.productId}</h2>
-                <ViewCount productId={product.productId} viewCount={product.viewCount}/>
+                <h3>조회수: {viewCount || '0'}</h3>
                 <h3>랭킹: </h3>
                 <input type="submit" value="리뷰적기" />
                 <h3>중량: {product.servingSize}g</h3>

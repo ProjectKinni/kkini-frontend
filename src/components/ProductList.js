@@ -1,11 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import IcStar from "../assets/images/star_on.png";
+import getUserInfo from "./GetUserInfo";
+import {incrementViewCount} from "../utils/ApiClient";
 
 function ProductList({ categoryGroups, noProductsFound }) {
   const navigate = useNavigate();
 
-  const handleProductClick = (productId) => {
+  const handleProductClick = async (productId) => {
+    const userId = getUserInfo();
+    if(userId) {
+      try {
+        await incrementViewCount(productId, userId);
+      } catch (error) {
+        console.error('Error incrementing view count:', error);
+      }
+    }
     navigate(`/products/${productId}`);
   };
 

@@ -2,14 +2,14 @@ import React from 'react';
 import ProductDetail from '../components/ProductDetail';
 import ProductNutrition from '../components/ProductNutrition';
 
-const ProductDetailContainer = ({ product }) => {
+const ProductDetailContainer = ({ product, viewCount }) => {
     if (!product) {
         return <div>Loading...</div>;
     }
 
     return (
         <div className="product-detail-container">
-            <ProductDetail product={product}/>
+            <ProductDetail product={product} productId={product.productId} viewCount={viewCount}/>
             <ProductNutrition nutrition={product.nutrition} />
         </div>
     );

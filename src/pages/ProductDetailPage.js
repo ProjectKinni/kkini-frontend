@@ -24,21 +24,25 @@ const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
     const [refreshReviews, setRefreshReviews] = useState(false);
+    const [viewCount, setViewCount] = useState(0); // 추가: viewCount 상태
 
     useEffect(() => {
         const fetchProductData = async () => {
-            const { data, error } = await fetchProductDetail(productId, user ? user.userId : null);
-            if (error) {
-                setError(error);
-            } else {
-                setProduct(data);
-                console.log('Product Data:', data);  // 상품 데이터 로깅
+            if (user) {
+                const { data, error, viewCount: fetchedViewCount } = await fetchProductDetail(productId, user.userId);
+                if (error) {
+                    setError(error);
+                } else {
+                    setProduct(data);
+                    setViewCount(fetchedViewCount); // 조회수 상태를 업데이트
+                }
             }
         };
 
         fetchProductData();
         setRefreshReviews(false);
     }, [productId, refreshReviews, user]);
+
 
     const handleReviewSubmit = () => {
         setRefreshReviews(true);
@@ -56,7 +60,8 @@ const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            {product && <ProductDetailContainer product={product}/>}
+            {product && <ProductDetailContainer productId={product.productId} product={product} viewCount={viewCount} // 수정된 조회수 상태를 전달
+                                                userId={user ? user.userId : null}/>}
             {user && <ReviewForm userId={user.userId} productId={productId} onSubmit={handleReviewSubmit} />}
             <ReviewList productId={productId} refreshReviews={refreshReviews} />
         </div>

@@ -98,29 +98,36 @@ export const fetchAutocompleteSuggestions = async (searchTerm) => {
 };
 
 export const fetchProductDetail = async (productId, userId) => {
-
     try {
         const response = await fetch(`${SERVER_URL}/api/products/${productId}${userId ? `?userId=${userId}` : ''}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-
-        // viewCount를 가져오는 추가 API 호출
-        let viewCountResponse = await fetch(`${SERVER_URL}/api/products/${productId}?userId=${userId}`);
-        if (!viewCountResponse.ok) {
-            throw new Error('Failed to fetch view count');
-        }
-        let viewCountData = await viewCountResponse.json();
-
-        // data 객체에 viewCount 속성 추가
-        data.viewCount = viewCountData.viewCount;
-
-        console.log('API Response:', data);  // API 응답 로깅
-        return { data };
+        return { data, viewCount: data.viewCount || 0 }; // 조회수를 반환하도록 수정
     } catch (error) {
         console.error('Error fetching product:', error);
         return { error: error.message || "Error fetching product." };
     }
 };
+
+
+export const incrementViewCount = async (productId, user) => {
+    try {
+        const response =
+            await fetch(`${SERVER_URL}/api/products/${productId}/viewCount?userId=${user.userId}`, {
+            method: 'POST'
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return { data };
+    } catch (error) {
+        console.error('Error incrementing view count:', error);
+        return { error: error.message || "Error incrementing view count." };
+    }
+};
+
+
 
