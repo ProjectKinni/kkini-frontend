@@ -145,6 +145,14 @@ input[type="checkbox"]:checked + label {
   transform: rotate(180deg);
 }
 
+/* ic-like */
+.ic-like {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+}
+
 /* header */
 .navigation-container {
   border-bottom: 1px solid #cdcdcd;
