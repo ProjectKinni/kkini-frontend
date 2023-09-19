@@ -29,7 +29,6 @@
 }
 .category-bar-container .accordion.off .accordion-tit button img {
   width: 8px;
-  transform: rotate(90deg);
 }
 .category-bar-container .accordion.off .categories {
   display: none;

@@ -134,10 +134,11 @@ input[type="checkbox"]:checked + label {
 }
 .accordion.on .accordion-tit button img {
   width: 10px;
-  transform: rotate(270deg);
+  transform: rotate(90deg);
 }
 .accordion.off .accordion-tit button img {
   width: 10px;
+  transform: rotate(180deg);
 }
 
 /* header */
