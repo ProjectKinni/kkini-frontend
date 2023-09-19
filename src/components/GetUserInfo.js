@@ -12,7 +12,6 @@ async function getUserInfo() {
                 headers: { 'Authorization': `Bearer ${token}` },
                 withCredentials: true,
             });
-            console.log("가져와짐");
 
             return response.data;
         } catch (error) {

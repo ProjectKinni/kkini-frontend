@@ -15,7 +15,6 @@ import KkiniPickPage from "./pages/KkiniPickPage"
 
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
-import ReviewList from './components/ReviewList'
 
 
 function App() {

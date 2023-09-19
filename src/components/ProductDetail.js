@@ -1,21 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductNutrition from "./ProductNutrition";
 import ProductLikeButton from "./ProductLikeButton";
 import { useUser } from "./UserContext";
+import { fetchProductDetail } from "../utils/ApiClient";
+import { useParams } from 'react-router-dom';
 
-const ProductDetail = ({ product }) => {
+const ProductDetail = () => {
+    const { productId } = useParams();
     const { user } = useUser();
+    const [product, setProduct] = useState(null);
+    const [viewCount, setViewCount] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const getProductDetail = async () => {
+            const result = await fetchProductDetail(productId, user?.userId);
+            if (result.error) {
+                setError(result.error);
+            } else {
+                setProduct(result.data);
+                setViewCount(result.viewCount);
+            }
+        };
+
+        getProductDetail();
+    }, [productId, user]);
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return product ? (
         <div className="product-detail">
             <div className="info">
                 <div className="product-header">
                     <h2>{product.productName}</h2>
-                    {user && ( // Only render the LikeButton if there's a logged-in user
+                    {user && (
                         <ProductLikeButton userId={user.userId} productId={product.productId} />
                     )}
                 </div>
-                <h2>평점: ⭐{product.averageRating}  +리뷰개수</h2>
+                <h2>평점: ⭐{product.averageRating}</h2>
+                <h2>상품번호: {product.productId}</h2>
+                <h3>조회수: {viewCount || '0'}</h3>
                 <h3>랭킹: </h3>
                 <input type="submit" value="리뷰적기" />
                 <h3>중량: {product.servingSize}g</h3>
