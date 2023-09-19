@@ -1,10 +1,11 @@
 import logout from "./Logout";
 
-const handleLogoutButton = (navigate, setUser) => async (e) => {
+const handleLogoutButton = (navigate, setUser, setIsLiked) => async (e) => {
     e.preventDefault();
     await logout();
     setUser(null);
-    navigate('/');
+    navigate.go(0);
+    window.location.reload();
 };
 
 export default handleLogoutButton;

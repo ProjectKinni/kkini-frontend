@@ -1,13 +1,19 @@
 import React from 'react';
 import ProductNutrition from "./ProductNutrition";
+import ProductLikeButton from "./ProductLikeButton";
+import { useUser } from "./UserContext";
 
 const ProductDetail = ({ product }) => {
+    const { user } = useUser();
+
     return product ? (
         <div className="product-detail">
             <div className="info">
                 <div className="product-header">
                     <h2>{product.productName}</h2>
-                    <button className="wishlist-button">♥</button>
+                    {user && ( // Only render the LikeButton if there's a logged-in user
+                        <ProductLikeButton userId={user.userId} productId={product.productId} />
+                    )}
                 </div>
                 <h2>평점: ⭐{product.averageRating}  +리뷰개수</h2>
                 <h3>랭킹: </h3>
@@ -23,4 +29,5 @@ const ProductDetail = ({ product }) => {
         <p>Loading...</p>
     );
 }
+
 export default ProductDetail;

@@ -4,10 +4,12 @@ import LogoComponent from "../components/Logo";
 import logout from "../components/Logout";
 import getUserInfo from "../components/GetUserInfo";
 import SearchBar from "../components/SearchBar";
-import NavButtonsComponent from "../components/NavButtons";
+import NavButtonsComponent from '../components/NavButtons';
 import icUser from "../assets/images/ic_user.png";
 import icLike from "../assets/images/ic_like.png";
 import icMenu from "../assets/images/ic_menu.png";
+import IsLogin from "../components/IsLogin";
+
 
 function NavigationContainer({
   searchTerm,
@@ -27,6 +29,7 @@ function NavigationContainer({
     await logout();
     setUser(null);
     navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -58,15 +61,7 @@ function NavigationContainer({
               </span>
             </div>
             <div className="nav-links">
-              {user ? (
-                <a href="" onClick={(e) => handleLogout(e)}>
-                  로그아웃
-                </a>
-              ) : (
-                <a href="" onClick={() => navigate("/login")}>
-                  로그인
-                </a>
-              )}
+              <IsLogin user={user} navigate={navigate} handleLogout={handleLogout} />
               <a href="/information">소개</a>
               <a href="/help">도움말</a>
             </div>
