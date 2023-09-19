@@ -11,11 +11,10 @@ const ProductDetailContainer = ({ product, viewCount }) => {
 
     return (
         <div className="product-detail-container">
-            <ProductDetail product={product} userId={user.userId} productId={product.productId} viewCount={viewCount}/>
+            {product && <ProductDetail product={product} viewCount={viewCount} userId={user?.userId} />}
             <ProductNutrition nutrition={product.nutrition} />
         </div>
     );
 };
 
 export default ProductDetailContainer;
-

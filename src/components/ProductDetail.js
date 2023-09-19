@@ -1,19 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductNutrition from "./ProductNutrition";
 import ProductLikeButton from "./ProductLikeButton";
 import { useUser } from "./UserContext";
+import { fetchProductDetail } from "../utils/ApiClient";
+import { useParams } from 'react-router-dom';
 
-const SERVER_URL = "http://223.130.138.156:8080"; // 서버 URL을 정의합니다.
-
-const ProductDetail = ({ product , viewCount}) => {
+const ProductDetail = () => {
+    const { productId } = useParams();
     const { user } = useUser();
+    const [product, setProduct] = useState(null);
+    const [viewCount, setViewCount] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const getProductDetail = async () => {
+            const result = await fetchProductDetail(productId, user?.userId);
+            if (result.error) {
+                setError(result.error);
+            } else {
+                setProduct(result.data);
+                setViewCount(result.viewCount);
+            }
+        };
+
+        getProductDetail();
+    }, [productId, user]);
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return product ? (
         <div className="product-detail">
             <div className="info">
                 <div className="product-header">
                     <h2>{product.productName}</h2>
-                    {user && ( // Only render the LikeButton if there's a logged-in user
+                    {user && (
                         <ProductLikeButton userId={user.userId} productId={product.productId} />
                     )}
                 </div>

@@ -28,14 +28,12 @@ const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
 
     useEffect(() => {
         const fetchProductData = async () => {
-            if (user) {
-                const { data, error, viewCount: fetchedViewCount } = await fetchProductDetail(productId, user.userId);
-                if (error) {
-                    setError(error);
-                } else {
-                    setProduct(data);
-                    setViewCount(fetchedViewCount); // 조회수 상태를 업데이트
-                }
+            const { data, error, viewCount: fetchedViewCount } = await fetchProductDetail(productId, user?.userId);
+            if (error) {
+                setError(error);
+            } else {
+                setProduct(data);
+                setViewCount(fetchedViewCount);
             }
         };
 
@@ -43,14 +41,14 @@ const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
         setRefreshReviews(false);
     }, [productId, refreshReviews, user]);
 
+    useEffect(() => {
+        getUserInfo().then(userData => setUser(userData));
+    }, []);
+
 
     const handleReviewSubmit = () => {
         setRefreshReviews(true);
     };
-
-    useEffect(() => {
-        getUserInfo().then(userData => setUser(userData));
-    }, []);
 
     return (
         <div className="product-detail-page">
@@ -60,8 +58,7 @@ const ProductDetailPage = ({ setSearchTerm: initialSetSearchTerm }) => {
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            {product && <ProductDetailContainer productId={product.productId} product={product} viewCount={viewCount}
-                                                userId={user ? user.userId : null}/>}
+            {product && <ProductDetailContainer productId={product.productId} product={product} viewCount={viewCount} userId={user?.userId} />}
             {user && <ReviewForm userId={user.userId} productId={productId} onSubmit={handleReviewSubmit} />}
             <ReviewList productId={productId} refreshReviews={refreshReviews} />
         </div>
