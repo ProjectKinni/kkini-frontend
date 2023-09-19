@@ -1,16 +1,21 @@
 import React from 'react';
 import ProductNutrition from "./ProductNutrition";
+import ProductLikeButton from "./ProductLikeButton";
+import { useUser } from "./UserContext";
 
 const SERVER_URL = "http://223.130.138.156:8080"; // 서버 URL을 정의합니다.
 
-const ProductDetail = ({ product, viewCount }) => {
+const ProductDetail = ({ product , viewCount}) => {
+    const { user } = useUser();
 
     return product ? (
         <div className="product-detail">
             <div className="info">
                 <div className="product-header">
                     <h2>{product.productName}</h2>
-                    <button className="wishlist-button">♥</button>
+                    {user && ( // Only render the LikeButton if there's a logged-in user
+                        <ProductLikeButton userId={user.userId} productId={product.productId} />
+                    )}
                 </div>
                 <h2>평점: ⭐{product.averageRating}</h2>
                 <h2>상품번호: {product.productId}</h2>
@@ -28,4 +33,5 @@ const ProductDetail = ({ product, viewCount }) => {
         <p>Loading...</p>
     );
 }
+
 export default ProductDetail;
