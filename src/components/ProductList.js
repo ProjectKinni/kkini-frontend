@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import IcStar from "../assets/images/star_on.png";
+import {useUser} from "./UserContext";
+import ProductLikeButton from "./ProductLikeButton";
 
 function ProductList({ categoryGroups, noProductsFound }) {
   const navigate = useNavigate();
+  const { user } = useUser();
 
   const handleProductClick = (productId) => {
     navigate(`/products/${productId}`);
@@ -32,6 +35,9 @@ function ProductList({ categoryGroups, noProductsFound }) {
             {item.averageRating
               ? item.averageRating.toFixed(2)
               : "0.00"} (리뷰 {item.reviewCount} 개)
+            {user && (
+                <ProductLikeButton userId={user.userId} productId={item.productId} />
+            )}
           </p>
         </div>
       ))}
