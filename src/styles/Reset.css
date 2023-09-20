@@ -86,7 +86,8 @@ time,
 mark,
 audio,
 video,
-button {
+button,
+textarea {
   margin: 0;
   padding: 0;
   border: 0;
@@ -143,6 +144,11 @@ button {
   outline: none;
   cursor: pointer;
   background: none;
+}
+textarea {
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
 }
 
 @import url(./Common.css);

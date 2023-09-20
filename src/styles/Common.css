@@ -124,7 +124,6 @@ input[type="checkbox"]:checked + label {
 
 /* img */
 .img-wrapper {
-  display: block;
   position: relative;
   width: 100%;
   height: 0;
@@ -158,12 +157,42 @@ input[type="checkbox"]:checked + label {
   transform: rotate(180deg);
 }
 
-/* ic-like */
+/* icons */
 .ic-like {
   position: absolute;
   top: 18px;
   right: 18px;
   z-index: 1;
+}
+.ic-review {
+  padding: 10px 10px 10px 32px;
+  border-radius: 6px;
+  color: #ff6600;
+  border: 1px solid #ff6600;
+  background: #fff url(../assets/images/ic_write.png) no-repeat 10px center;
+  background-size: 15px;
+  cursor: pointer;
+}
+
+/* user profile */
+.user-profile {
+  display: flex;
+  gap: 12px;
+}
+.user-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.user-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-name {
+  font-size: 16px;
+  font-weight: 700;
 }
 
 /* header */
@@ -384,18 +413,19 @@ input[type="checkbox"]:checked + label {
   .accordion.on .accordion-tit button img {
     width: 8px;
   }
-  .ic-like {
-    top: 14px;
-    right: 14px;
+  .ic-review {
+    font-size: 12px;
+    background-size: 13px;
+    padding: 8px 8px 8px 30px;
   }
-  .ic-like img {    
-    width: 26px !important;
+  .user-name {
+    font-size: 14px;
   }
   .navigation-container {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 1;
   }
   .navigation-container + div {
     padding-top: 102px;

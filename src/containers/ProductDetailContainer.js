@@ -10,7 +10,7 @@ const ProductDetailContainer = ({ product, viewCount }) => {
     }
 
     return (
-        <div className="product-detail-container">
+        <div className="product-detail-container content-max">
             {product && <ProductDetail product={product} viewCount={viewCount} userId={user?.userId} />}
             <ProductNutrition nutrition={product.nutrition} />
         </div>
