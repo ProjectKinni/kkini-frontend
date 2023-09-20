@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import NavigationContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import Footer from "../components/Footer";
 import RankingList from "../components/rankinglist/RankingList";
-import { fetchGreenProducts } from "../utils/ApiClient";
+import {fetchGreenProducts} from "../utils/ApiClient";
 
 function GreenRankingPage({
                               searchTerm: initialSearchTerm,
@@ -49,6 +49,7 @@ function GreenRankingPage({
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
+
             <div className="page-tit content-max">
                 <h1>끼니 그린 랭킹</h1>
                 <p>간편하게, 건강하게!</p>
@@ -58,12 +59,13 @@ function GreenRankingPage({
                     onKkiniChecked={handleKkiniGreenCheckChange}
                     onCategoryChange={setSelectedCategories}
                     onFilterChange={handleFilterChange}
+
                     filters={filters}
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
-                <RankingList fetchFunction={fetchGreenProducts} />
+                <RankingList fetchFunction={fetchGreenProducts}/>
             </div>
-            <Footer className="footer" />
+            <Footer className="footer"/>
         </>
     );
 }

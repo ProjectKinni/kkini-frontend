@@ -66,7 +66,7 @@ function SearchBar({ autocompleteItems, setAutocompleteItems }) {
           autoComplete="off"
         />
         {errorMessage && <div className="error-message">{errorMessage}</div>}
-        <input class="btn-search" type="submit" value="검색" />
+        <input className="btn-search" type="submit" value="검색" />
       </form>
     </div>
   );

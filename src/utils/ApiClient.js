@@ -16,6 +16,7 @@ export function fetchPickProducts() {
 };
 
 export function fetchRankingProducts() {
+
     return axios.get(`${SERVER_URL}/products`)
         .then(response => {
             console.log(response.data);
@@ -28,7 +29,9 @@ export function fetchRankingProducts() {
 };
 
 export function fetchGreenProducts() {
+
     return axios.get(`${SERVER_URL}/products`)
+
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -117,15 +120,30 @@ export const incrementViewCount = async (productId, userId) => {
     try {
         const response =
             await fetch(`${SERVER_URL}/api/products/${productId}/viewCount?userId=${userId}`, {
+
                 method: 'POST'
             });
+
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        return { data };
+        return {data};
     } catch (error) {
         console.error('Error incrementing view count:', error);
-        return { error: error.message || "Error incrementing view count." };
+        return {error: error.message || "Error incrementing view count."};
     }
 };
+export const handleReviewSubmit = async (userId, productId, rating, content) => {
+    try {
+        const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, {
+            productId,
+            rating,
+            content,
+        });
+        return {data: response.data};
+    } catch (error) {
+        return {error: error.message || '리뷰 작성 실패.'};
+    }
+};
+

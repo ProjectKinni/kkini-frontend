@@ -1,27 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-const SERVER_URL = "http://localhost:8080";
+const ReviewForm = ({ onSubmit }) => {
 
-const ReviewForm = ({ userId, productId, onSubmit }) => {
     const [rating, setRating] = useState(5);
     const [content, setContent] = useState('');
 
-    const handleSubmit = async () => {
-        try {
-            const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, {
-                productId,
-                rating,
-                content,
-            });
-            console.log('리뷰 작성 성공:', response.data);
-            onSubmit();
-            setRating(5);
-            setContent('');
-        } catch (error) {
-            console.error('리뷰 작성 실패:', error);
-        }
-    };
+      const handleSubmit = () => {
+        onSubmit(rating, content);
+        setRating(5);
+        setContent('');
+      };
 
     return (
         <div className="review-form">
@@ -36,7 +24,7 @@ const ReviewForm = ({ userId, productId, onSubmit }) => {
                 <textarea value={content}
                           onChange={(e) => setContent(e.target.value)} />
             </div>
-            <button onClick={handleSubmit}>리뷰 작성</button>
+            <button onClick={ handleSubmit }>리뷰 작성</button>
         </div>
     );
 };
