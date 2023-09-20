@@ -12,6 +12,7 @@ import HelpPage from "./pages/HelpPage";
 import GreenRankingPage from "./pages/GreenRankingPage"
 import KkiniRankingPage from "./pages/KkiniRankingPage"
 import KkiniPickPage from "./pages/KkiniPickPage"
+import CommunityPage from "./pages/CommunityPage"
 
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/green-ranking" element={<GreenRankingPage/>}/>
                     <Route path="/ranking" element={<KkiniRankingPage/>}/>
                     <Route path="/pick" element={<KkiniPickPage/>}/>
+                    <Route path="/community" element={<CommunityPage/>}/>
                 </Routes>
             </UserProvider>
         </BrowserRouter>
