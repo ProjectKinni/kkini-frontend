@@ -17,7 +17,7 @@ function GreenRankingPage({
   const [autocompleteItems, setAutocompleteItems] = useState(
     initialAutocompleteItems
   );
-}){
+}{
     const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
     const [autocompleteItems, setAutocompleteItems] = useState(
         initialAutocompleteItems
@@ -44,7 +44,7 @@ function GreenRankingPage({
     const handleKkiniGreenCheckChange = (value) => {
         setKkiniGreenCheck(value);
     };
-    
+
 
     return(
         <>
@@ -55,7 +55,7 @@ function GreenRankingPage({
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            
+
             <div className="page-tit content-max">
                 <h1>끼니 그린 랭킹</h1>
                 <p>
@@ -68,11 +68,11 @@ function GreenRankingPage({
                     onKkiniChecked={handleKkiniGreenCheckChange}
                     onCategoryChange={setSelectedCategories}
                     onFilterChange={handleFilterChange}
-                    
+
                     filters={filters}
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
-                
+
                 <RankingList fetchFunction={fetchGreenProducts}/>
             </div>
 

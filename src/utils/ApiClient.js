@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const SERVER_URL = "http://223.130.138.156:8080";
+const SERVER_URL = "http://localhost:8080";
 
 
 export function fetchPickProducts() {
-    return axios.get('http://localhost:8080/products')
+    return axios.get('${SERVER_URL}/products')
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -16,7 +16,7 @@ export function fetchPickProducts() {
 };
 
 export function fetchRankingProducts() {
-    return axios.get('http://localhost:8080/products')
+    return axios.get('${SERVER_URL}/products')
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -28,7 +28,7 @@ export function fetchRankingProducts() {
 };
 
 export function fetchGreenProducts() {
-    return axios.get('http://localhost:8080/products')
+    return axios.get('${SERVER_URL}/products')
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -79,7 +79,7 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
 };
 
 export const fetchAutocompleteSuggestions = async (searchTerm) => {
-    let endpoint = `http://localhost:8080/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
+    let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
 
     try {
         const response = await fetch(endpoint);
@@ -100,7 +100,7 @@ export const fetchAutocompleteSuggestions = async (searchTerm) => {
 export const fetchProductDetail = async (productId, userId) => {
     try {
         const response =
-            await fetch(`http://localhost:8080/api/products/${productId}${userId ? `?userId=${userId}` : ''}`);
+            await fetch(`${SERVER_URL}/api/products/${productId}${userId ? `?userId=${userId}` : ''}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -116,7 +116,7 @@ export const fetchProductDetail = async (productId, userId) => {
 export const incrementViewCount = async (productId, userId) => {
     try {
         const response =
-            await fetch(`http://localhost:8080/api/products/${productId}/viewCount?userId=${userId}`, {
+            await fetch(`${SERVER_URL}/api/products/${productId}/viewCount?userId=${userId}`, {
             method: 'POST'
         });
         if (!response.ok) {
@@ -130,6 +130,17 @@ export const incrementViewCount = async (productId, userId) => {
     }
 };
 
-
+export const handleReviewSubmit = async (userId, productId, rating, content) => {
+    try {
+        const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, {
+            productId,
+            rating,
+            content,
+        });
+        return { data: response.data };
+    } catch (error) {
+        return { error: error.message || '리뷰 작성 실패.' };
+    }
+};
 
 
