@@ -1,4 +1,5 @@
 import React from "react";
+import IcStar from "../../assets/images/star_on.png";
 import TagComponent from './TagComponent'
 function ProductCard({ productLink, imgSrc, productName, reviewCount,
                          filters, category, isGreen})
@@ -19,16 +20,16 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
 
     return(
 
-        <div className="card-container">
+        <div className="product-item">
 
-            <a href={productLink} className="product-img-container">
-                <img src={imgSrc} className="product-img" alt="상품이미지" />
+            <a href={productLink} className="img-wrapper">
+                <img src={imgSrc} alt="상품이미지" />
             </a>
 
             <h4><a herf={productLink}>{productName}</a></h4>
 
-            <div className="rating-container">
-                <span>⭐</span>
+            <div className="rating-display">
+                <img src={IcStar} alt="별점" />
                 {/*<u>리뷰 {reviewCount} 개</u>*/}
             </div>
 

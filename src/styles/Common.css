@@ -124,6 +124,7 @@ input[type="checkbox"]:checked + label {
 
 /* img */
 .img-wrapper {
+  display: block;
   position: relative;
   width: 100%;
   height: 0;
@@ -387,7 +388,7 @@ input[type="checkbox"]:checked + label {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 10;
   }
   .navigation-container + div {
     padding-top: 102px;

@@ -51,7 +51,7 @@ function KkiniRankingPage({
                 <h1>끼니 랭킹</h1>
                 <p>인기만점상품</p>
             </div>
-            <div className="ranking-layout">
+            <div className="product-wrap content-max">
                 <CategoryBarContainer
                     onKkiniChecked={handleKkiniGreenCheckChange}
                     onCategoryChange={setSelectedCategories}
@@ -59,7 +59,9 @@ function KkiniRankingPage({
                     filters={filters}
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
-                <RankingList fetchFunction={fetchRankingProducts} />
+                <div className="product-list-wrapper">
+                  <RankingList fetchFunction={fetchRankingProducts} />
+                </div>
             </div>
             <Footer className="footer" />
         </>

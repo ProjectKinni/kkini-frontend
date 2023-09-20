@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ProductCard from "./ProductCard"
-import "../../styles/RankingPage.css"
+// import "../../styles/RankingPage.css"
 
 function RankingList({ fetchFunction }){
 
@@ -14,11 +14,11 @@ function RankingList({ fetchFunction }){
     }, [fetchFunction]);
 
     if (error) {
-        return <div>상품정보를 얻어오지 못했습니다.</div>;
+        return <div className="no-data">상품정보를 얻어오지 못했습니다.</div>;
     }
     
     return (
-        <div className="ranking-list">
+        <div className="product-list">
             {products.map(product => (
                 <ProductCard
                     key = {product.productId}
