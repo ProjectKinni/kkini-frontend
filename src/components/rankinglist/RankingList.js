@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import ProductCard from "./ProductCard"
-import "../../styles/RankingPage.css"
 
 function RankingList({ fetchFunction }){
 
@@ -18,7 +17,7 @@ function RankingList({ fetchFunction }){
     }
     
     return (
-        <div className="ranking-list">
+        <div className="product-list">
             {products.map(product => (
                 <ProductCard
                     key = {product.productId}

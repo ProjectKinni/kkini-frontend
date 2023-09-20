@@ -80,7 +80,7 @@ export const fetchBasicProductsList = async (searchTermFromParams, selectedCateg
         return {error: error.message || "Error fetching products.", items: []};
     }
 };
-
+ 
 export const fetchAutocompleteSuggestions = async (searchTerm) => {
     let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
 

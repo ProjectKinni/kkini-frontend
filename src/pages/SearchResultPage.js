@@ -6,6 +6,8 @@ import NavigationContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
+
+import useFetchProducts from "../components/hooks/useFetchProducts"
 import { fetchBasicProductsList } from '../utils/ApiClient';
 
 function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
@@ -31,25 +33,17 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
     isLowFat: false,
   });
 
-  const [productsResult, setProductsResult] = useState({ items: [], error: null, noProductsFound: false });
+  const [productsResult, setProductsResult] = useFetchProducts(
+      fetchBasicProductsList,
+      initialSearchTerm,
+      selectedCategories,
+      filters,
+      kkiniGreenCheck
+  );
 
   useEffect(() => {
     setSearchTerm(initialSearchTerm);
   }, [location]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const searchParam = searchTerm || initialSearchTerm;
-      console.log("Fetching results for:", searchParam);
-
-      const result = await fetchBasicProductsList(searchParam, selectedCategories, filters, kkiniGreenCheck);
-      setProductsResult(result);
-    };
-
-    if (searchTerm || initialSearchTerm) {
-      fetchData();
-    }
-  }, [searchTerm, selectedCategories, filters, kkiniGreenCheck, initialSearchTerm]);
 
   const { categoryGroups, loading, error, noProductsFound } = useSearchResults(
       searchTerm,

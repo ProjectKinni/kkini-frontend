@@ -1,7 +1,11 @@
 import React from "react";
 import TagComponent from './TagComponent'
+import ProductLikeButton from "../ProductLikeButton";
+import IcStar from "../../assets/images/star_on.png";
+
 function ProductCard({ productLink, imgSrc, productName, reviewCount,
-                         filters, category, isGreen})
+                         filters, category, isGreen,
+                     onProductClick, averageRating, user, productId})
 {
 
     //필터태그
@@ -19,32 +23,39 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
 
     return(
 
-        <div className="card-container">
+        <div key={productId} className="product-item" onClick={onProductClick}>
 
-            <a href={productLink} className="product-img-container">
-                <img src={imgSrc} className="product-img" alt="상품이미지" />
-            </a>
-
-            <h4><a herf={productLink}>{productName}</a></h4>
-
-            <div className="rating-container">
-                <span>⭐</span>
-                {/*<u>리뷰 {reviewCount} 개</u>*/}
+            <div className="img-wrapper">
+                <img src={imgSrc} className="product-img" alt={productName} />
             </div>
 
+            <h4>{productName}</h4>
+
+            <p className="rating-display">
+                <img src={IcStar} alt="별점" />
+                {averageRating ? averageRating : "0.00"}
+                <u>리뷰 {reviewCount} 개</u>
+            </p>
+
+            {user && (
+                <ProductLikeButton
+                    userId={user.userId}
+                    productId={productId}
+                />
+            )}
+            
             <div className="tag-container">
                 {/*최대 5개만 보여준다고 칩시다.
                 필터, 카테고리, 그린 각각 하나씩만 보여져야 하나?
                 필터 여러개 해당될 수 있잖아요*/}
                 {allTags.slice(0, 5).map((tag, idx)=>
-                    <TagComponent key={idx} texts={[tag.text]} inddex={tag.index} />
+                    <TagComponent key={idx} texts={[tag.text]} index={tag.index} />
                 )}
 
             </div>
         </div>
 
     );
-
 }
 
 export default ProductCard;

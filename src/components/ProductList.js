@@ -1,25 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import IcStar from "../assets/images/star_on.png";
 import { incrementViewCount } from "../utils/ApiClient";
 import { useUser } from "./UserContext";
-import ProductLikeButton from "./ProductLikeButton";
+import { useProductClick } from "./hooks/useProductClick"
+import ProductCard from "../components/rankinglist/ProductCard"
 
 function ProductList({ categoryGroups, noProductsFound }) {
+  
   const navigate = useNavigate();
   const { user } = useUser();
-
-  const handleProductClick = async (productId) => {
-    if (user && user.userId) {
-      try {
-        await incrementViewCount(productId, user.userId);
-      } catch (error) {
-        console.error("Error incrementing view count:", error);
-      }
-    }
-    navigate(`/products/${productId}`);
-  };
-
+  const handleProductClick = useProductClick();
   const allProducts = Object.values(categoryGroups).flat();
 
   if (noProductsFound) {
@@ -27,32 +17,20 @@ function ProductList({ categoryGroups, noProductsFound }) {
   }
 
   return (
-    <main className="product-list">
-      {allProducts.map((item) => (
-        <div
-          key={item.productId}
-          className="product-item"
-          onClick={() => handleProductClick(item.productId)}
-        >
-          <div className="img-wrapper">
-            <img src={item.image} alt={item.productName} />
-          </div>
-          <h4>{item.productName}</h4>
-          <p className="rating-display">
-            <img src={IcStar} alt="별점" />
-            {item.averageRating
-              ? item.averageRating
-              : "0.00"} (리뷰 {item.reviewCount} 개)
-          </p>
-          {user && (
-            <ProductLikeButton
-              userId={user.userId}
-              productId={item.productId}
+      <main className="product-list">
+        {allProducts.map((item) => (
+            <ProductCard
+                key={item.productId}
+                productLink={`/products/${item.productId}`}
+                imgSrc={item.image}
+                productName={item.productName}
+                reviewCount={item.reviewCount}
+                category={item.category} // Assuming 'category' exists on 'item'
+                isGreen={item.isGreen}
+                onProductClick = {()=>handleProductClick(item.productId)}
             />
-          )}
-        </div>
-      ))}
-    </main>
+        ))}
+      </main>
   );
 }
 
