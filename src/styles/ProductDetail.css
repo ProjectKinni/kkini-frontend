@@ -108,7 +108,6 @@
   /* review form */
   .review-form {
     padding-top: 36px;
-    padding-bottom: 34px;
   }
   .form-review.rating {
     display: flex;
@@ -144,15 +143,16 @@
     border-radius: 8px;
     font-size: 15px;
   }
-  .review-list {    
+  .review-list {
+    padding-top: 34px;
     padding-bottom: 40px;
   }
   .review-card-wrap {
     text-align: left;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .review-card {
-    padding: 24px 0;
+    padding: 20px 0;
     border-bottom: 1px solid #cdcdcd;
   }
   .review-card:last-child {
