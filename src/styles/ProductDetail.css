@@ -1,6 +1,6 @@
 /* product detail */
 .product-detail-container {
-    margin: 44px auto 36px;
+    margin: 44px auto 0;
     padding-bottom: 46px;
     border-bottom: 1px solid #cdcdcd;
   }
@@ -32,7 +32,7 @@
   .product-detail-page h3 {
     text-align: left;
     font-size: 22px;
-    line-height: 1.2em;
+    line-height: 1.5em;
     word-break: break-all;
   }
   .product-detail-page h3 {
@@ -107,6 +107,7 @@
   
   /* review form */
   .review-form {
+    padding-top: 36px;
     padding-bottom: 34px;
   }
   .form-review.rating {
@@ -143,6 +144,9 @@
     border-radius: 8px;
     font-size: 15px;
   }
+  .review-list {    
+    padding-bottom: 40px;
+  }
   .review-card-wrap {
     text-align: left;
     margin-top: 20px;
@@ -150,6 +154,9 @@
   .review-card {
     padding: 24px 0;
     border-bottom: 1px solid #cdcdcd;
+  }
+  .review-card:last-child {
+    border-bottom: none;
   }
   .review-header {
     margin-bottom: 16px;
@@ -167,7 +174,7 @@
   
   @media only screen and (max-width: 768px) {
     .product-detail-container {
-      margin: 16px auto 26px;
+      margin: 16px auto 0;
       padding-bottom: 34px;
     }
     .product-detail {
@@ -217,10 +224,13 @@
       margin-bottom: 6px;
     }
     .form-review.rating {
-      margin: 12px 0 6px;
+      margin: 6px 0 10px;
     }
     .form-review .tit {
       font-size: 13px;
+    }
+    .form-review.rating .star-rating {
+      height: 30px;
     }
     .form-review.text textarea {
       width: calc(100% - 110px);
@@ -237,6 +247,13 @@
     }
     .review-header {
       margin-bottom: 12px;
+    }
+    .user-profile {
+      gap: 10px;
+    }
+    .user-img {
+      width: 40px;
+      height: 40px;
     }
     .review-header .review-rating img {
       width: 16px;
