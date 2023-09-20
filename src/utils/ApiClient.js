@@ -4,7 +4,7 @@ const SERVER_URL = "http://localhost:8080";
 
 
 export function fetchPickProducts() {
-    return axios.get('${SERVER_URL}/products')
+    return axios.get(`${SERVER_URL}/products`)
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -16,7 +16,19 @@ export function fetchPickProducts() {
 };
 
 export function fetchRankingProducts() {
-    return axios.get('${SERVER_URL}/products')
+    <
+    <
+    <
+    <
+    <
+    << HEAD
+        return axios.get('${SERVER_URL}/products'
+)
+======
+    =
+    return axios.get(`${SERVER_URL}/products`)
+        >>> >>> > 57
+    dd9fe756238a86f9446a174bab09d552be991a
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -28,7 +40,19 @@ export function fetchRankingProducts() {
 };
 
 export function fetchGreenProducts() {
-    return axios.get('${SERVER_URL}/products')
+    <
+    <
+    <
+    <
+    <
+    << HEAD
+        return axios.get('${SERVER_URL}/products'
+)
+======
+    =
+    return axios.get(`${SERVER_URL}/products`)
+        >>> >>> > 57
+    dd9fe756238a86f9446a174bab09d552be991a
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -65,16 +89,16 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
         const text = await response.text();
         const data = text ? JSON.parse(text) : null;
         if (data === null) {
-            return { noProductsFound: true, items: [] };
+            return {noProductsFound: true, items: []};
         } else if (data.message) {
-            return { error: data.message, items: [] };
+            return {error: data.message, items: []};
         } else if (Array.isArray(data)) {
-            return { items: data };
+            return {items: data};
         } else {
-            return { error: "Unexpected response format.", items: [] };
+            return {error: "Unexpected response format.", items: []};
         }
     } catch (error) {
-        return { error: error.message || "Error fetching products.", items: [] };
+        return {error: error.message || "Error fetching products.", items: []};
     }
 };
 
@@ -84,16 +108,16 @@ export const fetchAutocompleteSuggestions = async (searchTerm) => {
     try {
         const response = await fetch(endpoint);
         if (!response.ok) {
-            return { error: "Network response was not ok", items: [] };
+            return {error: "Network response was not ok", items: []};
         }
         const data = await response.json();
         if (Array.isArray(data)) {
-            return { items: [...new Set(data)] };
+            return {items: [...new Set(data)]};
         } else {
-            return { error: "Unexpected response format.", items: [] };
+            return {error: "Unexpected response format.", items: []};
         }
     } catch (error) {
-        return { error: error.message || "Error fetching autocomplete suggestions.", items: [] };
+        return {error: error.message || "Error fetching autocomplete suggestions.", items: []};
     }
 };
 
@@ -105,10 +129,10 @@ export const fetchProductDetail = async (productId, userId) => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        return { data, viewCount: data.viewCount || 0 }; // 조회수를 반환하도록 수정
+        return {data, viewCount: data.viewCount || 0}; // 조회수를 반환하도록 수정
     } catch (error) {
         console.error('Error fetching product:', error);
-        return { error: error.message || "Error fetching product." };
+        return {error: error.message || "Error fetching product."};
     }
 };
 
@@ -117,18 +141,40 @@ export const incrementViewCount = async (productId, userId) => {
     try {
         const response =
             await fetch(`${SERVER_URL}/api/products/${productId}/viewCount?userId=${userId}`, {
+        <
+        <
+        <
+        <
+        <
+        << HEAD
             method: 'POST'
-        });
+            });
+    ======
+        =
+            method
+    :
+        'POST'
+    })
+        ;
+    >>>>>>>
+        57
+        dd9fe756238a86f9446a174bab09d552be991a
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        return { data };
+        return {data};
     } catch (error) {
         console.error('Error incrementing view count:', error);
-        return { error: error.message || "Error incrementing view count." };
+        return {error: error.message || "Error incrementing view count."};
     }
-};
+    <
+    <
+    <
+    <
+    <
+    << HEAD
+        };
 
 export const handleReviewSubmit = async (userId, productId, rating, content) => {
     try {
@@ -137,10 +183,16 @@ export const handleReviewSubmit = async (userId, productId, rating, content) => 
             rating,
             content,
         });
-        return { data: response.data };
+        return {data: response.data};
     } catch (error) {
-        return { error: error.message || '리뷰 작성 실패.' };
+        return {error: error.message || '리뷰 작성 실패.'};
     }
 };
 
 
+======
+    =
+};
+>>>>>>>
+57
+dd9fe756238a86f9446a174bab09d552be991a

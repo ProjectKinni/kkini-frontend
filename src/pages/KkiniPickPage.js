@@ -1,29 +1,18 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import NavigationContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import Footer from "../components/Footer";
-import RankingList from "../components/rankinglist/RankingList"
-import { fetchPickProducts } from "../utils/ApiClient"
+import RankingList from "../components/rankinglist/RankingList";
+import {fetchPickProducts} from "../utils/ApiClient";
 
 function KkiniPickPage({
-  searchTerm: initialSearchTerm,
-  setSearchTerm: initialSetSearchTerm,
-  autocompleteItems: initialAutocompleteItems,
-  setAutocompleteItems: initialSetAutocompleteItems,
-}) {
-  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-  const [autocompleteItems, setAutocompleteItems] = useState(
-    initialAutocompleteItems
-  );
-                              searchTerm: initialSearchTerm,
-                              setSearchTerm: initialSetSearchTerm,
-                              autocompleteItems: initialAutocompleteItems,
-                              setAutocompleteItems: initialSetAutocompleteItems,
-                          }){
+                           searchTerm: initialSearchTerm,
+                           setSearchTerm: initialSetSearchTerm,
+                           autocompleteItems: initialAutocompleteItems,
+                           setAutocompleteItems: initialSetAutocompleteItems,
+                       }) {
     const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-    const [autocompleteItems, setAutocompleteItems] = useState(
-        initialAutocompleteItems
-    );
+    const [autocompleteItems, setAutocompleteItems] = useState(initialAutocompleteItems);
 
     const [kkiniGreenCheck, setKkiniGreenCheck] = useState(false);
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -40,14 +29,16 @@ function KkiniPickPage({
         isSaturatedFat: false,
         isLowFat: false,
     });
+
     const handleFilterChange = (updatedFilters) => {
         setFilters(updatedFilters);
     };
+
     const handleKkiniGreenCheckChange = (value) => {
         setKkiniGreenCheck(value);
     };
-    
-    return(
+
+    return (
         <>
             {/*기본속성*/}
             <NavigationContainer
@@ -64,9 +55,7 @@ function KkiniPickPage({
 
             <div className="page-tit content-max">
                 <h1>끼니 PICK</h1>
-                <p>
-                    끼니의 취향저격상품
-                </p>
+                <p>끼니의 취향저격상품</p>
             </div>
 
             <div className="ranking-layout">
@@ -74,7 +63,6 @@ function KkiniPickPage({
                     onKkiniChecked={handleKkiniGreenCheckChange}
                     onCategoryChange={setSelectedCategories}
                     onFilterChange={handleFilterChange}
-
                     filters={filters}
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
@@ -82,53 +70,9 @@ function KkiniPickPage({
                 <RankingList fetchFunction={fetchPickProducts}/>
             </div>
 
-  const [kkiniGreenCheck, setKkiniGreenCheck] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [filters, setFilters] = useState({
-    isLowCalorie: false,
-    isSugarFree: false,
-    isLowSugar: false,
-    isLowCarb: false,
-    isKeto: false,
-    isTransFat: false,
-    isHighProtein: false,
-    isLowSodium: false,
-    isCholesterol: false,
-    isSaturatedFat: false,
-    isLowFat: false,
-  });
-  const handleFilterChange = (updatedFilters) => {
-    setFilters(updatedFilters);
-  };
-  const handleKkiniGreenCheckChange = (value) => {
-    setKkiniGreenCheck(value);
-  };
-
-  return (
-    <>
-      {/*기본속성*/}
-      <NavigationContainer
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        autocompleteItems={autocompleteItems}
-        setAutocompleteItems={setAutocompleteItems}
-      />
-      <div className="page-tit content-max">
-        <h1>끼니 PICK</h1>
-        <p>끼니의 취향저격상품</p>
-      </div>
-      <div className="product-wrap content-max">
-        <CategoryBarContainer
-          onKkiniChecked={handleKkiniGreenCheckChange}
-          onCategoryChange={setSelectedCategories}
-          onFilterChange={handleFilterChange}
-          filters={filters}
-          kkiniGreenCheck={kkiniGreenCheck}
-        />
-        <div className="product-list-wrapper">{/* <ProductList /> */}</div>
-      </div>
-      <Footer className="footer" />
-    </>
-  );
+            <Footer className="footer"/>
+        </>
+    );
 }
+
 export default KkiniPickPage;
