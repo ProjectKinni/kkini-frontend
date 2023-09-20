@@ -46,3 +46,16 @@
 .load-more:hover {
   background-color: #0056b3;
 }
+
+/* main */
+.ranking-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+}
+.ranking-images img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
