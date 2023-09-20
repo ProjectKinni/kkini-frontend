@@ -123,13 +123,9 @@ export const incrementViewCount = async (productId, userId) => {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        return {data};
+        return { data };
     } catch (error) {
         console.error('Error incrementing view count:', error);
-        return {error: error.message || "Error incrementing view count."};
+        return { error: error.message || "Error incrementing view count." };
     }
 };
-
-
-
-
