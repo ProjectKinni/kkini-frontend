@@ -50,11 +50,11 @@ function GreenRankingPage({
                 setAutocompleteItems={setAutocompleteItems}
             />
 
-            <div className="page-tit content-max">
+            <div className="page-tit content-max green">
                 <h1>끼니 그린 랭킹</h1>
                 <p>간편하게, 건강하게!</p>
             </div>
-            <div className="ranking-layout">
+            <div className="product-wrap content-max">
                 <CategoryBarContainer
                     onKkiniChecked={handleKkiniGreenCheckChange}
                     onCategoryChange={setSelectedCategories}
@@ -63,7 +63,9 @@ function GreenRankingPage({
                     filters={filters}
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
-                <RankingList fetchFunction={fetchGreenProducts}/>
+                <div className="product-list-wrapper">
+                  <RankingList fetchFunction={fetchGreenProducts} />
+                </div>
             </div>
             <Footer className="footer"/>
         </>
