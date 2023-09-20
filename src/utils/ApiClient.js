@@ -16,19 +16,8 @@ export function fetchPickProducts() {
 };
 
 export function fetchRankingProducts() {
-    <
-    <
-    <
-    <
-    <
-    << HEAD
-        return axios.get('${SERVER_URL}/products'
-)
-======
-    =
+
     return axios.get(`${SERVER_URL}/products`)
-        >>> >>> > 57
-    dd9fe756238a86f9446a174bab09d552be991a
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -40,19 +29,9 @@ export function fetchRankingProducts() {
 };
 
 export function fetchGreenProducts() {
-    <
-    <
-    <
-    <
-    <
-    << HEAD
-        return axios.get('${SERVER_URL}/products'
-)
-======
-    =
+
     return axios.get(`${SERVER_URL}/products`)
-        >>> >>> > 57
-    dd9fe756238a86f9446a174bab09d552be991a
+
         .then(response => {
             console.log(response.data);
             return response.data;
@@ -141,24 +120,10 @@ export const incrementViewCount = async (productId, userId) => {
     try {
         const response =
             await fetch(`${SERVER_URL}/api/products/${productId}/viewCount?userId=${userId}`, {
-        <
-        <
-        <
-        <
-        <
-        << HEAD
-            method: 'POST'
+
+                method: 'POST'
             });
-    ======
-        =
-            method
-    :
-        'POST'
-    })
-        ;
-    >>>>>>>
-        57
-        dd9fe756238a86f9446a174bab09d552be991a
+
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -168,14 +133,7 @@ export const incrementViewCount = async (productId, userId) => {
         console.error('Error incrementing view count:', error);
         return {error: error.message || "Error incrementing view count."};
     }
-    <
-    <
-    <
-    <
-    <
-    << HEAD
-        };
-
+};
 export const handleReviewSubmit = async (userId, productId, rating, content) => {
     try {
         const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, {
@@ -189,10 +147,3 @@ export const handleReviewSubmit = async (userId, productId, rating, content) => 
     }
 };
 
-
-======
-    =
-};
->>>>>>>
-57
-dd9fe756238a86f9446a174bab09d552be991a

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-<<<<<<< HEAD
 const ReviewForm = ({ onSubmit }) => {
 
     const [rating, setRating] = useState(5);

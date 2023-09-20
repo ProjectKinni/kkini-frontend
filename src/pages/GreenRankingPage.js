@@ -39,17 +39,8 @@ function GreenRankingPage({
     const handleKkiniGreenCheckChange = (value) => {
         setKkiniGreenCheck(value);
     };
-    <
-    <
-    <
-    <
-    <
-    << HEAD
 
-        =======
-    >>>>>>> 57dd9fe756238a86f9446a174bab09d552be991a
-
-        return (
+    return (
         <>
             {/*기본속성*/}
             <NavigationContainer
@@ -58,46 +49,25 @@ function GreenRankingPage({
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
-            <
-            <
-            <
-            <
-            <
-            << HEAD
 
-                =======
-            >>>>>>> 57dd9fe756238a86f9446a174bab09d552be991a
-                <div className="page-tit content-max">
-                    <h1>끼니 그린 랭킹</h1>
-                    <p>간편하게, 건강하게!</p>
-                </div>
-                <div className="ranking-layout">
-                    <CategoryBarContainer
-                        onKkiniChecked={handleKkiniGreenCheckChange}
-                        onCategoryChange={setSelectedCategories}
-                        onFilterChange={handleFilterChange}
-                    <
-                    <
-                    <
-                    <
-                    <
-                    << HEAD
+            <div className="page-tit content-max">
+                <h1>끼니 그린 랭킹</h1>
+                <p>간편하게, 건강하게!</p>
+            </div>
+            <div className="ranking-layout">
+                <CategoryBarContainer
+                    onKkiniChecked={handleKkiniGreenCheckChange}
+                    onCategoryChange={setSelectedCategories}
+                    onFilterChange={handleFilterChange}
 
-                        filters={filters}
-                        kkiniGreenCheck={kkiniGreenCheck}
-                    />
+                    filters={filters}
+                    kkiniGreenCheck={kkiniGreenCheck}
+                />
+                <RankingList fetchFunction={fetchGreenProducts}/>
+            </div>
+            <Footer className="footer"/>
+        </>
+    );
+}
 
-                    <RankingList fetchFunction={fetchGreenProducts}/>
-                        =======
-                        filters={filters}
-                        kkiniGreenCheck={kkiniGreenCheck}
-                        />
-                    <RankingList fetchFunction={fetchGreenProducts}/>
-                        >>>>>>> 57dd9fe756238a86f9446a174bab09d552be991a
-                </div>
-                <Footer className="footer"/>
-            </>
-                );
-                }
-
-                export default GreenRankingPage;
+export default GreenRankingPage;
