@@ -3,6 +3,7 @@ import IcStar from "../assets/images/star_on.png";
 import IcLikeOn from "../assets/images/ic_like_on.png";
 import ProductNutrition from "./ProductNutrition";
 import ProductLikeButton from "./ProductLikeButton";
+import LoadingOverlay from './LoadingOverlay';
 import { useUser } from "./UserContext";
 import { fetchProductDetail } from "../utils/ApiClient";
 import { useParams } from 'react-router-dom';
@@ -85,7 +86,7 @@ const ProductDetail = () => {
           </div>
         </div>
     ) : (
-        <p>Loading...</p>
+        <LoadingOverlay isLoading={true} />
     );
 }
 
