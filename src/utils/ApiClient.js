@@ -43,7 +43,7 @@ export function fetchGreenProducts() {
 };
 
 
-export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked) => {
+export const fetchBasicProductsList = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked) => {
     let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}`;
 
     if (selectedCategories && selectedCategories.length > 0) {
