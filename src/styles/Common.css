@@ -384,6 +384,13 @@ input[type="checkbox"]:checked + label {
   .accordion.on .accordion-tit button img {
     width: 8px;
   }
+  .ic-like {
+    top: 14px;
+    right: 14px;
+  }
+  .ic-like img {    
+    width: 26px !important;
+  }
   .navigation-container {
     width: 100%;
     position: fixed;
