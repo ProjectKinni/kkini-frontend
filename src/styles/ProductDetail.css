@@ -144,6 +144,7 @@
     font-size: 15px;
   }
   .review-list {
+    text-align: left;
     padding-top: 34px;
     padding-bottom: 40px;
   }

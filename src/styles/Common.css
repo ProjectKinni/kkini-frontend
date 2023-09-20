@@ -33,6 +33,9 @@
 button:hover {
   filter: brightness(0.95);
 }
+.pt0 {
+  padding-top: 0 !important;
+}
 .mb5 {
   margin-bottom: 5px;
 }
@@ -105,7 +108,6 @@ input[type="checkbox"]:checked + label {
   display: inline-block;
   font-size: 26px;
   font-weight: 800;
-  margin-bottom: 15px;
 }
 .green.page-tit h1::before {
   content: "";
@@ -118,8 +120,13 @@ input[type="checkbox"]:checked + label {
   background: url(../assets/images/ic_green.png) no-repeat center;
 }
 .page-tit p {
+  margin-top: 12px;
   font-size: 15px;
   color: #8a8a8a;
+}
+.tit-btn {    
+  display: block;
+  margin: 10px 0 0 auto;
 }
 
 /* img */
@@ -401,14 +408,19 @@ input[type="checkbox"]:checked + label {
   }
   .page-tit {
     margin-top: 8vh;
-    margin-bottom: 44px;
+    margin-bottom: 36px;
   }
   .page-tit h1 {
     font-size: 18px;
-    margin-bottom: 6px;
   }
   .page-tit p {
+    margin-top: 6px;
     font-size: 13px;
+  }
+  .tit-with-btn .tit-btn {
+    right: 14px;
+    top: 109px;
+    transform: translateY(-50%);
   }
   .accordion.off .accordion-tit button img,
   .accordion.on .accordion-tit button img {

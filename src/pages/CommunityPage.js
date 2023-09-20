@@ -25,6 +25,10 @@ function CommunityPage({
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
+            <div className="page-tit content-max">
+                <h1>커뮤니티</h1>
+                <button className="tit-btn ic-review">리뷰 작성하기</button>
+            </div>
             <ReviewListForCommunity />
 
         </>
