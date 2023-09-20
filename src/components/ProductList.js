@@ -1,11 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import IcStar from "../assets/images/star_on.png";
+import { incrementViewCount } from "../utils/ApiClient";
+import { useUser } from "./UserContext";
+import ProductLikeButton from "./ProductLikeButton";
 
 function ProductList({ categoryGroups, noProductsFound }) {
   const navigate = useNavigate();
+  const { user } = useUser();
 
-  const handleProductClick = (productId) => {
+  const handleProductClick = async (productId) => {
+    if (user && user.userId) {
+      try {
+        await incrementViewCount(productId, user.userId);
+      } catch (error) {
+        console.error("Error incrementing view count:", error);
+      }
+    }
     navigate(`/products/${productId}`);
   };
 
@@ -33,6 +44,12 @@ function ProductList({ categoryGroups, noProductsFound }) {
               ? item.averageRating.toFixed(2)
               : "0.00"} (리뷰 {item.reviewCount} 개)
           </p>
+          {user && (
+            <ProductLikeButton
+              userId={user.userId}
+              productId={item.productId}
+            />
+          )}
         </div>
       ))}
     </main>

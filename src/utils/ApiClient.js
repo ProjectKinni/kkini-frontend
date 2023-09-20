@@ -79,7 +79,7 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
 };
 
 export const fetchAutocompleteSuggestions = async (searchTerm) => {
-    let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
+    let endpoint = `http://localhost:8080/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
 
     try {
         const response = await fetch(endpoint);
@@ -97,17 +97,39 @@ export const fetchAutocompleteSuggestions = async (searchTerm) => {
     }
 };
 
-export const fetchProductDetail = async (productId) => {
+export const fetchProductDetail = async (productId, userId) => {
     try {
-        const response = await fetch(`${SERVER_URL}/api/products/${productId}`);
+        const response =
+            await fetch(`http://localhost:8080/api/products/${productId}${userId ? `?userId=${userId}` : ''}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return { data, viewCount: data.viewCount || 0 }; // 조회수를 반환하도록 수정
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        return { error: error.message || "Error fetching product." };
+    }
+};
+
+
+export const incrementViewCount = async (productId, userId) => {
+    try {
+        const response =
+            await fetch(`http://localhost:8080/api/products/${productId}/viewCount?userId=${userId}`, {
+            method: 'POST'
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
         return { data };
     } catch (error) {
-        console.error('Error fetching product:', error);
-        return { error: error.message || "Error fetching product." };
+        console.error('Error incrementing view count:', error);
+        return { error: error.message || "Error incrementing view count." };
     }
 };
+
+
+
 

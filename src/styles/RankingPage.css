@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+.ranking-layout {
+    padding: 0px 120px 20px 120px;
+    display: flex;
+    width: 100%;
+}
+
+.ranking-list {
+    padding: 0px 50px 20px 50px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* 카드 사이의 간격 */
+}
+
+.card-container {
+    width: 100%; /* 컨테이너의 너비를 최대로 설정 */
+}
+
+.product-img-container {
+    width: 100%; /* 컨테이너의 너비를 최대로 설정 */
+    display: flex; /* 이미지를 중앙에 위치시키기 위한 flex 설정 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.product-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/*상품명 위에 간격 띄우기*/
+h4 a {
+    display: block;
+    margin-top: 10px;
+}
+
+.rating-container {
+    margin-top: 10px;
+}
