@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import icLink from "../../assets/images/ic_link.png";
-import icLinkGreen from "../../assets/images/ic_link_green.png";
+import icLink from "../../assets/images/ic_link.svg";
+import icLinkGreen from "../../assets/images/ic_link_green.svg";
 import ProductSlickSlider from "../mainPage/ProductSlickSlider";
 
 import {

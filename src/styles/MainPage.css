@@ -96,7 +96,7 @@
   position: absolute;
   top: 0;
   left: -26px;
-  background: url(../assets/images/ic_green.png) no-repeat center;
+  background: url(../assets/images/ic_green.svg) no-repeat center;
 }
 .tit:has(.btn-login) + p,
 .ranking-section .no-data {
@@ -120,7 +120,7 @@
   top: 74px;
   left: 50%;
   transform: translateX(-50%);
-  background: url(../assets/images/ic_lock.png) no-repeat center;
+  background: url(../assets/images/ic_lock.svg) no-repeat center;
   background-size: 30px;
 }
 .ranking-section .no-data {
@@ -151,7 +151,7 @@
   display: block;
   width: 30px;
   height: 30px;
-  background: url(../assets/images/arrow_right.png) no-repeat center;
+  background: url(../assets/images/arrow_right.svg) no-repeat center;
   background-size: 15px;
 }
 .slick-prev:before {

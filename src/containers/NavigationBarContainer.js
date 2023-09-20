@@ -5,9 +5,9 @@ import logout from "../components/Logout";
 import getUserInfo from "../components/GetUserInfo";
 import SearchBar from "../components/SearchBar";
 import NavButtonsComponent from '../components/NavButtons';
-import icUser from "../assets/images/ic_user.png";
-import icLike from "../assets/images/ic_like.png";
-import icMenu from "../assets/images/ic_menu.png";
+import icUser from "../assets/images/ic_user.svg";
+import icLike from "../assets/images/ic_like.svg";
+import icMenu from "../assets/images/ic_menu.svg";
 import IsLogin from "../components/IsLogin";
 
 
