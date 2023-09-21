@@ -22,13 +22,11 @@ function ShowUserInfo({ isEditingNickname, setIsEditingNickname, handleUpdateSuc
                     />
                     <button onClick={() => setIsEditingNickname(false)}>취소</button><br />
                     <button onClick={handleDeleteClick}>회원 탈퇴</button><br />
-                    <a href="/">메인으로</a>
                 </div>
             ) : (
                 <div>
                     <span>{`닉네임: ${user.nickname}`} <span style={{ cursor: 'pointer' }} onClick={() => setIsEditingNickname(true)}>✏️</span></span><br />
                     <button onClick={handleDeleteClick}>회원 탈퇴</button><br />
-                    <a href="/">메인으로</a>
                 </div>
             )}
         </div>
