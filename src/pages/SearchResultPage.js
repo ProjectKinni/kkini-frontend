@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../styles/SearchResultPage.css";
 import { useLocation } from "react-router-dom";
 import useSearchResults from "../components/UseSearchResults";
-
 import NavigationContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import ProductList from "../components/ProductList";

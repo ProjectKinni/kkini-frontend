@@ -42,7 +42,7 @@ function ProductList({ categoryGroups, noProductsFound }) {
             <img src={IcStar} alt="별점" />
             {item.averageRating
               ? item.averageRating
-              : "0.00"} (리뷰 {item.reviewCount} 개)
+              : "0.00"} (리뷰 {item.reviewCount}개)
           </p>
           {user && (
             <ProductLikeButton

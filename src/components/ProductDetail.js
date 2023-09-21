@@ -55,7 +55,7 @@ const ProductDetail = () => {
               <div className="rating-display">
                 <img src={IcStar} alt="별점" />
                 {product.averageRating}
-                <span>리뷰 개</span>
+                <span>리뷰 {product.reviewCount}개</span>
               </div>
               <button className="ic-review">리뷰 작성하기</button>
             </dd>
