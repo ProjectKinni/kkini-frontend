@@ -7,7 +7,7 @@ import CategoryBarContainer from "../containers/CategoryBarContainer";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
 
-import useFetchProducts from "../components/hooks/useFetchProducts"
+import useFetchFilteredProducts from "../components/hooks/useFetchFilteredProducts"
 import { fetchBasicProductsList } from '../utils/ApiClient';
 
 function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
@@ -33,9 +33,8 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
     isLowFat: false,
   });
 
-  const [productsResult, setProductsResult] = useFetchProducts(
-      fetchBasicProductsList,
-      initialSearchTerm,
+  const [productResult, setSearchTermFromHook] = useFetchFilteredProducts(
+      searchTerm,
       selectedCategories,
       filters,
       kkiniGreenCheck
@@ -51,7 +50,6 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
       filters,
       kkiniGreenCheck,
       initialSearchTerm,
-      productsResult
   );
 
   const handleFilterChange = (updatedFilters) => {

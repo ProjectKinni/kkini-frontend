@@ -1,22 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { fetchBasicProductList } from '../../utils/ApiClient'
 
-export default function useFetchProducts(fetchFunction, initialSearchTerm, selectedCategories, filters, kkiniGreenCheck) {
-    const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-    const [productsResult, setProductsResult] = useState({ items: [], error: null, noProductsFound: false });
+export function useFetchSearchedProducts(searchTerm, selectedCategories, filters, kkiniGreenCheck){
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const searchParam = searchTerm || initialSearchTerm;
-            console.log("Fetching results for:", searchParam);
+        setLoading(true);
+        fetchBasicProductsList(searchTerm, selectedCategories, filters, kkiniGreenCheck)
+            .then(responseData => {
+                setData(responseData);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err.message);
+                setLoading(false);
+            });
+    }, [searchTerm, selectedCategories, filters, kkiniGreenCheck]);
 
-            const result = await fetchFunction(searchParam, selectedCategories, filters, kkiniGreenCheck);
-            setProductsResult(result);
-        };
-
-        if (searchTerm || initialSearchTerm) {
-            fetchData();
-        }
-    }, [fetchFunction, searchTerm, selectedCategories, filters, kkiniGreenCheck, initialSearchTerm]);
-
-    return [productsResult, setSearchTerm];
+    return { data, loading, error };
 }
