@@ -134,21 +134,26 @@ export const incrementViewCount = async (productId, userId) => {
         return {error: error.message || "Error incrementing view count."};
     }
 };
-export const handleReviewSubmit = async (userId, productId, rating, content) => {
+export const handleReviewSubmit = async (userId, productId, formData) => {
     try {
-        const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, {
-            productId,
-            rating,
-            content,
-        });
+        formData.append('productId', productId);
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        };
+
+        const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, formData, config);
         return {data: response.data};
     } catch (error) {
         return {error: error.message || '리뷰 작성 실패.'};
     }
 };
 
+
 export function fetchReviews(userId, page) {
-    return axios.get(`${SERVER_URL}/reviews/users/${userId}`, { params: { page, size: 10 } })
+    return axios.get(`${SERVER_URL}/reviews/users/${userId}`, {params: {page, size: 10}})
         .then(response => response.data)
         .catch(error => {
             console.error('Error fetching user reviews:', error);
