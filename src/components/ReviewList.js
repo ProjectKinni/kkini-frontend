@@ -21,6 +21,8 @@ const ReviewList = ({productId, refreshReviews}) => {
         };
 
         useEffect(() => {
+            setPage(0);
+            setReviews([]);
             fetchReviews();
         }, [productId, refreshReviews]);
 

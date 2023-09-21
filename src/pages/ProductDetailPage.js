@@ -51,7 +51,7 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
             const result = await handleReviewSubmit(user.userId, productId, rating, content);
             if (!result.error) {
                 console.log('리뷰 작성 성공:', result.data);
-                setRefreshReviews(true);
+                setRefreshReviews(!refreshReviews);
             } else {
                 console.error('리뷰 작성 실패:', result.error);
             }
