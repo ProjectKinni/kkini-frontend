@@ -2,6 +2,7 @@ import React from 'react';
 import profile from "../assets/images/profile.png";
 import IcStar from "../assets/images/star_on.png";
 import IcStarOff from "../assets/images/star_off.png";
+import { Link } from 'react-router-dom';
 
 const ReviewCard = ({review}) => {
 
@@ -26,6 +27,9 @@ const ReviewCard = ({review}) => {
                     </div>
                     <div>
                         <span className="user-name">{review.user.nickname}</span>
+                        <div>
+                            <Link to={`/products/${review.product.productId}`} className="product-name">{review.product.productName}</Link>
+                        </div>
                         <div className="review-rating">
                             {starImages.map((star, index) => (
                                 <span key={index}>{star}</span>
