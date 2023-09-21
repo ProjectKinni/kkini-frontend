@@ -8,7 +8,6 @@ import ReviewList from '../components/ReviewList';
 import getUserInfo from '../components/GetUserInfo';
 import ReviewForm from '../components/ReviewForm';
 
-
 const SERVER_URL = "http://localhost:8080";
 
 const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
