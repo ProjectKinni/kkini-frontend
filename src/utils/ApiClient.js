@@ -163,3 +163,33 @@ export function handleDeleteReview(reviewId) {
             throw error;
         });
 }
+
+export function fetchLikedProducts(userId, page, size) {
+    const endpoint = `${SERVER_URL}/like/liked-products/${userId}`;
+
+    return axios.get(endpoint, {
+        params: {
+            page,
+            size
+        }
+    })
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching liked products:', error);
+            throw error;
+        });
+}
+
+export function removeLikedProduct(userId, productId) {
+    const url = `${SERVER_URL}/like/${userId}/${productId}`;
+
+    return axios.delete(url)
+        .then(response => response.data)
+        .catch(error => {
+            console.error('Error removing liked product:', error);
+            throw error;
+        });
+}

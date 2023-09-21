@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShowUserInfo from "../components/ShowUserInfo";
 import handleDeleteClick from "../components/HandleDeleteClick";
-import { fetchLikedProducts } from "../components/UseFetchLikedProducts";
-import LikedProductList from "../components/LikedProductList";
 import { useUser } from "../components/UserContext";
-import useRemoveLike from "../components/UseRemoveLike";
 import NavigationContainer from "../containers/NavigationBarContainer";
 import Footer from "../components/Footer";
+import LikeList from "../components/LikeListForMypgae";
 import UserReviews from "../components/ReviewListForMypage";
+
 
 
 function MyPage({
@@ -20,8 +19,6 @@ function MyPage({
     const [isEditingNickname, setIsEditingNickname] = useState(false);
     const navigate = useNavigate();
     const { user } = useUser();
-    const [likedProducts, setLikedProducts] = useState([]);
-    const removeLike = useRemoveLike(user, setLikedProducts);
 
     // 탭 상태 추가
     const [activeTab, setActiveTab] = useState("likedProducts");
@@ -29,10 +26,6 @@ function MyPage({
     const [autocompleteItems, setAutocompleteItems] = useState(
         initialAutocompleteItems
     );
-
-    useEffect(() => {
-        fetchLikedProducts(user, setLikedProducts);
-    }, [user]);
 
     // 탭을 변경하는 함수
     const handleTabChange = (tabName) => {
@@ -56,12 +49,11 @@ function MyPage({
                 <button onClick={() => handleTabChange("likedProducts")}>찜한 목록</button>
                 <button onClick={() => handleTabChange("reviews")}>리뷰 목록</button>
             </div>
-            {activeTab === "likedProducts" ? (
-                <LikedProductList likedProducts={likedProducts} handleRemoveClick={removeLike} />
-            ) : (
+            {activeTab === 'likedProducts' ?
+                <LikeList />
+                :
                 <UserReviews />
-            )}
-            {/* 나머지 내용 */}
+            }
             <Footer className="footer" />
         </>
     );
