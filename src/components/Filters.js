@@ -79,7 +79,7 @@ function Filters({
             checked={isChecked}
             onChange={(e) => handleFilterChange(filterName, e.target.checked)}
           />
-          <label for={filterName}>{filterName}</label>
+          <label for={filterName}>{filterName === "isLowCalorie" ? "저칼로리" : filterName}</label>
         </div>
       ))}
     </div>
