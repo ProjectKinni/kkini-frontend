@@ -6,6 +6,8 @@ import {fetchLikedProducts} from "../components/UseFetchLikedProducts";
 import LikedProductList from "../components/LikedProductList";
 import {useUser} from "../components/UserContext";
 import useRemoveLike from "../components/UseRemoveLike";
+import NavigationContainer from "../containers/NavigationBarContainer";
+import "../styles/MyPage.css";
 
 function MyPage() {
     const [isEditingNickname, setIsEditingNickname] = useState(false);
@@ -20,6 +22,11 @@ function MyPage() {
 
     return (
         <>
+            <NavigationContainer
+            />
+            <div className="page-tit content-max">
+                <h1>마이페이지</h1>
+            </div>
             <ShowUserInfo
                 isEditingNickname={isEditingNickname}
                 setIsEditingNickname={setIsEditingNickname}

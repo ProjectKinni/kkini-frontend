@@ -1,0 +1,150 @@
+/* page tit */
+.my-profile-wrap {
+    margin-top: -20px;
+}
+.my-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-profile {
+    position: relative;    
+}
+.user-profile .user-img {
+    width: 80px;
+    height: 80px;
+}
+.user-profile .btn-edit-img {
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    background: #ff6600;
+    border-radius: 50%;
+    padding: 8px;
+}
+.user-profile .btn-edit-img img {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+.my-profile h3 {
+    font-size: 20px;
+    margin-left: 28px;
+}
+.btn-edit-name {
+    margin-left: 14px;
+}
+.btn-delete-account {
+    position: absolute;
+    right: 0;
+    font-size: 13px;
+    padding: 8px 14px;
+    color: #fff;
+    background: #8A8A8A;
+    border-radius: 4px;
+}
+
+/* edit nickname */
+.edit-my-profile {
+    padding-top: 40px
+}
+.edit-my-profile h4 {
+    position: absolute;
+    top: 0;
+    font-size: 18px;
+}
+.edit-nickname {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#nickname {    
+    width: 200px;
+    padding: 14px 10px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-bottom: 1px solid #cdcdcd;
+}
+.btn-edit-save,
+.btn-edit-cancel {
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+.btn-edit-save {
+    font-weight: 700;
+    color: #fff;
+    background: #ff6600;
+}
+.btn-edit-cancel {
+    color: #8A8A8A;
+    background: #fff;
+    border: 1px solid #a9a9a9;
+}
+.nickname-error {
+    position: absolute;
+    left: 6px;
+    bottom: -28px;
+    min-width: 400px;
+    text-align: left;
+    color: red;
+    font-size: 13px;
+}
+
+/* content */
+.my-page-con {
+    margin-top: 60px;
+}
+
+@media only screen and (max-width: 768px) {
+    .user-profile .user-img {
+        width: 60px;
+        height: 60px;
+    }
+    .my-profile h3 {
+        font-size: 17px;
+        margin-left: 24px;
+    }
+    .btn-edit-name {
+        margin-left: 8px;
+    }
+    .btn-edit-name img {
+        width: 20px;
+    }
+    .btn-delete-account {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    .edit-my-profile {
+        padding-top: 34px;
+    }
+    .edit-my-profile h4 {
+        font-size: 16px;
+    }
+    #nickname {
+        padding: 11px 0 11px 5px;
+        font-size: 15px;
+    }
+    .btn-edit-save,
+    .btn-edit-cancel {
+        font-size: 14px;
+        padding: 9px 15px;
+        margin-left: 6px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .btn-delete-account {
+        bottom: -40px;
+    }
+    .edit-my-profile {
+        flex-direction: column;
+    }
+    .btn-edit-cancel {
+        margin: 10px 0;
+    }
+}

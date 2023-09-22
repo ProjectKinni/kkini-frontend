@@ -52,17 +52,18 @@ function UpdateCheckUserNickname({ user, setUser, setIsEditingNickname }) {
     };
 
     return (
-        <div>
-            <label htmlFor="nickname">닉네임:</label>
-            <input
-                id="nickname"
-                value={newNickname}
-                onChange={(e) => handleNicknameChange(e, setNewNickname, setIsNicknameAvailable)}
-                placeholder={user.nickname}
-            />
-            <span style={{ cursor: 'pointer' }} onClick={handleUpdateClick}>👌</span>
+        <div className="edit-nickname">
+            <div>
+                <input
+                    id="nickname"
+                    value={newNickname}
+                    onChange={(e) => handleNicknameChange(e, setNewNickname, setIsNicknameAvailable)}
+                    placeholder={user.nickname}
+                />
+                <button onClick={handleUpdateClick} className="btn-edit-save">저장</button>
+            </div>
             {!isNicknameAvailable && (
-                <div style={{ color: 'red' }}>이미 사용 중인 닉네임입니다. 다른 닉네임을 선택하세요.</div>
+                <div className='nickname-error'>이미 사용 중인 닉네임입니다. 다른 닉네임을 선택하세요.</div>
             )}
         </div>
     );

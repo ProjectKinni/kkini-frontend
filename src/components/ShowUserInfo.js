@@ -1,6 +1,9 @@
 import React from 'react';
 import UpdateCheckUserNickname from './UpdateCheckUserNickname';
 import { useUser } from './UserContext';
+import profile from "../assets/images/profile.png";
+import IcPlus from "../assets/images/ic_plus.png";
+import IcEdit from "../assets/images/ic_edit.png";
 
 function ShowUserInfo({ isEditingNickname, setIsEditingNickname, handleUpdateSuccess, handleDeleteClick }) {
     const { user, setUser } = useUser();
@@ -10,25 +13,33 @@ function ShowUserInfo({ isEditingNickname, setIsEditingNickname, handleUpdateSuc
     }
 
     return (
-        <div>
-            <h1>회원 정보</h1>
+        <div className="my-profile-wrap content-max">
             {isEditingNickname ? (
-                <div>
+                <div className='my-profile edit-my-profile'>
+                    <h4>닉네임 변경하기</h4>
                     <UpdateCheckUserNickname
                         user={user}
                         setUser={setUser}
                         setIsEditingNickname={setIsEditingNickname}
                         handleUpdateSuccess={handleUpdateSuccess}
                     />
-                    <button onClick={() => setIsEditingNickname(false)}>취소</button><br />
-                    <button onClick={handleDeleteClick}>회원 탈퇴</button><br />
-                    <a href="/">메인으로</a>
+                    <button className='btn-edit-cancel' onClick={() => setIsEditingNickname(false)}>취소</button>
                 </div>
             ) : (
-                <div>
-                    <span>{`닉네임: ${user.nickname}`} <span style={{ cursor: 'pointer' }} onClick={() => setIsEditingNickname(true)}>✏️</span></span><br />
-                    <button onClick={handleDeleteClick}>회원 탈퇴</button><br />
-                    <a href="/">메인으로</a>
+                <div className='my-profile'>
+                    <div className="user-profile">
+                        <button type="submit" className="btn-edit-img">
+                            <img src={IcPlus} alt="프로필 이미지 변경하기" />
+                        </button>
+                        <div className="user-img">
+                            <img src={profile} alt="프로필 이미지" />
+                        </div>
+                    </div>
+                    <h3>{user.nickname}</h3>
+                    <button onClick={() => setIsEditingNickname(true)} className="btn-edit-name">
+                        <img src={IcEdit} alt="이름 변경하기" />
+                    </button>
+                    <button className='btn-delete-account' onClick={handleDeleteClick}>회원 탈퇴</button>
                 </div>
             )}
         </div>
