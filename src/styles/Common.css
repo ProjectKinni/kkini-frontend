@@ -124,9 +124,14 @@ input[type="checkbox"]:checked + label {
   font-size: 15px;
   color: #8a8a8a;
 }
-.tit-btn {    
+.tit-btn {
   display: block;
   margin: 10px 0 0 auto;
+}
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #8a8a8a;
 }
 
 /* img */
@@ -438,7 +443,7 @@ input[type="checkbox"]:checked + label {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 10;
   }
   .navigation-container + div {
     padding-top: 102px;

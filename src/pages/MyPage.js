@@ -6,6 +6,7 @@ import {fetchLikedProducts} from "../components/UseFetchLikedProducts";
 import LikedProductList from "../components/LikedProductList";
 import {useUser} from "../components/UserContext";
 import useRemoveLike from "../components/UseRemoveLike";
+import MyPageButtons from "../components/MyPageButtons";
 import NavigationContainer from "../containers/NavigationBarContainer";
 import "../styles/MyPage.css";
 
@@ -32,6 +33,7 @@ function MyPage() {
                 setIsEditingNickname={setIsEditingNickname}
                 handleDeleteClick={() => handleDeleteClick(() => navigate('/'))}
             />
+            <MyPageButtons />
             <LikedProductList likedProducts={likedProducts} handleRemoveClick={removeLike} />
         </>
     );
