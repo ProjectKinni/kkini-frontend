@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import StarRating from "./StarRating";
+import {getProductWithReviewStatus} from "../utils/ApiClient";
+import {useUser} from "./UserContext";
+import {useParams} from "react-router-dom";
 
 const ReviewForm = ({onSubmit}) => {
 
@@ -7,6 +10,22 @@ const ReviewForm = ({onSubmit}) => {
     const [content, setContent] = useState('');
     const [images, setImages] = useState([]);
     const [imagePreviews, setImagePreviews] = useState([]);
+    const [hasReviewed, setHasReviewed] = useState(false);
+    const {productId} = useParams();
+    const { user } = useUser();
+    const userId = user.userId;
+
+
+    useEffect(() => {
+        getProductWithReviewStatus(productId, userId)
+            .then(response => {
+                const { product, hasReviewed } = response.data;
+                setHasReviewed(hasReviewed);
+            })
+            .catch(error => {
+                console.error('Error fetching product review status:', error);
+            });
+    }, []);
 
     const handleRatingChange = (newRating) => {
         setRating(newRating);
@@ -56,12 +75,15 @@ const ReviewForm = ({onSubmit}) => {
                 <div className="review-write">
                 <textarea
                     value={content}
-                    placeholder="내용을 입력하세요."
+                    placeholder={hasReviewed ? "이미 작성되었습니다" : "내용을 입력하세요"}
                     onChange={(e) => setContent(e.target.value)}
                 />
-                    <input type="file" onChange={handleImageChange} />
-                    <button onClick={handleSubmit}>리뷰 작성</button>
-
+                    {!hasReviewed ? (
+                        <>
+                            <input type="file" onChange={handleImageChange} />
+                            <button onClick={handleSubmit}>리뷰 작성</button>
+                        </>
+                    ) : null}
                 </div>
                 </div>
             <div id="imagePreviews">

@@ -198,3 +198,16 @@ export function removeLikedProduct(userId, productId) {
             throw error;
         });
 }
+
+export function getProductWithReviewStatus(productId, userId) {
+    const url = `${SERVER_URL}/reviews/${productId}/${userId}`;
+
+    return axios.get(url)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching product with review status:', error);
+            throw error;
+        });
+}
