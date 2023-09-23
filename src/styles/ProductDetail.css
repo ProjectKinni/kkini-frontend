@@ -20,16 +20,23 @@
     text-align: left;
   }
   .product-header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
     width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 14px;
     border-bottom: 1px solid #cdcdcd;
   }
+  .product-header .ic-like {
+    top: 0;
+    right: 0;
+    padding: 4px 10px;
+  }
   .product-detail-page h2,
-  .product-detail-page h3 {
+  .product-detail-page h3 {    
+    width: calc(100% - 50px);
     text-align: left;
     font-size: 22px;
     line-height: 1.5em;
@@ -129,7 +136,7 @@
     display: flex;
   }
   .form-review.text textarea {
-    width: calc(100% - 134px);
+    flex: 1 1;
     background: #f4f4f4;
     padding: 16px;
     margin-right: 14px;

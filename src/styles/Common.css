@@ -173,9 +173,14 @@ input[type="checkbox"]:checked + label {
 /* icons */
 .ic-like {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 8px;
+  right: 8px;
   z-index: 1;
+  padding: 10px;
+  cursor: pointer;
+}
+.ic-like img {
+  vertical-align: middle;
 }
 .ic-review {
   padding: 10px 10px 10px 32px;

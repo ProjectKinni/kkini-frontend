@@ -44,9 +44,6 @@ const ProductDetail = () => {
                   {user && (
                       <ProductLikeButton userId={user.userId} productId={product.productId} />
                   )}
-                  <button>
-                    <img src={IcLikeOn} alt="찜 취소하기" />
-                  </button>
               </div>
             <div className="product-content">
           <dl>
@@ -57,7 +54,6 @@ const ProductDetail = () => {
                 {product.averageRating}
                 <span>리뷰 {product.reviewCount}개</span>
               </div>
-              <button className="ic-review">리뷰 작성하기</button>
             </dd>
 
           </dl>
