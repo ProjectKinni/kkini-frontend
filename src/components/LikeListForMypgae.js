@@ -57,7 +57,11 @@ function LikeList() {
     };
 
     return (
-        <div>
+        <div className="product-list my-page-con content-max">
+            {likedProducts.length === 0 ? (
+            <p className="no-data">현재 찜한 상품이 없습니다.</p>
+            ) : (
+            <>
             <div>
                 <ul>
                     {likedProducts.map(product => (
@@ -97,6 +101,8 @@ function LikeList() {
                     )}
                 </div>
             </div>
+            </>
+        )}
         </div>
     );
 }

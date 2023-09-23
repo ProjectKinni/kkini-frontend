@@ -56,7 +56,7 @@
 .edit-my-profile h4 {
   position: absolute;
   top: 0;
-  font-size: 18px;
+  font-size: 17px;
 }
 .edit-nickname {
   position: relative;
@@ -64,7 +64,7 @@
 }
 #nickname {
   width: 200px;
-  padding: 14px 10px;
+  padding: 11px 10px;
   font-size: 18px;
   font-weight: 600;
   border: none;
@@ -99,7 +99,7 @@
 
 /* navigaion */
 .my-nav {
-  margin-top: 40px;
+  margin-top: 50px;
   border-bottom: 1px solid #cdcdcd;
 }
 .my-nav button {
@@ -164,8 +164,21 @@
     padding: 9px 15px;
     margin-left: 6px;
   }
+  .my-nav {
+    gap: 20px;
+  }
+  .my-nav button {
+    width: 100%;
+    min-width: 100px;
+    font-size: 15px;
+    font-weight: 600;
+  }
   .my-page-con .product-item {
     width: calc(100% / 2 - 6px);
+  }
+  .my-page-con .no-data {
+    font-size: 14px;
+    padding-top: 10vh;
   }
 }
 
@@ -173,12 +186,12 @@
   .btn-delete-account {
     bottom: -40px;
   }
-  .edit-nickname {
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .edit-my-profile {
     flex-direction: column;
+  }
+  #nickname {
+    width: 124px;
+    padding: 9px 0 9px 5px;
   }
   .btn-edit-cancel {
     margin: 10px 0;
