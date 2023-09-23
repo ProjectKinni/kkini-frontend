@@ -210,3 +210,22 @@ export function removeLikedProduct(userId, productId) {
             throw error;
         });
 }
+
+// ... (기존 코드)
+
+export function checkUserReviewedProduct(productId, userId) {
+
+    return fetch(`${SERVER_URL}/reviews/hasReviewed/${productId}/${userId}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error checking if user reviewed the product');
+            }
+        })
+        .catch(error => {
+            console.error('Error checking if user reviewed the product:', error);
+            throw error;
+        });
+}
+

@@ -1,12 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import StarRating from "./StarRating";
+import {useParams} from "react-router-dom";
+import {useUser} from "./UserContext";
+import {checkUserReviewedProduct} from "../utils/ApiClient";
 
-const ReviewForm = ({onSubmit}) => {
-
+const ReviewForm = ({ onSubmit }) => {
     const [rating, setRating] = useState(5);
     const [content, setContent] = useState('');
     const [images, setImages] = useState([]);
     const [imagePreviews, setImagePreviews] = useState([]);
+    const [hasReviewed, setHasReviewed] = useState(false);
+    const {productId} = useParams();
+    const { user } = useUser();
+    const userId = user.userId;
+
+    useEffect(() => {
+        async function fetchReviewStatus() {
+            try {
+                const data = await checkUserReviewedProduct(productId, userId);
+                setHasReviewed(data);
+            } catch (error) {
+                console.error('Error fetching review status:', error);
+            }
+        }
+
+        fetchReviewStatus();
+    }, [productId, userId]);
 
     const handleRatingChange = (newRating) => {
         setRating(newRating);
@@ -25,7 +44,6 @@ const ReviewForm = ({onSubmit}) => {
         const allImagePreviews = [...imagePreviews, ...newImageUrls];
         setImagePreviews(allImagePreviews);
     };
-
 
     const removeImage = (index) => {
         const newImages = [...images];
@@ -48,30 +66,44 @@ const ReviewForm = ({onSubmit}) => {
     return (
         <div className="review-form content-max">
             <h3>리뷰 작성하기</h3>
-            <div className="form-review rating">
-                <span className="tit">평점</span>
-                <StarRating value={rating} onChange={handleRatingChange}/>
-            </div>
-            <div className="form-review text">
-                <div className="review-write">
-                <textarea
-                    value={content}
-                    placeholder="내용을 입력하세요."
-                    onChange={(e) => setContent(e.target.value)}
-                />
-                    <input type="file" onChange={handleImageChange} />
-                    <button onClick={handleSubmit}>리뷰 작성</button>
-
-                </div>
-                </div>
-            <div id="imagePreviews">
-                {imagePreviews.map((image, index) => (
-                    <div className="img-container" key={index}>
-                        <img src={image} alt={`preview-${index}`} width="100" />
-                        <button onClick={() => removeImage(index)}>삭제</button>
+            {hasReviewed ? (
+                <div className="form-review text">
+                    <div className="review-write">
+                        <br/>
+                        <textarea
+                            value={content}
+                            readOnly={true}
+                            placeholder="이미 해당 상품에 리뷰를 작성하셨습니다."
+                        />
                     </div>
-                ))}
-            </div>
+                </div>
+            ) : (
+                <>
+                    <div className="form-review rating">
+                        <span className="tit">평점</span>
+                        <StarRating value={rating} onChange={handleRatingChange}/>
+                    </div>
+                    <div className="form-review text">
+                        <div className="review-write">
+                        <textarea
+                            value={content}
+                            placeholder="내용을 입력하세요."
+                            onChange={(e) => setContent(e.target.value)}
+                        />
+                            <input type="file" onChange={handleImageChange} />
+                            <button onClick={handleSubmit}>리뷰 작성</button>
+                        </div>
+                    </div>
+                    <div id="imagePreviews">
+                        {imagePreviews.map((image, index) => (
+                            <div className="img-container" key={index}>
+                                <img src={image} alt={`preview-${index}`} width="100" />
+                                <button onClick={() => removeImage(index)}>삭제</button>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
         </div>
     );
 };
