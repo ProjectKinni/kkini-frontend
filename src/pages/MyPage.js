@@ -27,6 +27,11 @@ function MyPage({
     const [autocompleteItems, setAutocompleteItems] = useState(
         initialAutocompleteItems
     );
+ 
+    // 각 버튼의 className을 동적으로 설정하기 위한 함수
+    const getButtonClassName = (tabName) => {
+        return activeTab === tabName ? "on" : "";
+    };
 
     // 탭을 변경하는 함수
     const handleTabChange = (tabName) => {
@@ -49,9 +54,15 @@ function MyPage({
                 setIsEditingNickname={setIsEditingNickname}
                 handleDeleteClick={() => handleDeleteClick(() => navigate('/'))}
                 />
-            <div>
-                <button onClick={() => handleTabChange("likedProducts")}>찜한 목록</button>
-                <button onClick={() => handleTabChange("reviews")}>리뷰 목록</button>
+            <div className='content-max'>
+                <div className="nav-buttons my-nav">
+                    <button
+                        onClick={() => handleTabChange("likedProducts")}
+                        className={getButtonClassName("likedProducts")}>찜한 목록</button>
+                    <button
+                        onClick={() => handleTabChange("reviews")}
+                        className={getButtonClassName("reviews")}>리뷰 목록</button>
+                </div>
             </div>
             {activeTab === 'likedProducts' ?
                 <LikeList />
