@@ -131,9 +131,15 @@
 .slider-wrap {
   padding: 0 30px;
 }
+.ranking-kkini-ranking:not(:has(.slick-arrow)) .slick-track {
+  display: flex;
+  width: 100% !important;
+}
+.ranking-kkini-ranking:not(:has(.slick-arrow)) .slick-slide {
+  width: 25% !important;
+}
 .slider-slide {
   margin: 0 10px;
-  max-width: 265px;
 }
 .slick-prev,
 .slick-next {
@@ -234,12 +240,15 @@
     font-size: 12px;
     margin-bottom: 20px;
   }
-  .product-name a {
+  .product-name h4 {
     font-size: 15px;
     margin: 12px 0 4px;
   }
   .slider-wrap {
     padding: 0 15px;
+  }
+  .ranking-kkini-ranking:not(:has(.slick-arrow)) .slick-slide {
+    width: 50% !important;
   }
   .slider-slide {
     margin: 0 5px;
