@@ -14,7 +14,7 @@ function ProductSlide({ imgSrc, productName, productId }) {
         <img src={imgSrc} className="product-image" />
       </div>
       <div className="product-name">
-          <div className="product-name">{productName}</div>
+          <h4 className="product-name">{productName}</h4>
       </div>
     </div>
   );
