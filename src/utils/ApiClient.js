@@ -3,17 +3,29 @@ import axios from 'axios';
 const SERVER_URL = "http://localhost:8080";
 
 
-export function fetchPickProducts() {
-    return axios.get(`${SERVER_URL}/products`)
+export function fetchPickProducts(userId, categoryName, filterDTO) {
+    console.log("API Params:", {
+        userId,
+        categoryName,
+        ...filterDTO
+    });
+    return axios.get(`${SERVER_URL}/products/kkini-pick-products`, {
+        params: {
+            userId: userId,
+            categoryName: categoryName,
+            ...filterDTO
+        }
+    })
         .then(response => {
             console.log(response.data);
             return response.data;
         })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            throw error;
+        .catch((error) => {
+            console.error("Error fetching pick products:", error);
+            console.error("Error Details:", error.response || error.request);
         });
-};
+}
+
 
 export function fetchRankingProducts() {
 
