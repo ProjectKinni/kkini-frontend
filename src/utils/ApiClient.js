@@ -211,15 +211,21 @@ export function removeLikedProduct(userId, productId) {
         });
 }
 
-export function getProductWithReviewStatus(productId, userId) {
-    const url = `${SERVER_URL}/reviews/${productId}/${userId}`;
+// ... (기존 코드)
 
-    return axios.get(url)
+export function checkUserReviewedProduct(productId, userId) {
+
+    return fetch(`${SERVER_URL}/reviews/hasReviewed/${productId}/${userId}`)
         .then(response => {
-            return response.data;
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error checking if user reviewed the product');
+            }
         })
         .catch(error => {
-            console.error('Error fetching product with review status:', error);
+            console.error('Error checking if user reviewed the product:', error);
             throw error;
         });
 }
+
