@@ -32,24 +32,25 @@ function ProductList({ categoryGroups, noProductsFound }) {
         <div
           key={item.productId}
           className="product-item"
-          onClick={() => handleProductClick(item.productId)}
         >
-          <div className="img-wrapper">
-            <img src={item.image} alt={item.productName} />
-          </div>
-          <h4>{item.productName}</h4>
-          <p className="rating-display">
-            <img src={IcStar} alt="별점" />
-            {item.averageRating
-              ? item.averageRating
-              : "0.00"} (리뷰 {item.reviewCount}개)
-          </p>
           {user && (
             <ProductLikeButton
               userId={user.userId}
               productId={item.productId}
             />
           )}
+          <div onClick={() => handleProductClick(item.productId)}>
+            <div className="img-wrapper">
+              <img src={item.image} alt={item.productName} />
+            </div>
+            <h4>{item.productName}</h4>
+            <p className="rating-display">
+              <img src={IcStar} alt="별점" />
+              {item.averageRating
+                ? item.averageRating
+                : "0.00"} (리뷰 {item.reviewCount}개)
+            </p>
+          </div>
         </div>
       ))}
     </main>
