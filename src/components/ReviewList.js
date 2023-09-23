@@ -38,7 +38,6 @@ const ReviewList = ({productId, refreshReviews}) => {
 
         return (
             <div className="review-list content-max">
-              <h2>리뷰 (00건)</h2>
               <div className="review-card-wrap">
                 {error ? (
                     <div className="error-message">{error}</div>

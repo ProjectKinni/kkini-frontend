@@ -55,8 +55,8 @@ export function fetchGreenProducts() {
 };
 
 
-export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked) => {
-    let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}`;
+export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked, page) => {
+    let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}&page=${page}`;
 
     if (selectedCategories && selectedCategories.length > 0) {
         endpoint += `&categoryName=${selectedCategories.join(",")}`;
