@@ -7,6 +7,7 @@ import NavigationContainer from "../containers/NavigationBarContainer";
 import Footer from "../components/Footer";
 import LikeList from "../components/LikeListForMypgae";
 import UserReviews from "../components/ReviewListForMypage";
+import "../styles/MyPage.css";
 
 
 
@@ -40,6 +41,9 @@ function MyPage({
                 autocompleteItems={autocompleteItems}
                 setAutocompleteItems={setAutocompleteItems}
             />
+            <div className="page-tit content-max">
+                <h1>마이페이지</h1>
+            </div>
             <ShowUserInfo
                 isEditingNickname={isEditingNickname}
                 setIsEditingNickname={setIsEditingNickname}
