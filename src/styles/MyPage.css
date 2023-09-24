@@ -132,7 +132,61 @@
     color: #000;
 }
 
+/* review list */
+.my-page-con .review-card {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 30px 0;
+}
+.my-page-con .review-card:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.my-page-con .review-card .img-wrapper {
+  width: 14%;
+  padding-bottom: 14%;
+}
+.my-page-con .review-card .review-image-wrap {
+  margin-top: 16px;
+}
+.my-page-con .review-card .review-image {
+  width: 8%;
+  padding-bottom: 8%;
+}
+.my-page-con .review-card .con-wrapper {
+  width: 86%;
+}
+.my-page-con .product-name {
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.my-page-con .my-review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.my-page-con .rating-display img {
+  vertical-align: middle;
+}
+.my-page-con .my-review .ic-delete-like {
+  position: unset;
+  border-radius: 4px;
+}
+.my-page-con .con-wrapper p {
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
 @media only screen and (max-width: 768px) {
+  .my-page-con {
+    margin-top: 32px;
+  }
   .my-profile h3 {
     font-size: 17px;
     margin-left: 24px;
@@ -189,6 +243,26 @@
   }
   .pagination button img {
     width: 7px;
+  }
+  .my-page-con .review-card {
+    gap: 16px;
+  }
+  .my-page-con .review-card .img-wrapper {
+    width: 18%;
+    padding-bottom: 18%;
+  }
+  .my-page-con .review-card .con-wrapper {
+    width: 82%;
+  }
+  .my-page-con .rating-display img {
+    width: 20px;
+  }
+  .my-page-con .product-name {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  .my-page-con .con-wrapper p {
+    font-size: 14px;
   }
 }
 
