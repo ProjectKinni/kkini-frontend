@@ -51,7 +51,7 @@ function GreenRankingPage({
                 setAutocompleteItems={setAutocompleteItems}
             />
 
-            <div className="page-tit content-max">
+            <div className="page-tit content-max green">
                 <h1>끼니 그린 랭킹</h1>
             <p>간편하게, 건강하게!</p>
             </div>
@@ -66,6 +66,7 @@ function GreenRankingPage({
                 />
                 <div className="product-list-wrapper">
                     <RankingList fetchFunction={fetchGreenProducts}/>
+
                 </div>
             </div>
             <Footer className="footer"/>

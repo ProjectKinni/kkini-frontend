@@ -33,18 +33,16 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
     isLowFat: false,
   });
 
-  const [productResult, setSearchTermFromHook] = useFetchFilteredProducts(
-      searchTerm,
-      selectedCategories,
-      filters,
-      kkiniGreenCheck
-  );
+  const [productResult, setSearchTermFromHook] = useFetchFilteredProducts(fetchBasicProductsList, initialSearchTerm, selectedCategories, filters, kkiniGreenCheck);
+
+  const { items, error, noProductsFound, loading } = productResult;
+  
 
   useEffect(() => {
     setSearchTerm(initialSearchTerm);
   }, [location]);
 
-  const { categoryGroups, loading, error, noProductsFound } = useSearchResults(
+  const { categoryGroups } = useSearchResults(
       searchTerm,
       selectedCategories,
       filters,

@@ -1,7 +1,7 @@
 import React from "react";
+import IcStar from "../../assets/images/star_on.png";
 import TagComponent from './TagComponent'
 import ProductLikeButton from "../ProductLikeButton";
-import IcStar from "../../assets/images/star_on.png";
 
 function ProductCard({ productLink, imgSrc, productName, reviewCount,
                          filters, category, isGreen,
@@ -53,6 +53,7 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
                 )}
 
             </div>
+
         </div>
 
     );

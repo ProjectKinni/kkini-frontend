@@ -6,12 +6,16 @@ export default function useFetchFilteredProducts(fetchFunction, initialSearchTer
 
     useEffect(() => {
         const fetchData = async () => {
-            const searchParam = searchTerm || initialSearchTerm;
-            console.log("Fetching results for:", searchParam);
-
-            const result = await fetchFunction(searchParam, selectedCategories, filters, kkiniGreenCheck);
-            setProductsResult(result);
-        };
+            try {
+              const searchParam = searchTerm || initialSearchTerm;
+              console.log("Fetching results for:", searchParam);
+      
+              const result = await fetchFunction(searchParam, selectedCategories, filters, kkiniGreenCheck);
+              setProductsResult({ ...result, loading: false });
+            } catch (error) {
+              setProductsResult({ items: [], error: error.message, noProductsFound: false, loading: false });
+            }
+          };
 
         if (searchTerm || initialSearchTerm) {
             fetchData();

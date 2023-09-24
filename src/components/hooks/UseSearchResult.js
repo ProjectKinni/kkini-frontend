@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function UseSearchResult(searchTerm, selectedCategories, filters, kkiniGreenCheck, searchTermFromParams, productsResult) {
+function UseSearchResult(productsResult) {
     const [items, setItems] = useState([]);
     const [categoryGroups, setCategoryGroups] = useState({});
     const [loading, setLoading] = useState(false);
@@ -12,7 +12,9 @@ function UseSearchResult(searchTerm, selectedCategories, filters, kkiniGreenChec
         setError(null);
         setNoProductsFound(false);
 
-        const { error, items, noProductsFound } = productsResult;
+        const { error, items: resultItems = [], noProductsFound } = productsResult;
+
+        setItems(resultItems);
 
         if (error) {
             console.error("Error fetching search results:", error);
@@ -22,7 +24,7 @@ function UseSearchResult(searchTerm, selectedCategories, filters, kkiniGreenChec
         } else {
             setItems(items);
 
-            const groupedItems = items.reduce((groups, item) => {
+            const groupedItems = resultItems.reduce((groups, item) => {
                 const category = item.categoryName;
                 if (!groups[category]) {
                     groups[category] = [];
@@ -30,13 +32,14 @@ function UseSearchResult(searchTerm, selectedCategories, filters, kkiniGreenChec
                 groups[category].push(item);
                 return groups;
             }, {});
+
             setCategoryGroups(groupedItems);
         }
 
         setLoading(false);
     }, [productsResult]);
 
-    return { items, setItems, categoryGroups, loading, error, noProductsFound };
+    return { items, categoryGroups, loading, error, noProductsFound };
 }
 
 export default UseSearchResult;

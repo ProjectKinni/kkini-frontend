@@ -57,8 +57,7 @@ function KkiniPickPage({
                 <h1>끼니 PICK</h1>
                 <p>끼니의 취향저격상품</p>
             </div>
-
-            <div className="ranking-layout">
+            <div className="product-wrap content-max">
                 <CategoryBarContainer
                     onKkiniChecked={handleKkiniGreenCheckChange}
                     onCategoryChange={setSelectedCategories}
@@ -66,8 +65,9 @@ function KkiniPickPage({
                     filters={filters}
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
-
-                <RankingList fetchFunction={fetchPickProducts}/>
+                <div className="product-list-wrapper">
+                  <RankingList fetchFunction={fetchPickProducts} />
+                </div>
             </div>
 
             <Footer className="footer"/>

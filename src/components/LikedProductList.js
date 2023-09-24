@@ -17,7 +17,6 @@ function LikedProductList({ likedProducts, handleRemoveClick }) {
 
     return (
         <div>
-            <h2>찜한 상품 목록</h2>
             {likedProducts.length === 0 ? (
                 <p>현재 찜한 상품이 없습니다.</p>
             ) : (

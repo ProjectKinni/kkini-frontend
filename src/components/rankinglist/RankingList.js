@@ -13,7 +13,7 @@ function RankingList({ fetchFunction }){
     }, [fetchFunction]);
 
     if (error) {
-        return <div>상품정보를 얻어오지 못했습니다.</div>;
+        return <div className="no-data">상품정보를 얻어오지 못했습니다.</div>;
     }
     
     return (

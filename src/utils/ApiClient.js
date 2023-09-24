@@ -147,3 +147,19 @@ export const handleReviewSubmit = async (userId, productId, rating, content) => 
     }
 };
 
+export function fetchReviews(userId, page) {
+    return axios.get(`${SERVER_URL}/reviews/users/${userId}`, { params: { page, size: 10 } })
+        .then(response => response.data)
+        .catch(error => {
+            console.error('Error fetching user reviews:', error);
+            throw error;
+        });
+}
+
+export function handleDeleteReview(reviewId) {
+    return axios.delete(`${SERVER_URL}/reviews/${reviewId}`)
+        .catch(error => {
+            console.error('Error deleting review:', error);
+            throw error;
+        });
+}
