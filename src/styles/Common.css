@@ -482,15 +482,27 @@ input[type="checkbox"]:checked + label {
   }
   .nav-links {
     display: none;
-    position: absolute;
-    bottom: -20px;
-    right: 0;
   }
-  .nav-links a {
-    font-size: 12px;
+  .nav-links.menu-visible {    
+    display: block;
+    position: absolute;
+    top: 56px;
+    right: -14px;
+    background: #fff;
+    padding: 8px 16px 14px 22px;
+    border-radius: 0 0 0 12px;
+    box-shadow: 1px 3px 4px rgba(0,0,0,0.2);
+    z-index: 3;
+  }
+  .nav-links a {    
+    display: block;
+    font-size: 14px;
+    line-height: 2em;
+    text-align: right;
+    color: #636363;
   }
   .nav-links a:not(:last-child)::after {
-    padding: 0 4px;
+    display: none;
   }
   .nav-buttons {
     gap: 0;
