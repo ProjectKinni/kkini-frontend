@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from './UserContext';
+import IcStar from "../assets/images/star_on.png";
+import IcArrow from "../assets/images/arrow_right.png";
 import {fetchLikedProducts, removeLikedProduct} from '../utils/ApiClient';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +10,7 @@ function LikeList() {
     const [likedProducts, setLikedProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0); // 현재 페이지
-    const [pageSize, setPageSize] = useState(3); // 페이지 크기
+    const [pageSize, setPageSize] = useState(20); // 페이지 크기
     const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
     const PAGE_GROUP_SIZE = 10;  // 페이지 그룹 크기
 
@@ -57,33 +59,35 @@ function LikeList() {
     };
 
     return (
-        <div className="product-list my-page-con content-max">
+        <div className="my-page-con content-max">
             {likedProducts.length === 0 ? (
             <p className="no-data">현재 찜한 상품이 없습니다.</p>
             ) : (
             <>
             <div>
-                <ul>
+                <ul className="product-list">
                     {likedProducts.map(product => (
-                        <li key={`${product.product.productId}-${product.users.userId}`}>
-                            <img src={product.product.image} alt={product.product.productName} />
+                        <li className="product-item" key={`${product.product.productId}-${product.users.userId}`}>
+                            <div className="img-wrapper">
+                                <img src={product.product.image} alt={product.product.productName} />
+                            </div>
                             <Link to={`/products/${product.product.productId}`}>
-                                <div>
-                                    <h3>상품명 : {product.product.productName}</h3>
-                                </div>
+                                <h4>{product.product.productName}</h4>
                             </Link>
-                            <h3>평점 : {product.product.averageRating}</h3>
-                            <button onClick={() => handleRemoveProduct(product.product.productId)}>찜 삭제</button>
+                            <p className="rating-display">
+                                <img src={IcStar} alt="별점" />
+                                {product.product.averageRating}</p>
+                            <button className='ic-like ic-delete-like' onClick={() => handleRemoveProduct(product.product.productId)}>삭제</button>
                         </li>
                     ))}
                 </ul>
-                <div>
+                <div className='pagination'>
                     {page > 0 && (
                         <button onClick={() => handlePageChange(page - 1)} disabled={page === 0}>
-                            이전
+                            <img src={IcArrow} alt="이전" style={{ transform: "rotate(180deg)" }}  />
                         </button>
                     )}
-                    <ul>
+                    <div className='pages'>
                         {Array.from({ length: PAGE_GROUP_SIZE }, (_, i) => {
                             const pageNumber = Math.floor(page / PAGE_GROUP_SIZE) * PAGE_GROUP_SIZE + i;
                             if (pageNumber >= totalPages) return null;
@@ -93,10 +97,10 @@ function LikeList() {
                                 </button>
                             );
                         })}
-                    </ul>
+                    </div>
                     {page < totalPages - 1 && (
                         <button onClick={() => handlePageChange(page + 1)} disabled={page === totalPages - 1}>
-                            다음
+                            <img src={IcArrow} alt="다음" />
                         </button>
                     )}
                 </div>

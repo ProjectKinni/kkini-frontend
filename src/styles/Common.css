@@ -27,6 +27,9 @@
 .icon {
   cursor: pointer;
 }
+.icon img {
+  vertical-align: middle;
+}
 .icon:hover {
   filter: brightness(0.95);
 }
@@ -183,6 +186,13 @@ input[type="checkbox"]:checked + label {
 .ic-like img {
   vertical-align: middle;
 }
+.ic-delete-like {
+  background: #ededed;
+  color: #000;
+  top: 0;
+  right: 0;
+  border-radius: 0 6px;
+}
 .ic-review {
   padding: 10px 10px 10px 32px;
   border-radius: 6px;
@@ -191,6 +201,30 @@ input[type="checkbox"]:checked + label {
   background: #fff url(../assets/images/ic_write.png) no-repeat 10px center;
   background-size: 15px;
   cursor: pointer;
+}
+
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+.pagination .pages {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.pagination .pages button {
+  font-size: 15px;
+}
+.pagination .pages button:disabled {
+  color: #ff6600;
+  font-size: 16px;
+  font-weight: bold;
+}
+.pagination button img {
+  width: 10px;
+  vertical-align: middle;
 }
 
 /* user profile */
@@ -273,7 +307,7 @@ input[type="checkbox"]:checked + label {
 .nav-icons {
   display: flex;
   gap: 26px;
-  margin-right: 50px;
+  margin-right: 40px;
   align-items: center;
 }
 .nav-icons .ic-menu {
@@ -281,6 +315,9 @@ input[type="checkbox"]:checked + label {
 }
 .nav-icons .icon img {
   height: 28px;
+}
+.nav-links {
+  width: 160px;
 }
 .nav-links a {
   color: #969696;
@@ -441,6 +478,10 @@ input[type="checkbox"]:checked + label {
     font-size: 12px;
     background-size: 13px;
     padding: 8px 8px 8px 30px;
+  }
+  .ic-delete-like {
+    font-size: 12px;
+    padding: 8px;
   }
   .user-name {
     font-size: 14px;
