@@ -3,6 +3,7 @@ import StarRating from "./StarRating";
 import {useParams} from "react-router-dom";
 import {useUser} from "./UserContext";
 import {checkUserReviewedProduct} from "../utils/ApiClient";
+import IcDelete from "../assets/images/ic_close.png";
 
 const ReviewForm = ({onSubmit}) => {
     const [rating, setRating] = useState(5);
@@ -86,9 +87,11 @@ const ReviewForm = ({onSubmit}) => {
                     </div>
                     <div id="imagePreviews">
                         {imagePreviews.map((image, index) => (
-                            <div className="img-container" key={index}>
+                            <div className="img-wrapper" key={index}>
                                 <img src={image} alt={`preview-${index}`} width="100"/>
-                                <button onClick={() => removeImage(index)}>삭제</button>
+                                <button className="btn-close" onClick={() => removeImage(index)}>
+                                    <img src={IcDelete} alt="이미지 삭제" />
+                                </button>
                             </div>
                         ))}
                     </div>
