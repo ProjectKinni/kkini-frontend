@@ -45,8 +45,8 @@ function RankingList({ fetchFunction }){
                     imgSrc = {product.image}
                     productName = {product.productName}
                     onProductClick={()=>handleProductClick(product.productId)}
-                    // 얘네 두개는 어떻게 받아오죠..?
-                    // reviewCount = {?}
+                    averageRating={product.averageRating}
+                    reviewCount = {product.reviewCount}
                     // filter = {?}
                     category = {product.category}
                     isGreen = {product.isGreen}
