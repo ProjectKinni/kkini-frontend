@@ -2,11 +2,15 @@ import React from "react";
 import IcStar from "../../assets/images/star_on.png";
 import TagComponent from './TagComponent'
 import ProductLikeButton from "../ProductLikeButton";
+import { useNavigate } from "react-router-dom";
+
+
 
 function ProductCard({ productLink, imgSrc, productName, reviewCount,
                          filters, category, isGreen,
                      onProductClick, averageRating, user, productId})
 {
+
 
     //필터태그
     //필터 어떻게 가지고 오나요? 일단 배열로 가지고 온다고 칩시다.

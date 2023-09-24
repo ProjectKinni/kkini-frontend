@@ -3,23 +3,34 @@ import axios from 'axios';
 const SERVER_URL = "http://localhost:8080";
 
 
-export function fetchPickProducts() {
-    return axios.get(`${SERVER_URL}/products`)
+export function fetchPickProducts(userId, categoryName, filterDTO) {
+    console.log("API Params:", {
+        userId,
+        categoryName,
+        ...filterDTO
+    });
+    return axios.get(`${SERVER_URL}/products/kkini-pick-products`, {
+        params: {
+            userId: userId,
+            categoryName: categoryName,
+            ...filterDTO
+        }
+    })
         .then(response => {
             console.log(response.data);
             return response.data;
         })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            throw error;
+        .catch((error) => {
+            console.error("Error fetching pick products:", error);
+            console.error("Error Details:", error.response || error.request);
         });
-};
+}
+
 
 export function fetchRankingProducts() {
 
-    return axios.get(`${SERVER_URL}/products`)
+    return axios.get(`${SERVER_URL}/products/kkini-ranking`)
         .then(response => {
-            console.log(response.data);
             return response.data;
         })
         .catch(error => {
@@ -30,7 +41,7 @@ export function fetchRankingProducts() {
 
 export function fetchGreenProducts() {
 
-    return axios.get(`${SERVER_URL}/products`)
+    return axios.get(`${SERVER_URL}/products/kkini-green`)
 
         .then(response => {
             console.log(response.data);
@@ -43,8 +54,9 @@ export function fetchGreenProducts() {
 };
 
 
-export const fetchBasicProductsList = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked) => {
-    let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}`;
+export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked, page) => {
+    let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}&page=${page}`;
+
 
     if (selectedCategories && selectedCategories.length > 0) {
         endpoint += `&categoryName=${selectedCategories.join(",")}`;
@@ -134,21 +146,26 @@ export const incrementViewCount = async (productId, userId) => {
         return {error: error.message || "Error incrementing view count."};
     }
 };
-export const handleReviewSubmit = async (userId, productId, rating, content) => {
+export const handleReviewSubmit = async (userId, productId, formData) => {
     try {
-        const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, {
-            productId,
-            rating,
-            content,
-        });
+        formData.append('productId', productId);
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        };
+
+        const response = await axios.post(`${SERVER_URL}/reviews/${userId}`, formData, config);
         return {data: response.data};
     } catch (error) {
         return {error: error.message || '리뷰 작성 실패.'};
     }
 };
 
+
 export function fetchReviews(userId, page) {
-    return axios.get(`${SERVER_URL}/reviews/users/${userId}`, { params: { page, size: 10 } })
+    return axios.get(`${SERVER_URL}/reviews/users/${userId}`, {params: {page, size: 10}})
         .then(response => response.data)
         .catch(error => {
             console.error('Error fetching user reviews:', error);
@@ -163,3 +180,52 @@ export function handleDeleteReview(reviewId) {
             throw error;
         });
 }
+
+export function fetchLikedProducts(userId, page, size) {
+    const endpoint = `${SERVER_URL}/like/liked-products/${userId}`;
+
+    return axios.get(endpoint, {
+        params: {
+            page,
+            size
+        }
+    })
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching liked products:', error);
+            throw error;
+        });
+}
+
+export function removeLikedProduct(userId, productId) {
+    const url = `${SERVER_URL}/like/${userId}/${productId}`;
+
+    return axios.delete(url)
+        .then(response => response.data)
+        .catch(error => {
+            console.error('Error removing liked product:', error);
+            throw error;
+        });
+}
+
+// ... (기존 코드)
+
+export function checkUserReviewedProduct(productId, userId) {
+
+    return fetch(`${SERVER_URL}/reviews/hasReviewed/${productId}/${userId}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error checking if user reviewed the product');
+            }
+        })
+        .catch(error => {
+            console.error('Error checking if user reviewed the product:', error);
+            throw error;
+        });
+}
+

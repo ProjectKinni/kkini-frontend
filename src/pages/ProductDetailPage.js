@@ -45,13 +45,18 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
             getUserInfo().then(userData => setUser(userData));
         }, []);
 
-        const handleSubmitReview = async (rating, content) => {
-            console.log(rating);
-            console.log(content);
-            const result = await handleReviewSubmit(user.userId, productId, rating, content);
+        const handleSubmitReview = async (rating, content, images) => {
+            const formData = new FormData();
+            formData.append('rating', rating);
+            formData.append('content', content);
+            images.forEach((image, index) => {
+                formData.append(`image${index + 1}`, image);
+            });
+
+            const result = await handleReviewSubmit(user.userId, productId, formData);
             if (!result.error) {
                 console.log('리뷰 작성 성공:', result.data);
-                setRefreshReviews(true);
+                setRefreshReviews(!refreshReviews);
             } else {
                 console.error('리뷰 작성 실패:', result.error);
             }

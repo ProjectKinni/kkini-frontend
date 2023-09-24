@@ -27,6 +27,9 @@
 .icon {
   cursor: pointer;
 }
+.icon img {
+  vertical-align: middle;
+}
 .icon:hover {
   filter: brightness(0.95);
 }
@@ -124,9 +127,14 @@ input[type="checkbox"]:checked + label {
   font-size: 15px;
   color: #8a8a8a;
 }
-.tit-btn {    
+.tit-btn {
   display: block;
   margin: 10px 0 0 auto;
+}
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #8a8a8a;
 }
 
 /* img */
@@ -138,6 +146,7 @@ input[type="checkbox"]:checked + label {
   padding-bottom: 100%;
   border-radius: 6px;
   overflow: hidden;
+  cursor: pointer;
 }
 .img-wrapper img {
   position: absolute;
@@ -168,9 +177,21 @@ input[type="checkbox"]:checked + label {
 /* icons */
 .ic-like {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 8px;
+  right: 8px;
   z-index: 1;
+  padding: 10px;
+  cursor: pointer;
+}
+.ic-like img {
+  vertical-align: middle;
+}
+.ic-delete-like {
+  background: #ededed;
+  color: #000;
+  top: 0;
+  right: 0;
+  border-radius: 0 6px;
 }
 .ic-review {
   padding: 10px 10px 10px 32px;
@@ -182,10 +203,35 @@ input[type="checkbox"]:checked + label {
   cursor: pointer;
 }
 
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+.pagination .pages {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.pagination .pages button {
+  font-size: 15px;
+}
+.pagination .pages button:disabled {
+  color: #ff6600;
+  font-size: 16px;
+  font-weight: bold;
+}
+.pagination button img {
+  width: 10px;
+  vertical-align: middle;
+}
+
 /* user profile */
 .user-profile {
   display: flex;
   gap: 12px;
+  margin-bottom: 14px;
 }
 .user-img {
   width: 50px;
@@ -197,6 +243,7 @@ input[type="checkbox"]:checked + label {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  vertical-align: middle;
 }
 .user-name {
   font-size: 16px;
@@ -262,7 +309,7 @@ input[type="checkbox"]:checked + label {
 .nav-icons {
   display: flex;
   gap: 26px;
-  margin-right: 50px;
+  margin-right: 40px;
   align-items: center;
 }
 .nav-icons .ic-menu {
@@ -270,6 +317,9 @@ input[type="checkbox"]:checked + label {
 }
 .nav-icons .icon img {
   height: 28px;
+}
+.nav-links {
+  width: 160px;
 }
 .nav-links a {
   color: #969696;
@@ -431,6 +481,10 @@ input[type="checkbox"]:checked + label {
     background-size: 13px;
     padding: 8px 8px 8px 30px;
   }
+  .ic-delete-like {
+    font-size: 12px;
+    padding: 8px;
+  }
   .user-name {
     font-size: 14px;
   }
@@ -438,7 +492,7 @@ input[type="checkbox"]:checked + label {
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 10;
   }
   .navigation-container + div {
     padding-top: 102px;
@@ -471,15 +525,27 @@ input[type="checkbox"]:checked + label {
   }
   .nav-links {
     display: none;
-    position: absolute;
-    bottom: -20px;
-    right: 0;
   }
-  .nav-links a {
-    font-size: 12px;
+  .nav-links.menu-visible {    
+    display: block;
+    position: absolute;
+    top: 56px;
+    right: -14px;
+    background: #fff;
+    padding: 8px 16px 14px 22px;
+    border-radius: 0 0 0 12px;
+    box-shadow: 1px 3px 4px rgba(0,0,0,0.2);
+    z-index: 3;
+  }
+  .nav-links a {    
+    display: block;
+    font-size: 14px;
+    line-height: 2em;
+    text-align: right;
+    color: #636363;
   }
   .nav-links a:not(:last-child)::after {
-    padding: 0 4px;
+    display: none;
   }
   .nav-buttons {
     gap: 0;

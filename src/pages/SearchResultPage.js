@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../styles/SearchResultPage.css";
 import { useLocation } from "react-router-dom";
-import useSearchResults from "../components/hooks/UseSearchResult";
+import useSearchResults from "../components/UseSearchResults";
 import NavigationContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
-
-import useFetchFilteredProducts from "../components/hooks/useFetchFilteredProducts"
-import { fetchBasicProductsList } from '../utils/ApiClient';
 
 function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
   const location = useLocation();
@@ -33,21 +30,15 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
     isLowFat: false,
   });
 
-  const [productResult, setSearchTermFromHook] = useFetchFilteredProducts(fetchBasicProductsList, initialSearchTerm, selectedCategories, filters, kkiniGreenCheck);
-
-  const { items, error, noProductsFound, loading } = productResult;
-  
-
   useEffect(() => {
     setSearchTerm(initialSearchTerm);
   }, [location]);
 
-  const { categoryGroups } = useSearchResults(
+  const { categoryGroups, loading, error, noProductsFound } = useSearchResults(
       searchTerm,
       selectedCategories,
       filters,
-      kkiniGreenCheck,
-      initialSearchTerm,
+      kkiniGreenCheck
   );
 
   const handleFilterChange = (updatedFilters) => {

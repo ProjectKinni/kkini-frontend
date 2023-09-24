@@ -131,6 +131,13 @@
 .slider-wrap {
   padding: 0 30px;
 }
+.ranking-kkini-ranking:not(:has(.slick-arrow)) .slick-track {
+  display: flex;
+  width: 100% !important;
+}
+.ranking-kkini-ranking:not(:has(.slick-arrow)) .slick-slide {
+  width: 25% !important;
+}
 .slider-slide {
   margin: 0 10px;
 }
@@ -158,19 +165,21 @@
 .slick-prev:before {
   transform: rotate(180deg);
 }
-.product-name {
+.product-name h4 {
   text-align: left;
-}
-.product-name a {
   max-height: 46px;
-  display: block;
   color: #000;
   font-size: 17px;
   font-weight: 600;
   line-height: 1.5em;
   margin: 16px 0 8px;
   overflow: hidden;
+  cursor: pointer;
+  word-break: break-all;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -178,8 +187,6 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-}
-@media only screen and (max-width: 1024px) {
 }
 @media only screen and (max-width: 768px) {
   .banner-ad {
@@ -233,12 +240,15 @@
     font-size: 12px;
     margin-bottom: 20px;
   }
-  .product-name a {
+  .product-name h4 {
     font-size: 15px;
     margin: 12px 0 4px;
   }
   .slider-wrap {
     padding: 0 15px;
+  }
+  .ranking-kkini-ranking:not(:has(.slick-arrow)) .slick-slide {
+    width: 50% !important;
   }
   .slider-slide {
     margin: 0 5px;

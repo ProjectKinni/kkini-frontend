@@ -36,22 +36,6 @@ const ProductDetail = () => {
     return product ? (
         <div className="product-detail">
 
-            <div className="info">
-                <div className="product-header">
-                    <h2>{product.productName}</h2>
-                    {user && (
-                        <ProductLikeButton userId={user.userId} productId={product.productId} />
-                    )}
-                </div>
-                <h2>평점: ⭐{product.averageRating}</h2>
-                <h3>조회수: {viewCount || '0'}</h3>
-                <h3>랭킹: {product.categoryName} 중, ??위</h3>
-                <h3>중량: {product.servingSize}g</h3>
-                <h2>열량: {product.kcal}kcal</h2>
-
-                <ProductNutrition nutrition={product} />
-            </div>
-
           <div className="img-wrapper">
             <img src={product.image} alt={product.productName} />
           </div>
@@ -61,9 +45,6 @@ const ProductDetail = () => {
                   {user && (
                       <ProductLikeButton userId={user.userId} productId={product.productId} />
                   )}
-                  <button>
-                    <img src={IcLikeOn} alt="찜 취소하기" />
-                  </button>
               </div>
             <div className="product-content">
           <dl>
@@ -72,9 +53,8 @@ const ProductDetail = () => {
               <div className="rating-display">
                 <img src={IcStar} alt="별점" />
                 {product.averageRating}
-                <span>리뷰 개</span>
+                <span>리뷰 {product.reviewCount}개</span>
               </div>
-              <button className="ic-review">리뷰 작성하기</button>
             </dd>
 
           </dl>

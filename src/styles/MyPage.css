@@ -1,0 +1,209 @@
+/* page tit */
+.my-profile-wrap {
+  margin-top: -20px;
+}
+.my-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.my-profile-wrap .user-profile {
+  position: relative;
+}
+.my-profile-wrap .user-profile .user-img {
+  width: 80px;
+  height: 80px;
+}
+.my-profile-wrap .user-profile .btn-edit-img {
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  background: #ff6600;
+  border-radius: 50%;
+  padding: 8px;
+}
+.my-profile-wrap .user-profile .btn-edit-img img {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+.my-profile h3 {
+  font-size: 20px;
+  margin-left: 28px;
+}
+.btn-edit-name {
+  margin-left: 14px;
+}
+.btn-delete-account {
+  position: absolute;
+  right: 0;
+  font-size: 13px;
+  padding: 8px 14px;
+  color: #fff;
+  background: #8a8a8a;
+  border-radius: 4px;
+}
+.no-login {
+  font-size: 16px;
+  text-align: center;
+}
+
+/* edit nickname */
+.edit-my-profile {
+  padding-top: 40px;
+}
+.edit-my-profile h4 {
+  position: absolute;
+  top: 0;
+  font-size: 17px;
+}
+.edit-nickname {
+  position: relative;
+  display: flex;
+}
+#nickname {
+  width: 200px;
+  padding: 11px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-bottom: 1px solid #cdcdcd;
+}
+.btn-edit-save,
+.btn-edit-cancel {
+  font-size: 15px;
+  padding: 12px 22px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+.btn-edit-save {
+  font-weight: 700;
+  color: #fff;
+  background: #ff6600;
+}
+.btn-edit-cancel {
+  color: #8a8a8a;
+  background: #fff;
+  border: 1px solid #a9a9a9;
+}
+.nickname-error {
+  position: absolute;
+  left: 6px;
+  bottom: -28px;
+  min-width: 400px;
+  text-align: left;
+  color: red;
+  font-size: 13px;
+}
+
+/* navigaion */
+.my-nav {
+  margin-top: 50px;
+  border-bottom: 1px solid #cdcdcd;
+}
+.my-nav button {
+  width: 280px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* content list */
+.my-page-con {
+  margin-top: 48px;
+}
+.my-page-con .no-data {
+  padding-top: 15vh;
+  padding-bottom: 60px;
+  width: 100%;
+}
+.my-page-con .product-list {
+  padding-bottom: 60px;
+}
+.my-page-con .product-item {
+  width: calc(100% / 4 - 15px);
+}
+.my-page-con .product-item a {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 16px 0 8px;
+    word-break: break-all;
+    color: #000;
+}
+
+@media only screen and (max-width: 768px) {
+  .my-profile h3 {
+    font-size: 17px;
+    margin-left: 24px;
+  }
+  .btn-edit-name {
+    margin-left: 8px;
+  }
+  .btn-edit-name img {
+    width: 20px;
+  }
+  .btn-delete-account {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .my-profile-wrap .user-profile .user-img {
+    width: 60px;
+    height: 60px;
+  }
+  .edit-my-profile {
+    padding-top: 34px;
+  }
+  .edit-my-profile h4 {
+    font-size: 16px;
+  }
+  #nickname {
+    padding: 11px 0 11px 5px;
+    font-size: 15px;
+  }
+  .btn-edit-save,
+  .btn-edit-cancel {
+    font-size: 14px;
+    padding: 9px 15px;
+    margin-left: 6px;
+  }
+  .my-nav {
+    gap: 20px;
+  }
+  .my-nav button {
+    width: 100%;
+    min-width: 100px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .my-page-con .product-item {
+    width: calc(100% / 2 - 6px);
+  }
+  .my-page-con .no-data {
+    font-size: 14px;
+    padding-top: 10vh;
+  }
+  .pagination .pages button,
+  .pagination .pages button:disabled {
+    font-size: 13px;
+  }
+  .pagination button img {
+    width: 7px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .btn-delete-account {
+    bottom: -40px;
+  }
+  .edit-my-profile {
+    flex-direction: column;
+  }
+  #nickname {
+    width: 124px;
+    padding: 9px 0 9px 5px;
+  }
+  .btn-edit-cancel {
+    margin: 10px 0;
+  }
+}
