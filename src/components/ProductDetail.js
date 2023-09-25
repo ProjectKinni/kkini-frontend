@@ -51,8 +51,9 @@ const ProductDetail = () => {
             <dt>평점</dt>
             <dd className="product-review">
               <div className="rating-display">
-                <img src={IcStar} alt="별점" />
-                {product.averageRating}
+                    <img src={IcStar} alt="별점" />
+                    {(product.averageRating !== null && product.averageRating !== 'n')
+                        ? product.averageRating : "0.00"}
                 <span>리뷰 {product.reviewCount}개</span>
               </div>
             </dd>

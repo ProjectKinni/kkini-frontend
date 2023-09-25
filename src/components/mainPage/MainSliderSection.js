@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import icLink from "../../assets/images/ic_link.svg";
 import icLinkGreen from "../../assets/images/ic_link_green.svg";
 import ProductSlickSlider from "../mainPage/ProductSlickSlider";
-import { fetchPickProducts, fetchRankingProducts, fetchGreenProducts } from "../../utils/ApiClient";
+import { fetchPickProducts, fetchTopRankingProducts, fetchTopGreenProducts } from "../../utils/ApiClient";
 import { useUser } from "../UserContext";
 
 function MainSliderSection({
@@ -30,9 +30,9 @@ function MainSliderSection({
                         return data;
                     });
             case "ranking":
-                return fetchRankingProducts;
+                return fetchTopRankingProducts;
             case "green":
-                return fetchGreenProducts;
+                return fetchTopGreenProducts;
             default:
                 return () => {};
         }
