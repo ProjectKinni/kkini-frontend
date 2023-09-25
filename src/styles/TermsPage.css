@@ -1,0 +1,41 @@
+.terms-page {
+    text-align: left;
+}
+.terms-page section + section {
+    margin-top: 26px;
+}
+.terms-page h1 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+.terms-page h2 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+.terms-page p {
+    line-height: 1.8em;
+}
+.terms-page article + article {
+    margin-top: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+    .terms-page section + section {
+        margin-top: 22px;
+    }
+    .terms-page h1 {
+        font-size: 17px;
+        margin-bottom: 11px;
+    }
+    .terms-page h2 {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    .terms-page p {
+        font-size: 12px;
+    }
+    .terms-page article + article {
+        margin-top: 12px;
+    }
+}
