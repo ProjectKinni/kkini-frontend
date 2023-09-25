@@ -3,6 +3,7 @@ import StarRating from "./StarRating";
 import {useParams} from "react-router-dom";
 import {useUser} from "./UserContext";
 import {checkUserReviewedProduct} from "../utils/ApiClient";
+import IcDelete from "../assets/images/ic_close.png";
 
 const ReviewForm = ({onSubmit}) => {
     const [rating, setRating] = useState(5);
@@ -65,6 +66,19 @@ const ReviewForm = ({onSubmit}) => {
     };
 
     return (
+// <<<<<<< HEAD
+//         <div className="review-form">
+//             <h2>리뷰 작성하기</h2>
+//             <div className="form-group">
+//                 <label>평점</label>
+//                 <input type="number" value={rating}
+//                        onChange={(e) => setRating(e.target.value)} />
+//             </div>
+//             <div className="form-group">
+//                 <label>내용</label>
+//                 <textarea value={content}
+//                           onChange={(e) => setContent(e.target.value)} />
+// =======
         <div className="review-form content-max">
 
             {!hasReviewed && (
@@ -87,9 +101,11 @@ const ReviewForm = ({onSubmit}) => {
                     </div>
                     <div id="imagePreviews">
                         {imagePreviews.map((image, index) => (
-                            <div className="img-container" key={index}>
+                            <div className="img-wrapper" key={index}>
                                 <img src={image} alt={`preview-${index}`} width="100"/>
-                                <button onClick={() => removeImage(index)}>삭제</button>
+                                <button className="btn-close" onClick={() => removeImage(index)}>
+                                    <img src={IcDelete} alt="이미지 삭제" />
+                                </button>
                             </div>
                         ))}
                     </div>

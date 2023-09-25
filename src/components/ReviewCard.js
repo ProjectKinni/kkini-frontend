@@ -27,9 +27,6 @@ const ReviewCard = ({review}) => {
                     </div>
                     <div>
                         <span className="user-name">{review.user.nickname}</span>
-                        <div>
-                            <Link to={`/products/${review.product.productId}`} className="product-name">{review.product.productName}</Link>
-                        </div>
                         <div className="review-rating">
                             {starImages.map((star, index) => (
                                 <span key={index}>{star}</span>
@@ -37,29 +34,32 @@ const ReviewCard = ({review}) => {
                         </div>
                     </div>
                 </div>
+                <Link to={`/products/${review.product.productId}`} className="product-name">{review.product.productName}</Link>
             </div>
             <div className="review-content">{review.content}</div>
-            {/* 이미지가 있다면 띄워주기 */}
-            {review.image1 && (
-                <div className="review-images">
-                    <img src={review.image1}/>
-                </div>
-            )}
-            {review.image2 && (
-                <div className="review-images">
-                    <img src={review.image2}/>
-                </div>
-            )}
-            {review.image3 && (
-                <div className="review-images">
-                    <img src={review.image3}/>
-                </div>
-            )}
-            {review.image4 && (
-                <div className="review-images">
-                    <img src={review.image4}/>
-                </div>
-            )}
+            <div className="review-image-wrap">
+                {/* 이미지가 있다면 띄워주기 */}
+                {review.image1 && (
+                    <div className="img-wrapper review-image">
+                        <img src={review.image1}/>
+                    </div>
+                )}
+                {review.image2 && (
+                    <div className="img-wrapper review-image">
+                        <img src={review.image2}/>
+                    </div>
+                )}
+                {review.image3 && (
+                    <div className="img-wrapper review-image">
+                        <img src={review.image3}/>
+                    </div>
+                )}
+                {review.image4 && (
+                    <div className="img-wrapper review-image">
+                        <img src={review.image4}/>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

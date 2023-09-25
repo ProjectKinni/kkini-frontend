@@ -63,10 +63,29 @@ function Filters({
     });
   };
 
+  //송민지 필터명 변경
+  function filterLabel(filterName) {
+    const labels = {
+      isLowCalorie: "저칼로리",
+      isSugarFree: "무당",
+      isLowSugar: "저당",
+      isLowCarb: "저탄수화물",
+      isKeto: "키토",
+      isTransFat: "저트랜스지방",
+      isHighProtein: "고단백",
+      isLowSodium: "저염",
+      isCholesterol: "저콜레스테롤",
+      isSaturatedFat: "저포화지방",
+      isLowFat: "저지방"
+    };
+    return labels[filterName] || filterName;
+  }
+
+
   return (
     <div className={`category-wrap accordion ${accordionOpen ? "on" : "off"}`}>
       <div className="accordion-tit">
-        <h3>필터링</h3>
+        <h3>필터</h3>
         <button onClick={toggleAccordion}>
           <img src={ArrowRight} alt={accordionOpen ? "닫기" : "열기"} />
         </button>
@@ -79,7 +98,7 @@ function Filters({
             checked={isChecked}
             onChange={(e) => handleFilterChange(filterName, e.target.checked)}
           />
-          <label for={filterName}>{filterName === "isLowCalorie" ? "저칼로리" : filterName}</label>
+          <label for={filterName}>{filterLabel(filterName)}</label>
         </div>
       ))}
     </div>

@@ -35,6 +35,7 @@ const ProductDetail = () => {
 
     return product ? (
         <div className="product-detail">
+
           <div className="img-wrapper">
             <img src={product.image} alt={product.productName} />
           </div>

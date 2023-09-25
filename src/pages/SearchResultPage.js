@@ -35,10 +35,10 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
   }, [location]);
 
   const { categoryGroups, loading, error, noProductsFound } = useSearchResults(
-    searchTerm,
-    selectedCategories,
-    filters,
-    kkiniGreenCheck
+      searchTerm,
+      selectedCategories,
+      filters,
+      kkiniGreenCheck
   );
 
   const handleFilterChange = (updatedFilters) => {
@@ -50,34 +50,34 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
   };
 
   return (
-    <div className="search-result-page">
-      <NavigationContainer
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        autocompleteItems={autocompleteItems}
-        setAutocompleteItems={setAutocompleteItems}
-      />
-      <div className="page-tit content-max">
-        <h1>"{searchTerm}"에 대한 검색결과</h1>
-      </div>
-      <div className="product-wrap content-max">
-        <CategoryBarContainer
-          onKkiniChecked={handleKkiniGreenCheckChange}
-          onCategoryChange={setSelectedCategories}
-          onFilterChange={handleFilterChange}
-          searchTerm={searchTerm}
-          filters={filters}
-          kkiniGreenCheck={kkiniGreenCheck}
+      <div className="search-result-page">
+        <NavigationContainer
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            autocompleteItems={autocompleteItems}
+            setAutocompleteItems={setAutocompleteItems}
         />
-        <div className="product-list-wrapper">
-          <ProductList
-            categoryGroups={categoryGroups}
-            noProductsFound={noProductsFound}
-          />
+        <div className="page-tit content-max">
+          <h1>"{searchTerm}"에 대한 검색결과</h1>
         </div>
+        <div className="product-wrap content-max">
+          <CategoryBarContainer
+              onKkiniChecked={handleKkiniGreenCheckChange}
+              onCategoryChange={setSelectedCategories}
+              onFilterChange={handleFilterChange}
+              searchTerm={searchTerm}
+              filters={filters}
+              kkiniGreenCheck={kkiniGreenCheck}
+          />
+          <div className="product-list-wrapper">
+            <ProductList
+                categoryGroups={categoryGroups}
+                noProductsFound={noProductsFound}
+            />
+          </div>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
   );
 }
 
