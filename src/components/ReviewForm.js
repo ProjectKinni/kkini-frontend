@@ -57,6 +57,7 @@ const ReviewForm = ({onSubmit}) => {
 
     const handleSubmit = () => {
         onSubmit(rating, content, images);
+        setHasReviewed(true);
         setRating(5);
         setContent('');
         setImages([]);
