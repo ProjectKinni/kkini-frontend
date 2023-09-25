@@ -231,7 +231,7 @@ input[type="checkbox"]:checked + label {
 .user-profile {
   display: flex;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 .user-img {
   width: 50px;

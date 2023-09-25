@@ -151,9 +151,6 @@
   width: 6%;
   padding-bottom: 6%;
 }
-#imagePreviews .img-wrapper > img {    
-  object-fit: contain;
-}
 #imagePreviews .img-wrapper .btn-close {    
   position: absolute;
   bottom: 0;
@@ -198,7 +195,7 @@
   border-bottom: none;
 }
 .review-header {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .review-header .review-rating {
   margin-top: 3px;
@@ -214,7 +211,8 @@
   width: 100px;
 }
 .product-name {
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 700;
   color: #000;
 } 
 .product-name:hover {
