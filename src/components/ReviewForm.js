@@ -18,7 +18,7 @@ const ReviewForm = ({onSubmit}) => {
     useEffect(() => {
         async function fetchReviewStatus() {
             try {
-                const data = await checkUserReviewedProduct(productId, userId);
+                const data = await checkUserReviewedProduct(productId, user.userId);
                 setHasReviewed(data);
             } catch (error) {
                 console.error('Error fetching review status:', error);
@@ -26,7 +26,7 @@ const ReviewForm = ({onSubmit}) => {
         }
 
         fetchReviewStatus();
-    }, [productId, userId]);
+    }, [productId, user.userId]);
 
     const handleRatingChange = (newRating) => {
         setRating(newRating);

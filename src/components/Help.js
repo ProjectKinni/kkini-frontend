@@ -4,15 +4,22 @@ import ArrowRight from "../assets/images/arrow_right.png";
 const Help = () => {
   const helpTitles = [
     "회원 탈퇴는 어떻게 할까요?",
+    "PICK의 기준이 뭔가요?",
+    "랭킹의 기준이 뭔가요?",
+    "Green의 기준이 뭔가요?",
+    "랭킹의 기준은 어떻게 되는걸까요?",
     "랭킹의 기준은 어떻게 되는걸까요?",
   ];
 
   const helpContents = [
-    "검색창 우측 (인간 모양 아이콘) 누르고 스크롤 최하단으로 내려가면 회원탈퇴 버튼이 있습니다!",
+    "마이페이지 (사람모양 아이콘) 진입하면 '회원탈퇴' 회색버튼이 있습니다.!",
+    "사용자가 찜한 상품의 카테고리, 필터를 포항한 상품들을 추천해주고 있습니다.",
+    "추후 업로드 예정",
+    "추후 업로드 예정",
+    "추후 업로드 예정",
     "추후 업로드 예정",
   ];
 
-  // 0919 최진주 작성 Accordion 추가
   const [accordionOpen, setAccordionOpen] = useState(new Array(2).fill(false));
 
   const toggleAccordion = (index) => {
@@ -20,7 +27,6 @@ const Help = () => {
     newAccordionOpen[index] = !newAccordionOpen[index];
     setAccordionOpen(newAccordionOpen);
   };
-  // 0919 최진주 작성 Accordion 여기까지
 
   return (
     <div className="content-max">

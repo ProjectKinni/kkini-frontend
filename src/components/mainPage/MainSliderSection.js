@@ -22,7 +22,13 @@ function MainSliderSection({
     const fetchFunction = useMemo(() => {
         switch (type) {
             case "pick":
-                return () => fetchPickProducts(user.userId, selectedCategories, filters);
+                return () => fetchPickProducts(user.userId, selectedCategories, filters)
+                    .then(data => {
+                        if (data.length === 0) {
+                            throw new Error("추천 드릴 상품이 없습니다");
+                        }
+                        return data;
+                    });
             case "ranking":
                 return fetchRankingProducts;
             case "green":

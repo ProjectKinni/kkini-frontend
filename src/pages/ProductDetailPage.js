@@ -53,7 +53,7 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
                 formData.append(`image${index + 1}`, image);
             });
 
-            const result = await handleReviewSubmit(user.userId, productId, formData);
+            const result = await handleReviewSubmit(user?.userId, productId, formData);
             if (!result.error) {
                 console.log('리뷰 작성 성공:', result.data);
                 setRefreshReviews(!refreshReviews);
