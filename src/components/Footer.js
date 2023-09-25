@@ -15,7 +15,7 @@ function Footer() {
           <div className="footer-left">
             <p className="text-black mb5">고객센터</p>
             <h4 className="text-black">010-3556-6717</h4>
-            <p className="text-black mb10">이메일 : dlgudtmd1022naver.com</p>
+            <p className="text-black mb10">이메일 : dlgudtmd1022@gmail.com</p>
             <p>평일: 09:00 - 17:00 (점심시간 12:00 - 13:00)</p>
             <p>주말/공휴일 휴무</p>
           </div>

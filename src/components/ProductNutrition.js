@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductNutrition = ({ nutrition }) => {
     if (!nutrition) {
-        return <div>Loading nutrition information...</div>;
+        return null;
     }
 
     return (

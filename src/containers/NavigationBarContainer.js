@@ -63,9 +63,6 @@ function NavigationContainer({
               >
                 <img src={icUser} alt="마이 페이지" />
               </span>
-              <span className="icon">
-                <img src={icLike} alt="찜한 상품" />
-              </span>
               <span className="icon ic-menu" onClick={handleMenuClick}>
                 <img src={menuIcon} alt="메뉴" />
               </span>

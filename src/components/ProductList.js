@@ -46,7 +46,7 @@ function ProductList({ categoryGroups, noProductsFound }) {
                         <h4>{item.productName}</h4>
                         <p className="rating-display">
                             <img src={IcStar} alt="별점" />
-                            {item.averageRating
+                            {(item.averageRating !== null && item.averageRating !== 'n')
                                 ? item.averageRating
                                 : "0.00"} (리뷰 {item.reviewCount}개)
                         </p>

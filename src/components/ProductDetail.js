@@ -78,6 +78,12 @@ const ProductDetail = () => {
             <dt>영양정보</dt>
             <dd>열량 {product.kcal}kcal</dd>
           </dl>
+          <dl>
+            <dt>상품 링크</dt>
+            <dd>
+               <a href={product.productLink}>{product.productLink}</a>
+            </dd>
+          </dl>
               </div>
               <ProductNutrition nutrition={product} />
           </div>
