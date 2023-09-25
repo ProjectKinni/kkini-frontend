@@ -68,19 +68,19 @@ input[type="checkbox"]:checked + label {
   background-image: url(../assets/images/check_on.png);
 }
 .icon input[type="checkbox"] + label {
-  width: calc(100% - 54px);
-  padding-left: 54px;
+  width: calc(100% - 60px);
+  padding-left: 60px;
 }
 .icon input[type="checkbox"] + label::before {
   content: "";
   position: absolute;
   top: 3px;
   left: 32px;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 16px;
+  background-size: 18px;
 }
 .green input[type="checkbox"]:checked + label {
   background-image: url(../assets/images/check_green.png);
@@ -115,7 +115,7 @@ input[type="checkbox"]:checked + label {
 .green.page-tit h1::before {
   content: "";
   display: block;
-  width: 20px;
+  width: 22px;
   height: 20px;
   position: absolute;
   top: 0px;

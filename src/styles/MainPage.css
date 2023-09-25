@@ -91,11 +91,11 @@
 .ranking-kkini-green h2::before {
   content: "";
   display: block;
-  width: 20px;
+  width: 22px;
   height: 20px;
   position: absolute;
   top: 0;
-  left: -26px;
+  left: -28px;
   background: url(../assets/images/ic_green.svg) no-repeat center;
 }
 .tit:has(.btn-login) + p,
