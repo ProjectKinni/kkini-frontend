@@ -20,3 +20,7 @@ npm install react-slick --save
 <br/>
 npm install slick-carousel --save
 
+<br/>
+최진주 : 모달 추가
+npm install react-modal
+
