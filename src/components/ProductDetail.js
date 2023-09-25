@@ -81,7 +81,7 @@ const ProductDetail = () => {
           <dl>
             <dt>상품 링크</dt>
             <dd>
-               <a href={product.productLink}>{product.productLink}</a>
+               <a href={product.productLink}>구매하기</a>
             </dd>
           </dl>
               </div>
