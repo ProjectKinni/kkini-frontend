@@ -229,4 +229,28 @@ export function checkUserReviewedProduct(productId, userId) {
         });
 }
 
+export function fetchTopGreenProducts() {
+    return axios.get(`${SERVER_URL}/products/kkini-green/top`)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            throw error;
+        });
+};
+
+
+export function fetchTopRankingProducts() {
+    return axios.get(`${SERVER_URL}/products/kkini-ranking/top`)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            throw error;
+        });
+};
 
