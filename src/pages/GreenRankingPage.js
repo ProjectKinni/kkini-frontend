@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "../styles/ProductList.css";
 import NavigationContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import Footer from "../components/Footer";
@@ -41,7 +42,7 @@ function GreenRankingPage({
     };
 
     return (
-        <>
+        <div className="search-result-page">
             {/*기본속성*/}
             <NavigationContainer
                 searchTerm={searchTerm}
@@ -52,7 +53,7 @@ function GreenRankingPage({
 
             <div className="page-tit content-max green">
                 <h1>끼니 그린 랭킹</h1>
-                <p>간편하게, 건강하게!</p>
+            <p>간편하게, 건강하게!</p>
             </div>
             <div className="product-wrap content-max">
                 <CategoryBarContainer
@@ -64,11 +65,12 @@ function GreenRankingPage({
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
                 <div className="product-list-wrapper">
-                  <RankingList fetchFunction={fetchGreenProducts} />
+                    <RankingList fetchFunction={fetchGreenProducts}/>
+
                 </div>
             </div>
             <Footer className="footer"/>
-        </>
+        </div>
     );
 }
 

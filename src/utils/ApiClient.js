@@ -29,9 +29,8 @@ export function fetchPickProducts(userId, categoryName, filterDTO) {
 
 export function fetchRankingProducts() {
 
-    return axios.get(`${SERVER_URL}/products`)
+    return axios.get(`${SERVER_URL}/products/kkini-ranking`)
         .then(response => {
-            console.log(response.data);
             return response.data;
         })
         .catch(error => {
@@ -42,7 +41,7 @@ export function fetchRankingProducts() {
 
 export function fetchGreenProducts() {
 
-    return axios.get(`${SERVER_URL}/products`)
+    return axios.get(`${SERVER_URL}/products/kkini-green`)
 
         .then(response => {
             console.log(response.data);
@@ -57,6 +56,7 @@ export function fetchGreenProducts() {
 
 export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked, page) => {
     let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}&page=${page}`;
+
 
     if (selectedCategories && selectedCategories.length > 0) {
         endpoint += `&categoryName=${selectedCategories.join(",")}`;
@@ -92,7 +92,7 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
         return {error: error.message || "Error fetching products.", items: []};
     }
 };
-
+ 
 export const fetchAutocompleteSuggestions = async (searchTerm) => {
     let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
 
@@ -228,4 +228,5 @@ export function checkUserReviewedProduct(productId, userId) {
             throw error;
         });
 }
+
 
