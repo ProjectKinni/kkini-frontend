@@ -325,6 +325,9 @@
     width: 25%;
     padding-bottom: 25%;
   }
+  .product-review .rating-display span {
+    font-size: 13px;
+  }
 }
 
 @media only screen and (max-width: 400px) {

@@ -30,10 +30,9 @@
 .icon img {
   vertical-align: middle;
 }
-.icon:hover {
-  filter: brightness(0.95);
-}
-button:hover {
+.icon:hover,
+button:hover,
+.btn-text:hover {
   filter: brightness(0.95);
 }
 .pt0 {
@@ -193,14 +192,28 @@ input[type="checkbox"]:checked + label {
   right: 0;
   border-radius: 0 6px;
 }
-.ic-review {
-  padding: 10px 10px 10px 32px;
+.btn-text {
+  display: block;
+  line-height: 2em;
+  padding: 4px 12px;
   border-radius: 6px;
   color: #ff6600;
   border: 1px solid #ff6600;
-  background: #fff url(../assets/images/ic_write.png) no-repeat 10px center;
-  background-size: 15px;
   cursor: pointer;
+}
+.btn-with-icon {
+  padding: 4px 10px 4px 34px;
+  background: #fff;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 15px;
+}
+.btn-review {
+  background-image: url(../assets/images/ic_write.png);
+}
+.btn-buy {
+  background-image: url(../assets/images/ic_link_buy.png);
+  background-size: 20px;
 }
 
 /* pagination */
@@ -476,10 +489,14 @@ input[type="checkbox"]:checked + label {
   .accordion.on .accordion-tit button img {
     width: 8px;
   }
-  .ic-review {
+  .btn-text {
     font-size: 12px;
+    font-weight: 600;
     background-size: 13px;
-    padding: 8px 8px 8px 30px;
+    padding: 2px 8px;
+  }
+  .btn-with-icon {
+    padding: 2px 8px 2px 28px;
   }
   .ic-delete-like {
     font-size: 12px;

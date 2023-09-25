@@ -47,44 +47,39 @@ const ProductDetail = () => {
                   )}
               </div>
             <div className="product-content">
-          <dl>
-            <dt>평점</dt>
-            <dd className="product-review">
-              <div className="rating-display">
-                    <img src={IcStar} alt="별점" />
-                    {(product.averageRating !== null && product.averageRating !== 'n')
-                        ? product.averageRating : "0.00"}
-                <span>리뷰 {product.reviewCount}개</span>
-              </div>
-            </dd>
+                <dl>
+                  <dt>평점</dt>
+                  <dd className="product-review">
+                    <div className="rating-display">
+                          <img src={IcStar} alt="별점" />
+                          {(product.averageRating !== null && product.averageRating !== 'n')
+                              ? product.averageRating : "0.00"}
+                      <span>리뷰 {product.reviewCount}개</span>
+                    </div>
+                    <a href={product.productLink} className="btn-text btn-with-icon btn-buy">구매하기</a>
+                  </dd>
 
-          </dl>
-          <dl>
-            <dt>상품번호</dt>
-            <dd>{product.productId}</dd>
-          </dl>
-          <dl>
-            <dt>조회수</dt>
-            <dd>{viewCount || '0'}</dd>
-          </dl>
-          <dl>
-            <dt>랭킹</dt>
-            <dd></dd>
-          </dl>
-          <dl>
-            <dt>중량</dt>
-            <dd>{product.servingSize}g</dd>
-          </dl>
-          <dl>
-            <dt>영양정보</dt>
-            <dd>열량 {product.kcal}kcal</dd>
-          </dl>
-          <dl>
-            <dt>상품 링크</dt>
-            <dd>
-               <a href={product.productLink}>구매하기</a>
-            </dd>
-          </dl>
+                </dl>
+                <dl>
+                  <dt>상품번호</dt>
+                  <dd>{product.productId}</dd>
+                </dl>
+                <dl>
+                  <dt>조회수</dt>
+                  <dd>{viewCount || '0'}</dd>
+                </dl>
+                <dl>
+                  <dt>랭킹</dt>
+                  <dd></dd>
+                </dl>
+                <dl>
+                  <dt>중량</dt>
+                  <dd>{product.servingSize}g</dd>
+                </dl>
+                <dl>
+                  <dt>영양정보</dt>
+                  <dd>열량 {product.kcal}kcal</dd>
+                </dl>
               </div>
               <ProductNutrition nutrition={product} />
           </div>
