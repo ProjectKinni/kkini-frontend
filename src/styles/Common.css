@@ -232,6 +232,7 @@ input[type="checkbox"]:checked + label {
   display: flex;
   gap: 12px;
   margin-bottom: 18px;
+  align-items: center;
 }
 .user-img {
   width: 50px;
@@ -309,7 +310,7 @@ input[type="checkbox"]:checked + label {
 .nav-icons {
   display: flex;
   gap: 26px;
-  margin-right: 40px;
+  margin-right: 32px;
   align-items: center;
 }
 .nav-icons .ic-menu {
@@ -429,7 +430,7 @@ input[type="checkbox"]:checked + label {
 }
 @media only screen and (max-width: 1024px) {
   .header-left {
-    width: calc(100% - 290px);
+    width: calc(100% - 240px);
   }
   .search-bar {
     width: 100%;
@@ -486,7 +487,7 @@ input[type="checkbox"]:checked + label {
     padding: 8px;
   }
   .user-name {
-    font-size: 14px;
+    font-size: 15px;
   }
   .navigation-container {
     width: 100%;
@@ -502,7 +503,7 @@ input[type="checkbox"]:checked + label {
     padding: 14px 0 0;
   }
   .header-left {
-    width: calc(100% - 124px);
+    width: calc(100% - 80px);
   }
   .header .logo {
     height: 28px;
@@ -596,7 +597,7 @@ input[type="checkbox"]:checked + label {
     padding-top: 12px;
   }
   .header-left {
-    width: auto;
+    width: 100%;
   }
   .search-bar {
     margin-left: 12px;
