@@ -35,7 +35,7 @@ const ReviewListForCommunity = () => {
         }, [reviews]);
 
         return (
-            <div className="review-list content-max pt0">
+            <div className="community-list review-list content-max pt0">
                 {error ? (
                     <div className="error-message">{error}</div>
                 ) : (
