@@ -227,6 +227,13 @@
   width: 10%;
   padding-bottom: 10%;
 }
+.community-list .review-image-wrap {
+  gap: 24px;
+}
+.community-list .review-image-wrap .review-image {
+  width: 18%;
+  padding-bottom: 18%;
+}
 
 @media only screen and (max-width: 768px) {
   .product-detail-container {
@@ -322,6 +329,13 @@
     font-size: 14px;
   }
   .review-image-wrap .review-image {
+    width: 25%;
+    padding-bottom: 25%;
+  }
+  .community-list .review-image-wrap {
+    gap: 8px;
+  }
+  .community-list .review-image-wrap .review-image {
     width: 25%;
     padding-bottom: 25%;
   }
