@@ -3,7 +3,7 @@ import { toggleLike } from "./ToggleLike"; // toggleLike.js 파일 경로에 맞
 import IcLikeOn from "../assets/images/ic_like_on.png";
 import IcLikeOff from "../assets/images/ic_like_off.png";
 import axios from "axios";
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "http://223.130.138.156:8080";
 
 function ProductLikeButton({ userId, productId }) {
   const [isLiked, setIsLiked] = useState(false);
