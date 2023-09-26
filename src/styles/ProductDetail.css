@@ -1,116 +1,397 @@
+/* product detail */
+.product-detail-container {
+  margin: 44px auto 0;
+  padding-bottom: 46px;
+}
 .product-detail {
-    display: flex;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 1000px; /* 필요하다면 최대 너비를 조정하세요 */
-    margin: 20px auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    align-items: flex-start; /* 상단 정렬 */
-    flex-wrap: nowrap; /* 내용이 한 줄로 유지되도록 강제합니다. */
+  display: flex;
 }
-
-.product-detail img {
-    flex-shrink: 0; /* 이미지 크기가 줄어들지 않게 설정 */
-    width: 30%;
-    height: auto;
-    border-radius: 8px;
-    margin-right: 20px;
+.product-detail .img-wrapper {
+  width: 38%;
+  padding-bottom: 38%;
+  margin-right: 40px;
 }
-
 .product-detail .info {
-    flex: 1; /* 남은 공간을 채워서 사용 */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow: visible; /* 컨텐츠가 이 영역 밖으로 확장될 수 있게 설정 */
+  width: calc(62% - 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
-
-.product-detail h2, .product-detail h3,
-.product-detail p {
-    margin: 5px 0;
-}
-
-.product-detail h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
-.product-detail h3,
-.product-detail p {
-    font-size: 18px;
-    color: #666;
-}
-
 .product-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Vertically align the product name and button */
-    width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 32px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #cdcdcd;
+}
+.product-header .ic-like {
+  top: 0;
+  right: 0;
+  padding: 4px 10px;
+}
+.product-detail-page h2,
+.product-detail-page h3 {    
+  width: calc(100% - 50px);
+  text-align: left;
+  font-size: 22px;
+  line-height: 1.5em;
+  word-break: break-all;
+}
+.product-detail-page h3 {
+  font-size: 18px;
+  border-top: 1px solid #cdcdcd;
+  padding-top: 36px;
+}
+.product-content {
+  width: 100%;
+  margin: 18px 0 22px;
+}
+.product-content dl {
+  display: flex;
+  align-items: center;
+  line-height: 44px;
+}
+.product-content dl dt {
+  width: 18%;
+  min-width: 80px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.product-content dl dd {
+  width: 82%;
+  font-size: 16px;
+  font-weight: 500;
+}
+.product-content .product-review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-review .rating-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.product-review .rating-display span {
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 10px;
+  text-decoration: underline;
+  text-underline-position: under;
+  cursor: pointer;
 }
 
-.wishlist-button {
-    padding: 10px 15px;
-    background-color: #f8f8f8;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-    /* Add additional styles as needed */
-}
-
-.wishlist-button:hover {
-    background-color: #e0e0e0;
-}
-
+/* nutrition detail */
 .nutrition-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 중앙 정렬 */
-    border: 1px solid #e0e0e0;
-    padding: 15px;
-    width: 500px;
-    border-radius: 8px;
-    margin: 20px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #cdcdcd;
+  width: 100%;
 }
-
-.nutrition-detail h3 {
-    text-align: right;
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #333;
-}
-
-.nutrition-item {
-    flex: 1; /* 각 항목이 동일한 공간을 차지하도록 설정 */
-    box-sizing: border-box; /* 경계선과 패딩이 너비에 포함되도록 설정 */
-    padding: 0 10px; /* 좌우 패딩 추가 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
-.nutrition-item:not(:last-child) {
-    border-right: 1px solid #e0e0e0;
-}
-
-.nutrition-row:first-child .nutrition-item {
-    border-bottom: 1px solid #e0e0e0;
-}
-
 .nutrition-row {
-    display: flex; /* 수평 정렬 */
-    justify-content: space-between; /* 항목 간격 동일하게 설정 */
-    width: 100%; /* 전체 너비 사용 */
+  display: flex;
 }
-
+.nutrition-item {
+  width: 25%;
+  padding: 22px 14px;
+  font-size: 16px;
+  text-align: center;
+  border-right: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;
+}
+.nutrition-item:nth-child(4n) {
+  border-right: none;
+}
 .nutrition-item span {
-    font-weight: bold;
-    margin-right: 5px;
+  display: block;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
+/* review form */
+.form-review.rating {
+  display: flex;
+  align-items: center;
+  margin: 12px 0 8px;
+  gap: 10px;
+}
+.form-review .tit {
+  font-size: 15px;
+}
+.form-review.rating .star-rating {
+  cursor: pointer;
+  height: 32px;
+}
+.form-review.rating .star-rating img {
+  width: 28px;
+}
+.form-review.text .review-write {
+  position: relative;
+  display: flex;
+  padding-bottom: 38px;
+}
+.form-review.text input[type="file"] {
+  position: absolute;
+  bottom: 0;
+}
+#imagePreviews {
+  text-align: left;
+  margin-top: 24px;
+  margin-bottom: 36px;
+  display: flex;
+  gap: 12px;
+}
+#imagePreviews .img-wrapper {
+  width: 6%;
+  padding-bottom: 6%;
+}
+#imagePreviews .img-wrapper .btn-close {    
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255,255,255,0.3);
+  padding: 4px;
+}
+#imagePreviews .img-wrapper .btn-close img {    
+  width: 15px;
+  height: 15px;
+  position: unset;
+  vertical-align: middle;
+}
+.form-review.text textarea {
+  flex: 1 1;
+  background: #f4f4f4;
+  padding: 16px;
+  margin-right: 14px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.form-review.text button {
+  width: 120px;
+  color: #fff;
+  background: #ff6600;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.review-list {
+  text-align: left;
+  margin-top: 36px;
+}
+.review-card-wrap {
+  padding-bottom: 40px;
+  border-top: 1px solid #cdcdcd;
+}
+.review-card {
+  padding: 24px 0;
+  border-bottom: 1px solid #cdcdcd;
+}
+.review-card:last-child {
+  border-bottom: none;
+}
+.review-header {
+  margin-bottom: 12px;
+}
+.review-header .review-rating {
+  margin-top: 6px;
+}
+.review-header .review-rating img {
+  width: 18px;
+}
+.review-content {
+  font-size: 16px;
+  line-height: 1.6em;
+}
+.review-images img {
+  width: 100px;
+}
+.product-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+} 
+.product-name:hover {
+  color: #ff6600;
+} 
+.review-image-wrap {
+  display: flex;
+  margin-top: 14px;
+  gap: 10px;
+}
+.review-image-wrap .review-image {
+  width: 10%;
+  padding-bottom: 10%;
+}
+.community-list .review-image-wrap {
+  gap: 24px;
+}
+.community-list .review-image-wrap .review-image {
+  width: 18%;
+  padding-bottom: 18%;
+}
 
+@media only screen and (max-width: 768px) {
+  .product-detail-container {
+    margin: 16px auto 0;
+    padding-bottom: 34px;
+  }
+
+  .product-detail {
+    flex-direction: column;
+  }
+
+  .product-detail .img-wrapper {
+    width: 100%;
+    padding-bottom: 100%;
+    max-width: none;
+    margin: 0 0 20px 0;
+  }
+
+  .product-detail .info {
+    width: 100%;
+  }
+
+  .product-header {
+    padding-bottom: 12px;
+    gap: 10px;
+  }
+
+  .product-detail-page h2 {
+    font-size: 18px;
+  }
+
+  .product-detail-page h3 {
+    font-size: 16px;
+  }
+
+  .product-header button img {
+    width: 24px;
+  }
+
+  .product-content {
+    margin: 12px 0 14px;
+  }
+
+  .product-content dl {
+    line-height: 38px;
+  }
+
+  .product-content dl dt {
+    font-size: 16px;
+  }
+
+  .product-content dl dd,
+  .product-review .rating-display {
+    font-size: 14px;
+  }
+
+  .nutrition-item {
+    padding: 16px 0;
+    font-size: 14px;
+  }
+
+  .nutrition-item span {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .form-review.rating {
+    margin: 6px 0 10px;
+  }
+
+  .form-review .tit {
+    font-size: 13px;
+  }
+
+  .form-review.rating .star-rating {
+    height: 30px;
+  }
+
+  .form-review.text textarea {
+    width: calc(100% - 110px);
+    padding: 14px 12px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+
+  .form-review.text button {
+    width: 100px;
+    font-size: 14px;
+  }
+
+  .review-card {
+    padding: 14px 0;
+  }
+
+  .review-header {
+    margin-bottom: 10px;
+  }
+
+  .user-profile {
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .user-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .product-name {
+    font-size: 13px;
+  }
+
+  .review-header .review-rating img {
+    width: 16px;
+  }
+
+  .review-content {
+    font-size: 14px;
+  }
+
+  .review-image-wrap .review-image {
+    width: 25%;
+    padding-bottom: 25%;
+  }
+
+  .product-review .rating-display span {
+    font-size: 13px;
+
+    .community-list .review-image-wrap {
+      gap: 8px;
+    }
+
+    .community-list .review-image-wrap .review-image {
+      width: 25%;
+      padding-bottom: 25%;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .product-content .product-review {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .form-review.text .review-write {
+      flex-direction: column;
+    }
+
+    .form-review.text textarea {
+      width: 100%;
+      min-height: 120px;
+      margin: 0;
+    }
+
+    .form-review.text button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 14px;
+    }
+  }
+}

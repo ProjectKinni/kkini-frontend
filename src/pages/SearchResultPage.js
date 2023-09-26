@@ -1,123 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import '../styles/SearchResultPage.css';
-import Header from "../components/Header";
-import Filters from "../components/Filters";
+import React, { useState, useEffect } from "react";
+import "../styles/SearchResultPage.css";
+import { useLocation } from "react-router-dom";
+import useSearchResults from "../components/UseSearchResults";
+import NavigationContainer from "../containers/NavigationBarContainer";
+import CategoryBarContainer from "../containers/CategoryBarContainer";
 import ProductList from "../components/ProductList";
-import KkiniChecked from "../components/KkiniChecked";
 import Footer from "../components/Footer";
-import Categories from "../components/Categories";
 
-const SERVER_URL = "http://localhost:8080";
+function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const initialSearchTerm = queryParams.get("searchTerm");
 
-function SearchResultPage(searchResults) {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [autocompleteItems, setAutocompleteItems] = useState([]);
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const searchTermFromParams = searchParams.get('searchTerm') || '';
-    const navigate = useNavigate();
-    const [items, setItems] = useState([]);
-    const [displayedItems, setDisplayItems] = useState([]);
-    const [error, setError] = useState(null);
-    const [filteredResults, setFilteredResults] = useState(searchResults);
-    const [originalItems, setOriginalItems] = useState([]);
-    const [selectedCategories, setSelectedCategories] = useState([]);
-    const [isChecked, setIsChecked] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+  const [autocompleteItems, setAutocompleteItems] = useState([]);
+  const [kkiniGreenCheck, setKkiniGreenCheck] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [filters, setFilters] = useState({
+    isLowCalorie: false,
+    isSugarFree: false,
+    isLowSugar: false,
+    isLowCarb: false,
+    isKeto: false,
+    isTransFat: false,
+    isHighProtein: false,
+    isLowSodium: false,
+    isCholesterol: false,
+    isSaturatedFat: false,
+    isLowFat: false,
+  });
 
-    useEffect(() => {
-        setFilteredResults(searchResults);
-    }, [searchResults]);
+  useEffect(() => {
+    setSearchTerm(initialSearchTerm);
+  }, [location]);
 
-    useEffect(() => {
-        let endpoint;
+  const { categoryGroups, loading, error, noProductsFound } = useSearchResults(
+      searchTerm,
+      selectedCategories,
+      filters,
+      kkiniGreenCheck
+  );
 
-        if (isChecked && selectedCategories.length > 0) {
-            endpoint = `${SERVER_URL}/category/categories?showKkiniGreenOnly=true&searchTerm=${searchTermFromParams}&categoryName=${selectedCategories.join(",")}`;
-        } else if (isChecked) {
-            endpoint = `${SERVER_URL}/category/kkini?showKkiniGreenOnly=true&searchTerm=${searchTermFromParams}`;
-        } else if (selectedCategories.length > 0) {
-            endpoint = `${SERVER_URL}/category/categories?searchTerm=${searchTermFromParams}&categoryName=${selectedCategories.join(",")}`;
-        } else {
-            endpoint = `${SERVER_URL}/api/search/products/?searchTerm=${searchTermFromParams}`;
-        }
+  const handleFilterChange = (updatedFilters) => {
+    setFilters(updatedFilters);
+  };
 
-        fetch(endpoint)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.message) {
-                    setError(data.message);
-                    setItems([]);
-                } else if (Array.isArray(data)) {
-                    setItems(data);
-                } else {
-                    const errorMsg = "Unexpected response format.";
-                    setError(errorMsg);
-                    setItems([]);
-                }
-            })
-            .catch(error => {
-                setError(error.message || "Error fetching products.");
-            });
-    }, [searchTermFromParams, selectedCategories, isChecked]);
+  const handleKkiniGreenCheckChange = (value) => {
+    setKkiniGreenCheck(value);
+  };
 
-    const handleKkiniChecked = (checkedValue) => {
-        setIsChecked(checkedValue);
-    }
-
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-    };
-    useEffect(() => {
-        const categoryNamesFromParams = searchParams.getAll('categoryName');
-        if (categoryNamesFromParams.length > 0) {
-            setSelectedCategories(categoryNamesFromParams);
-        }
-    }, [location.search]);
-
-    return (
-        <div className="search-result-page">
-            <Header
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
-            <div className="content-wrapper">
-                {error ? (
-                    <div className="error-message">
-                        {error}
-                    </div>
-                ) : (
-                    <>
-                        <div className="left-sidebar">
-                            <KkiniChecked onKkiniChecked={handleKkiniChecked}/>
-                            <Categories
-                                onCategoryChange={setSelectedCategories}
-                                selected={selectedCategories}
-                                location={location}
-                                searchParams={searchParams}
-                            />
-                            <Filters
-                                items={items}
-                                setDisplayItems={setDisplayItems}
-                                searchName={searchTermFromParams}
-                                setItems={setItems}
-                            />
-                        </div>
-                        <ProductList items={items} />
-                    </>
-                )}
-            </div>
-            <Footer />
+  return (
+      <div className="search-result-page">
+        {/*<NavigationContainer*/}
+        {/*    searchTerm={searchTerm}*/}
+        {/*    setSearchTerm={setSearchTerm}*/}
+        {/*    autocompleteItems={autocompleteItems}*/}
+        {/*    setAutocompleteItems={setAutocompleteItems}*/}
+        {/*/>*/}
+        <div className="page-tit content-max">
+          <h1>"{searchTerm}"에 대한 검색결과</h1>
         </div>
-    );
+        <div className="product-wrap content-max">
+          <CategoryBarContainer
+              onKkiniChecked={handleKkiniGreenCheckChange}
+              onCategoryChange={setSelectedCategories}
+              onFilterChange={handleFilterChange}
+              searchTerm={searchTerm}
+              filters={filters}
+              kkiniGreenCheck={kkiniGreenCheck}
+          />
+          <div className="product-list-wrapper">
+            <ProductList
+                categoryGroups={categoryGroups}
+                noProductsFound={noProductsFound}
+            />
+          </div>
+        </div>
+        <Footer />
+      </div>
+  );
 }
 
 export default SearchResultPage;

@@ -1,24 +1,56 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import IcStar from "../assets/images/star_on.png";
+import { incrementViewCount } from "../utils/ApiClient";
+import { useUser } from "./UserContext";
+import ProductLikeButton from "./ProductLikeButton";
 
-function ProductList({ items }) {
+function ProductList({ categoryGroups, noProductsFound }) {
     const navigate = useNavigate();
+    const { user } = useUser();
 
-    const handleProductClick = (productId) => {
+    const handleProductClick = async (productId) => {
+        if (user && user.userId) {
+            try {
+                await incrementViewCount(productId, user.userId);
+            } catch (error) {
+                console.error("Error incrementing view count:", error);
+            }
+        }
         navigate(`/products/${productId}`);
     };
 
+    const allProducts = Object.values(categoryGroups).flat();
+
+    if (noProductsFound) {
+        return <p className="no-data">해당 상품이 없습니다.</p>;
+    }
+
     return (
         <main className="product-list">
-            {items.map(item => (
-                <div key={item.productId} className="product-item"
-                     onClick={() => handleProductClick(item.productId)}>
-                        <img src={item.productImage} alt={item.productName} width="100" />
+            {allProducts.map((item) => (
+                <div
+                    key={item.productId}
+                    className="product-item"
+                >
+                    {user && (
+                        <ProductLikeButton
+                            userId={user.userId}
+                            productId={item.productId}
+                        />
+                    )}
+                    <div onClick={() => handleProductClick(item.productId)}>
+                        <div className="img-wrapper">
+                            <img src={item.image} alt={item.productName} />
+                        </div>
                         <h4>{item.productName}</h4>
                         <p className="rating-display">
-                            <span>⭐</span>
-                            {item.averageRating.toFixed(2)} ({item.reviewCount} reviews)
+                            <img src={IcStar} alt="별점" />
+                            {(item.averageRating !== null && item.averageRating !== 'n')
+                                ? item.averageRating
+                                : "0.0"} (리뷰 {item.reviewCount ? item.reviewCount : 0}개)
                         </p>
+                    </div>
                 </div>
             ))}
         </main>
