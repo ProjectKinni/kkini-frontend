@@ -332,6 +332,8 @@
     width: 25%;
     padding-bottom: 25%;
   }
+  .product-review .rating-display span {
+    font-size: 13px;
   .community-list .review-image-wrap {
     gap: 8px;
   }
