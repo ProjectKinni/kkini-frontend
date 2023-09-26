@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 import { fetchAutocompleteSuggestions } from "../utils/ApiClient";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "http://223.130.138.156:8080";
 
 function SearchBar({ autocompleteItems, setAutocompleteItems }) {
   const [searchTerm, setSearchTerm] = useState("");

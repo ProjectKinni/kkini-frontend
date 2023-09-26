@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import ReviewCard from './ReviewCard';
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "http://223.130.138.156:8080";
 
 const ReviewListForCommunity = () => {
         const [reviews, setReviews] = useState([]);
@@ -35,7 +35,7 @@ const ReviewListForCommunity = () => {
         }, [reviews]);
 
         return (
-            <div className="community-list review-list content-max pt0">
+            <div className="review-list content-max pt0">
                 {error ? (
                     <div className="error-message">{error}</div>
                 ) : (
