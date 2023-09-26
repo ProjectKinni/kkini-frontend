@@ -19,21 +19,21 @@ function LoginPage() {
       <div className="login-wrap content-max">
         <a
           className="login-google"
-          href="http://kkini.net:8080/oauth2/authorization/google"
+          href="http://kkini.net:80/oauth2/authorization/google"
         >
           <img src={googleLogo} alt="Google" />
           구글계정으로 로그인
         </a>
         <a
           className="login-naver"
-          href="http://kkini.net:8080/oauth2/authorization/naver"
+          href="http://kkini.net:80/oauth2/authorization/naver"
         >
           <img src={naverLogo} alt="Naver" />
           네이버계정으로 로그인
         </a>
         <a
           className="login-kakao"
-          href="http://kkini.net:8080/oauth2/authorization/kakao"
+          href="http://kkini.net:80/oauth2/authorization/kakao"
         >
           <img src={kakaoLogo} alt="Kakao" />
           카카오계정으로 로그인
