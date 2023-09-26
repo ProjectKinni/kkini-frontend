@@ -53,10 +53,12 @@ const ProductDetail = () => {
                     <div className="rating-display">
                           <img src={IcStar} alt="별점" />
                           {(product.averageRating !== null && product.averageRating !== 'n')
-                              ? product.averageRating : "0.00"}
+                              ? product.averageRating : "0.0"}
                       <span>리뷰 {product.reviewCount}개</span>
                     </div>
-                    <a href={product.productLink} className="btn-text btn-with-icon btn-buy">구매하기</a>
+                      {product.productLink ? (
+                          <a href={product.productLink} className="btn-text btn-with-icon btn-buy">구매하기</a>
+                      ) : null}
                   </dd>
 
                 </dl>
