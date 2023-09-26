@@ -19,7 +19,7 @@ function LoginPage() {
       <div className="login-wrap content-max">
         <a
           className="login-google"
-          href="http://kkini.net/oauth2/authorization/google"
+          href="http://kkini.net:8080/oauth2/authorization/google"
         >
           <img src={googleLogo} alt="Google" />
           구글계정으로 로그인
@@ -33,7 +33,7 @@ function LoginPage() {
         </a>
         <a
           className="login-kakao"
-          href="http://kkini.net/oauth2/authorization/kakao"
+          href="http://223.130.138.156/oauth2/authorization/naver"
         >
           <img src={kakaoLogo} alt="Kakao" />
           카카오계정으로 로그인
