@@ -76,7 +76,7 @@ function LikeList() {
                             </Link>
                             <p className="rating-display">
                                 <img src={IcStar} alt="별점" />
-                                {product.product.averageRating}</p>
+                                {product.product.averageRating ? product.product.averageRating.toFixed(1) : `0.0`}</p>
                             <button className='ic-like ic-delete-like' onClick={() => handleRemoveProduct(product.product.productId)}>삭제</button>
                         </li>
                     ))}

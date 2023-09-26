@@ -4,18 +4,18 @@ import NavigationContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import Footer from "../components/Footer";
 import RankingList from "../components/rankinglist/RankingList";
-import {fetchGreenProducts} from "../utils/ApiClient";
+import {fetchGreenProducts} from "../utils/ApiClient"
 
 function GreenRankingPage({
-                              searchTerm: initialSearchTerm,
-                              setSearchTerm: initialSetSearchTerm,
-                              autocompleteItems: initialAutocompleteItems,
-                              setAutocompleteItems: initialSetAutocompleteItems,
+                              // searchTerm: initialSearchTerm,
+                              // setSearchTerm: initialSetSearchTerm,
+                              // autocompleteItems: initialAutocompleteItems,
+                              // setAutocompleteItems: initialSetAutocompleteItems,
                           }) {
-    const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-    const [autocompleteItems, setAutocompleteItems] = useState(
-        initialAutocompleteItems
-    );
+    // const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+    // const [autocompleteItems, setAutocompleteItems] = useState(
+    //     initialAutocompleteItems
+    // );
 
     const [kkiniGreenCheck, setKkiniGreenCheck] = useState(false);
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -44,12 +44,12 @@ function GreenRankingPage({
     return (
         <div className="search-result-page">
             {/*기본속성*/}
-            <NavigationContainer
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
+            {/*<NavigationContainer*/}
+            {/*    searchTerm={searchTerm}*/}
+            {/*    setSearchTerm={setSearchTerm}*/}
+            {/*    autocompleteItems={autocompleteItems}*/}
+            {/*    setAutocompleteItems={setAutocompleteItems}*/}
+            {/*/>*/}
 
             <div className="page-tit content-max green">
                 <h1>끼니 그린 랭킹</h1>
@@ -65,8 +65,7 @@ function GreenRankingPage({
                     kkiniGreenCheck={kkiniGreenCheck}
                 />
                 <div className="product-list-wrapper">
-                    <RankingList fetchFunction={fetchGreenProducts}/>
-
+                    <RankingList fetchFunction={fetchGreenProducts} />
                 </div>
             </div>
             <Footer className="footer"/>

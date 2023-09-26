@@ -13,12 +13,12 @@ function TermsOfServicePage({ setSearchTerm: initialSetSearchTerm }) {
     
     return (
         <div>
-            <NavigationBarContainer
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
+            {/*<NavigationBarContainer*/}
+            {/*    searchTerm={searchTerm}*/}
+            {/*    setSearchTerm={setSearchTerm}*/}
+            {/*    autocompleteItems={autocompleteItems}*/}
+            {/*    setAutocompleteItems={setAutocompleteItems}*/}
+            {/*/>*/}
             <div className="page-tit content-max">
                 <h1>이용약관</h1>
             </div>

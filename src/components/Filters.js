@@ -67,7 +67,7 @@ function Filters({
   function filterLabel(filterName) {
     const labels = {
       isLowCalorie: "저칼로리",
-      isSugarFree: "무당",
+      isSugarFree: "무설탕",
       isLowSugar: "저당",
       isLowCarb: "저탄수화물",
       isKeto: "키토",

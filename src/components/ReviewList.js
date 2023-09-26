@@ -28,7 +28,7 @@ const ReviewList = ({productId, refreshReviews}) => {
 
         useEffect(() => {
             const handleScroll = () => {
-                if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
                     fetchReviews();
                 }
             };

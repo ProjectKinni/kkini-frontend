@@ -51,12 +51,12 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
 
   return (
       <div className="search-result-page">
-        <NavigationContainer
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            autocompleteItems={autocompleteItems}
-            setAutocompleteItems={setAutocompleteItems}
-        />
+        {/*<NavigationContainer*/}
+        {/*    searchTerm={searchTerm}*/}
+        {/*    setSearchTerm={setSearchTerm}*/}
+        {/*    autocompleteItems={autocompleteItems}*/}
+        {/*    setAutocompleteItems={setAutocompleteItems}*/}
+        {/*/>*/}
         <div className="page-tit content-max">
           <h1>"{searchTerm}"에 대한 검색결과</h1>
         </div>

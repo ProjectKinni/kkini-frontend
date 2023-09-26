@@ -19,12 +19,12 @@ function CommunityPage({
 
     return (
         <>
-            <NavigationContainer
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
+            {/*<NavigationContainer*/}
+            {/*    searchTerm={searchTerm}*/}
+            {/*    setSearchTerm={setSearchTerm}*/}
+            {/*    autocompleteItems={autocompleteItems}*/}
+            {/*    setAutocompleteItems={setAutocompleteItems}*/}
+            {/*/>*/}
             <div className="page-tit content-max">
                 <h1>커뮤니티</h1>
             </div>

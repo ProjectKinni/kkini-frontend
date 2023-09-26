@@ -13,6 +13,7 @@ import GreenRankingPage from "./pages/GreenRankingPage"
 import KkiniRankingPage from "./pages/KkiniRankingPage"
 import KkiniPickPage from "./pages/KkiniPickPage"
 import CommunityPage from "./pages/CommunityPage"
+import NavigationBarContainer from "./containers/NavigationBarContainer"
 
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
@@ -22,6 +23,7 @@ function App() {
     return (
         <BrowserRouter>
             <UserProvider>
+                <NavigationBarContainer />
                 <Routes>
                     <Route path="/" element={<MainPage/>} />
                     <Route path="/search-results" element={<SearchResultPage/>} />

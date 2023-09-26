@@ -7,6 +7,7 @@ function useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenChe
     const [error, setError] = useState(null);
     const [noProductsFound, setNoProductsFound] = useState(false);
     const [page, setPage] = useState(0);
+    const [isScroll, setIsScroll] = useState(false);
 
     const fetchSearchResults = async (currentPage) => {
         setLoading(true);
@@ -19,19 +20,31 @@ function useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenChe
         } else if (noProductsFound) {
             setNoProductsFound(true);
         } else {
-            const newGroupedItems = items.reduce((groups, item) => {
-                const category = item.categoryName;
-                if (!groups[category]) {
-                    groups[category] = [];
-                }
-                groups[category].push(item);
-                return groups;
-            }, {});  // 초기화된 categoryGroups 사용
-            setCategoryGroups(newGroupedItems);
-            setPage(page + 1);  // 페이지 번호 증가
+            if (!isScroll) {
+                const newGroupedItems = items.reduce((groups, item) => {
+                    const category = item.categoryName;
+                    if (!groups[category]) {
+                        groups[category] = [];
+                    }
+                    groups[category].push(item);
+                    return groups;
+                }, {});
+                setCategoryGroups(newGroupedItems);
+            }// 초기화된 categoryGroups 사용
+            else {
+                const newGroupedItems = items.reduce((groups, item) => {
+                    const category = item.categoryName;
+                    if (!groups[category]) {
+                        groups[category] = [];
+                    }
+                    groups[category].push(item);
+                    return groups;
+                }, {...categoryGroups});
+                setCategoryGroups(newGroupedItems);
+            }
+
         }
         setLoading(false);
-        setPage(currentPage + 1);
     };
 
 
@@ -42,19 +55,22 @@ function useSearchResults(searchTerm, selectedCategories, filters, kkiniGreenChe
         setPage(0);  // 페이지도 초기화
 
         if (searchTerm) {
+            setIsScroll(false);
             fetchSearchResults(0);
         }
     }, [searchTerm, selectedCategories, filters, kkiniGreenCheck]);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
+                setIsScroll(true);
+                setPage(page + 1);
                 fetchSearchResults(page);
             }
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [categoryGroups, page]);  // categoryGroups가 변경될 때마다 스크롤 이벤트 리스너를 업데이트
+    }, [categoryGroups]);  // categoryGroups가 변경될 때마다 스크롤 이벤트 리스너를 업데이트
 
     return {categoryGroups, loading, error, noProductsFound};
 }

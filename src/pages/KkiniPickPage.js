@@ -69,12 +69,12 @@ function KkiniPickPage({
 
     return (
         <>
-            <NavigationContainer
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
+            {/*<NavigationContainer*/}
+            {/*    searchTerm={searchTerm}*/}
+            {/*    setSearchTerm={setSearchTerm}*/}
+            {/*    autocompleteItems={autocompleteItems}*/}
+            {/*    setAutocompleteItems={setAutocompleteItems}*/}
+            {/*/>*/}
             <div className="page-tit content-max">
                 <h1>끼니 PICK</h1>
                 <p>끼니의 취향저격상품</p>

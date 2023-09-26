@@ -62,25 +62,25 @@ const ProductDetail = () => {
                   </dd>
 
                 </dl>
+                {/*<dl>*/}
+                {/*  <dt>상품번호</dt>*/}
+                {/*  <dd>{product.productId}</dd>*/}
+                {/*</dl>*/}
+                {/*<dl>*/}
+                {/*  <dt>조회수</dt>*/}
+                {/*  <dd>{viewCount || '0'}</dd>*/}
+                {/*</dl>*/}
+                {/*<dl>*/}
+                {/*  <dt>랭킹</dt>*/}
+                {/*  <dd></dd>*/}
+                {/*</dl>*/}
                 <dl>
-                  <dt>상품번호</dt>
-                  <dd>{product.productId}</dd>
-                </dl>
-                <dl>
-                  <dt>조회수</dt>
-                  <dd>{viewCount || '0'}</dd>
-                </dl>
-                <dl>
-                  <dt>랭킹</dt>
-                  <dd></dd>
-                </dl>
-                <dl>
-                  <dt>중량</dt>
+                  <dt>단위 중량</dt>
                   <dd>{product.servingSize}g</dd>
                 </dl>
                 <dl>
                   <dt>영양정보</dt>
-                  <dd>열량 {product.kcal}kcal</dd>
+                  <dd>{product.kcal}kcal</dd>
                 </dl>
               </div>
               <ProductNutrition nutrition={product} />

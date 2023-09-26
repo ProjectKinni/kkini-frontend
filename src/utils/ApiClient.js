@@ -27,9 +27,9 @@ export function fetchPickProducts(userId, categoryName, filterDTO) {
 }
 
 
-export function fetchRankingProducts() {
+export function fetchRankingProducts(page) {
 
-    return axios.get(`${SERVER_URL}/products/kkini-ranking`)
+    return axios.get(`${SERVER_URL}/products/kkini-ranking` + `?page=${page}`)
         .then(response => {
             return response.data;
         })
@@ -39,12 +39,10 @@ export function fetchRankingProducts() {
         });
 };
 
-export function fetchGreenProducts() {
+export function fetchGreenProducts(page) {
 
-    return axios.get(`${SERVER_URL}/products/kkini-green`)
-
+    return axios.get(`${SERVER_URL}/products/kkini-green` + `?page=${page}`)
         .then(response => {
-            console.log(response.data);
             return response.data;
         })
         .catch(error => {

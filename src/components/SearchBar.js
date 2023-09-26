@@ -34,7 +34,7 @@ function SearchBar({ autocompleteItems, setAutocompleteItems }) {
     if (error) {
       setAutocompleteItems([]);
     } else {
-      setAutocompleteItems(items);
+      // setAutocompleteItems(items);
     }
   }, 1000);
 
@@ -44,7 +44,7 @@ function SearchBar({ autocompleteItems, setAutocompleteItems }) {
 
     if (value.length < 2) {
       setErrorMessage("검색어는 최소 2자 이상이어야 합니다.");
-      setAutocompleteItems([]);
+      // setAutocompleteItems([]);
       return;
     } else {
       setErrorMessage(null);

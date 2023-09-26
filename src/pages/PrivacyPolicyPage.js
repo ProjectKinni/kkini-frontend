@@ -13,12 +13,12 @@ function PrivacyPolicyPage({ setSearchTerm: initialSetSearchTerm }) {
 
     return (
         <div className="privacy-policy">
-            <NavigationBarContainer
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                autocompleteItems={autocompleteItems}
-                setAutocompleteItems={setAutocompleteItems}
-            />
+            {/*<NavigationBarContainer*/}
+            {/*    searchTerm={searchTerm}*/}
+            {/*    setSearchTerm={setSearchTerm}*/}
+            {/*    autocompleteItems={autocompleteItems}*/}
+            {/*    setAutocompleteItems={setAutocompleteItems}*/}
+            {/*/>*/}
             <div className="page-tit content-max">
                 <h1>개인정보 처리방침</h1>
             </div>

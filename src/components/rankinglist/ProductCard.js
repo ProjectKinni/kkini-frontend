@@ -37,8 +37,8 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
 
             <p className="rating-display">
                 <img src={IcStar} alt="별점" />
-                {averageRating ? averageRating : "0.00"}
-                <u>리뷰 {reviewCount} 개</u>
+                {averageRating ? averageRating.toFixed(1) : "0.0"}
+                <u>리뷰 {reviewCount}개</u>
             </p>
 
             {user && (
