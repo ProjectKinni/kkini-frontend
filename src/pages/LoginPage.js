@@ -26,14 +26,14 @@ function LoginPage() {
         </a>
         <a
           className="login-naver"
-          href="http://kkini.net/oauth2/authorization/google"
+          href="http://kkini.net/oauth2/authorization/naver"
         >
           <img src={naverLogo} alt="Naver" />
           네이버계정으로 로그인
         </a>
         <a
           className="login-kakao"
-          href="http://kkini.net/oauth2/authorization/google"
+          href="http://kkini.net/oauth2/authorization/kakao"
         >
           <img src={kakaoLogo} alt="Kakao" />
           카카오계정으로 로그인
