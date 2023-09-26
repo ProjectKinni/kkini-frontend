@@ -198,7 +198,7 @@
   margin-bottom: 12px;
 }
 .review-header .review-rating {
-  margin-top: 3px;
+  margin-top: 6px;
 }
 .review-header .review-rating img {
   width: 18px;
@@ -226,6 +226,13 @@
 .review-image-wrap .review-image {
   width: 10%;
   padding-bottom: 10%;
+}
+.community-list .review-image-wrap {
+  gap: 24px;
+}
+.community-list .review-image-wrap .review-image {
+  width: 18%;
+  padding-bottom: 18%;
 }
 
 @media only screen and (max-width: 768px) {
@@ -327,6 +334,12 @@
   }
   .product-review .rating-display span {
     font-size: 13px;
+  .community-list .review-image-wrap {
+    gap: 8px;
+  }
+  .community-list .review-image-wrap .review-image {
+    width: 25%;
+    padding-bottom: 25%;
   }
 }
 
