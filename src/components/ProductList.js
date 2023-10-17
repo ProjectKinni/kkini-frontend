@@ -5,7 +5,7 @@ import { incrementViewCount } from "../utils/ApiClient";
 import { useUser } from "./UserContext";
 import ProductLikeButton from "./ProductLikeButton";
 
-function ProductList({ categoryGroups, noProductsFound }) {
+function ProductList({ categoryGroups, noProductsFound, searchTerm }) {
     const navigate = useNavigate();
     const { user } = useUser();
 
@@ -22,7 +22,7 @@ function ProductList({ categoryGroups, noProductsFound }) {
 
     const allProducts = Object.values(categoryGroups).flat();
 
-    if (noProductsFound) {
+    if (noProductsFound || searchTerm === "") {
         return <p className="no-data">해당 상품이 없습니다.</p>;
     }
 

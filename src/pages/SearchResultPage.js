@@ -73,6 +73,7 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
             <ProductList
                 categoryGroups={categoryGroups}
                 noProductsFound={noProductsFound}
+                searchTerm={searchTerm}
             />
           </div>
         </div>
