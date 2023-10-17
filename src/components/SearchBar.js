@@ -41,9 +41,8 @@ function SearchBar({ autocompleteItems, setAutocompleteItems }) {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
-
-    if (value.length < 2) {
-      setErrorMessage("검색어는 최소 2자 이상이어야 합니다.");
+    if (value.length < 1) {
+      //setErrorMessage("검색어를 2자 이상 입력해주세요");
       // setAutocompleteItems([]);
       return;
     } else {
