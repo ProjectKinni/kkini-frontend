@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function NavButtonsComponent() {
@@ -9,6 +9,11 @@ function NavButtonsComponent() {
   const getButtonClassName = (path) => {
     return location.pathname === path ? "on" : "";
   };
+
+    // 페이지 경로가 변경될 때마다 최상단으로 스크롤 이동
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]); // location.pathname이 변경될 때마다 useEffect가 호출됨
 
   return (
     <div className="nav-buttons">
