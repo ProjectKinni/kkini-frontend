@@ -51,6 +51,9 @@
 .image-slider .btn-right {
     right: 18px;
 }
+.modal-img-wrap {
+    width: 400px;
+}
 .modal-img-wrap .review-image-wrap {
     margin-top: 26px;
 }
@@ -63,7 +66,7 @@
 .modal-content .review-card {
     padding: 10px 0 0;
     border: none;
-    width: calc(100% - 526px);
+    width: calc(100% - 400px);
 }
 
 @media only screen and (max-width: 1024px) {

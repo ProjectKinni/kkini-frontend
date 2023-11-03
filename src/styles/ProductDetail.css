@@ -212,17 +212,15 @@
   font-size: 15px;
 }
 .review-list {
-  border-top: 1px solid #cdcdcd;
   text-align: left;
   margin-top: 32px;
 }
 .review-card-wrap {
   padding-bottom: 40px;
-  border-top: 1px solid #cdcdcd;
 }
 .review-card {
   padding: 24px 0;
-  border-bottom: 1px solid #cdcdcd;
+  border-top: 1px solid #cdcdcd;
 }
 .review-card:last-child {
   border-bottom: none;
