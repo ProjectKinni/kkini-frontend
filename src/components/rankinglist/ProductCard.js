@@ -71,28 +71,34 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
                     <ul className="rating-wrap">
                         <li>
                             <span className="rating-name">맛</span>
-                            <div className="review-rating">
-                                <img src={IcStar} alt="별점" />
-                                <img src={IcStar} alt="별점" />
-                                <img src={IcStar} alt="별점" />
-                                <img src={IcStar} alt="별점" />
+                            <div className="star-wrap">
+                                <div className="review-rating">
+                                    <img src={IcStar} alt="별점" />
+                                    <img src={IcStar} alt="별점" />
+                                    <img src={IcStar} alt="별점" />
+                                    <img src={IcStar} alt="별점" />
+                                </div>
+                                <span className="num-rating">5.0</span>
                             </div>
-                            <span className="num-rating">5.0</span>
                         </li>
                         <li>
                             <span className="rating-name">가성비</span>
-                            <div className="review-rating">
-                                <img src={IcStar} alt="별점" />
-                                <img src={IcStar} alt="별점" />
+                            <div className="star-wrap">
+                                <div className="review-rating">
+                                    <img src={IcStar} alt="별점" />
+                                    <img src={IcStar} alt="별점" />
+                                </div>
+                                <span className="num-rating">5.0</span>
                             </div>
-                            <span className="num-rating">5.0</span>
                         </li>
                         <li>
                             <span className="rating-name">친환경 포장</span>
-                            <div className="review-rating">
-                                <img src={IcStar} alt="별점" />
+                            <div className="star-wrap">
+                                <div className="review-rating">
+                                    <img src={IcStar} alt="별점" />
+                                </div>
+                                <span className="num-rating">1.2</span>
                             </div>
-                            <span className="num-rating">1.2</span>
                         </li>
                     </ul>
                 </div>

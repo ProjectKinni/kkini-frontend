@@ -179,6 +179,10 @@
 .item-info .rating-wrap li .rating-name {
     width: 92px;
 }
+.item-info .rating-wrap li .star-wrap {
+    display: flex;
+    align-items: center;
+}
 .product-item .item-info .rating-wrap .review-rating {
     display: flex;
     align-items: center;
@@ -271,22 +275,16 @@
         height: 160px;
         margin-right: 18px;
     }
-    .product-item .item-title {
-        display: grid;
-    }
     .product-item .company {
         font-size: 12px;
-        order: 2;
     }
     .product-item h4 {
         font-size: 16px;
         margin: 3px 0 7px;
-        order: 3;
     }
     .product-item .rating-display {
         font-size: 12px;
         gap: 4px;
-        order: 4;
     }
     .product-item .rating-display img {
         width: 16px;
@@ -298,8 +296,7 @@
     }
     .product-item .item-title .tag-container {
         position: unset;
-        margin-bottom: 10px;
-        order: 1;
+        margin-top: 10px;
     }
     .tag-container button span {
         padding: 5px 6px;
@@ -328,5 +325,18 @@
     .product-item .item-info .rating-wrap .review-rating img {
         width: 15px;
         height: 15px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .product-item .img-wrapper {
+        width: 120px;
+        height: 120px;
+    }
+    .product-item .item-info > ul li {
+        flex-direction: column;
+    }
+    .item-info .rating-wrap li .star-wrap {
+        margin-top: 5px;
     }
 }
