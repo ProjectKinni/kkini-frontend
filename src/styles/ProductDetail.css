@@ -43,6 +43,7 @@
   word-break: break-all;
 }
 .product-detail-page h3 {
+  width: 100%;
   font-size: 18px;
   border-top: 1px solid #cdcdcd;
   padding-top: 36px;
@@ -117,19 +118,42 @@
 /* review form */
 .form-review.rating {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 12px 0 8px;
-  gap: 10px;
+  border-bottom: 1px dashed #ddd;
+  padding: 14px 0;
 }
 .form-review .tit {
   font-size: 15px;
+  margin-bottom: 8px;
 }
 .form-review.rating .star-rating {
   cursor: pointer;
-  height: 32px;
 }
 .form-review.rating .star-rating img {
-  width: 28px;
+  width: 34px;
+  vertical-align: middle;
+}
+.form-review.rating.rating-top {
+  margin-top: 16px;
+  border-top: 5px solid #f8f8f8;    
+  border-bottom: 5px solid #f8f8f8;    
+  padding: 22px 0;
+}
+.form-review.rating.rating-top .tit {
+  font-size: 17px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.form-review.rating.rating-sub .star-rating img {
+  width: 24px;
+}
+.form-review.rating.rating-sub .star-rating + .tit {
+  margin-left: 10px;
+}
+.form-review.rating.rating-last {
+  margin-bottom: 24px;
 }
 .form-review.text .review-write {
   position: relative;
@@ -143,19 +167,27 @@
 #imagePreviews {
   text-align: left;
   margin-top: 24px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   display: flex;
   gap: 12px;
 }
 #imagePreviews .img-wrapper {
+  position: relative;
+  height: 0;
   width: 6%;
   padding-bottom: 6%;
+}
+#imagePreviews .img-wrapper > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 #imagePreviews .img-wrapper .btn-close {    
   position: absolute;
   bottom: 0;
   right: 0;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.8);
   padding: 4px;
 }
 #imagePreviews .img-wrapper .btn-close img {    
@@ -180,8 +212,9 @@
   font-size: 15px;
 }
 .review-list {
+  border-top: 1px solid #cdcdcd;
   text-align: left;
-  margin-top: 36px;
+  margin-top: 32px;
 }
 .review-card-wrap {
   padding-bottom: 40px;
@@ -224,8 +257,16 @@
   gap: 10px;
 }
 .review-image-wrap .review-image {
+  position: relative;
+  height: 0;
   width: 10%;
   padding-bottom: 10%;
+}
+.review-image-wrap .review-image > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 .community-list .review-image-wrap {
   gap: 24px;

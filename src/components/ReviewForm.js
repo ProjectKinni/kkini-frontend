@@ -84,8 +84,20 @@ const ReviewForm = ({onSubmit}) => {
             {!hasReviewed && (
                 <>
                     <h3>리뷰 작성하기</h3>
-                    <div className="form-review rating">
-                        <span className="tit">평점</span>
+                    <div className="form-review rating rating-top">
+                        <span className="tit">상품 만족도</span>
+                        <StarRating value={rating} onChange={handleRatingChange}/>
+                    </div>
+                    <div className="form-review rating rating-sub">
+                        <span className="tit">맛</span>
+                        <StarRating value={rating} onChange={handleRatingChange}/>
+                    </div>
+                    <div className="form-review rating rating-sub">
+                        <span className="tit">가성비</span>
+                        <StarRating value={rating} onChange={handleRatingChange}/>
+                    </div>
+                    <div className="form-review rating rating-sub rating-last">
+                        <span className="tit">친환경 포장</span>
                         <StarRating value={rating} onChange={handleRatingChange}/>
                     </div>
                     <div className="form-review text">
