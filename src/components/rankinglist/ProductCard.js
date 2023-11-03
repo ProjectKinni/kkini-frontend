@@ -33,7 +33,10 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
                 <img src={imgSrc} className="product-img" alt={productName} />
             </div>
 
-            <h4>{productName}</h4>
+            <div className="con-wrapper">
+                <div className="item-title">
+                    <p className="company">(주) 끼니</p>
+                    <h4>{productName}</h4>
 
             <p className="rating-display">
                 <img src={IcStar} alt="별점" />
@@ -56,6 +59,43 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
                     <TagComponent key={idx} texts={[tag.text]} index={tag.index} />
                 )}
 
+                    </div>
+                </div>
+
+                <div className="item-info">
+                    <ul className="nutrients">
+                        <li>탄수화물 : 10g</li>
+                        <li>단백질 : 3g</li>
+                        <li>지방 : 1.5g</li>
+                    </ul>
+                    <ul className="rating-wrap">
+                        <li>
+                            <span className="rating-name">맛</span>
+                            <div className="review-rating">
+                                <img src={IcStar} alt="별점" />
+                                <img src={IcStar} alt="별점" />
+                                <img src={IcStar} alt="별점" />
+                                <img src={IcStar} alt="별점" />
+                            </div>
+                            <span className="num-rating">5.0</span>
+                        </li>
+                        <li>
+                            <span className="rating-name">가성비</span>
+                            <div className="review-rating">
+                                <img src={IcStar} alt="별점" />
+                                <img src={IcStar} alt="별점" />
+                            </div>
+                            <span className="num-rating">5.0</span>
+                        </li>
+                        <li>
+                            <span className="rating-name">친환경 포장</span>
+                            <div className="review-rating">
+                                <img src={IcStar} alt="별점" />
+                            </div>
+                            <span className="num-rating">1.2</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
         </div>

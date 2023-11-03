@@ -10,18 +10,18 @@ function TagComponent({ texts }) {
                 switch(index) {
                         //필터
                     // case 0:
-                    //     tagStyle = { backgroundColor: 'orange' };
-                    //     textStyle = { color: 'white' };
+                    //     tagStyle = { backgroundColor: '#FF6600', border: '1px solid #FF6600' };
+                    //     textStyle = { color: '#fff' };
                     //     break;
                         //카테고리
                     case 1:
-                        tagStyle = { backgroundColor: 'white' };
-                        textStyle = { color: 'orange' };
+                        tagStyle = { backgroundColor: '#fff', border: '1px solid #FF6600' };
+                        textStyle = { color: '#FF6600' };
                         break;
                         //끼니 그린
                     case 2:
-                        tagStyle = { backgroundColor: 'green' };
-                        textStyle = { color: 'white' };
+                        tagStyle = { backgroundColor: '#69CF23', border: '1px solid #69CF23' };
+                        textStyle = { color: '#fff' };
                         imageSrc = {whiteGreenIcon};
                         text = "그린";
                         break;
@@ -31,7 +31,7 @@ function TagComponent({ texts }) {
 
                 return (
                     <button key={index} style={tagStyle} disabled>
-                        {imageSrc && <img src={imageSrc} alt="button icon" style={{ marginRight: '5px' }} />}
+                        {imageSrc && <img src={imageSrc} alt="button icon" />}
                         <span style={textStyle}>{text}</span>
                     </button>
                 );
