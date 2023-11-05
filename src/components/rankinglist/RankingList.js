@@ -71,11 +71,18 @@ function RankingList({fetchFunction}) {
                     productName={product.productName}
                     onProductClick={() => handleProductClick(product.productId)}
                     averageRating={product.averageRating}
+                    averageTasteRating={product.averageTasteRating}
+                    averagePriceRating={product.averagePriceRating}
+                    averageEcoRating={product.averageEcoRating}
                     //reviewCount 가지고 오는 것은 Back에서 dto를 통해서 가지고 오고 있음. 실제 reviewCount 컬럼이 있는 것은 아님.
                     reviewCount={product.reviewCount}
                     // filter = {?}
                     category={product.category}
                     isGreen={product.isGreen}
+                    carbohydrate={product.carbohydrate}
+                    protein={product.protein}
+                    fat={product.fat}
+                    makerName={product.makerName || "끼니"}
                 />
             ))}
         </div>

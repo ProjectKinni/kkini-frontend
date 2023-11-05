@@ -45,9 +45,12 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
             getUserInfo().then(userData => setUser(userData));
         }, []);
 
-        const handleSubmitReview = async (rating, content, images) => {
+        const handleSubmitReview = async (rating, tasteRating, priceRating, ecoRating, content, images) => {
             const formData = new FormData();
             formData.append('rating', rating);
+            formData.append('tasteRating', tasteRating);
+            formData.append('priceRaiting', priceRating);
+            formData.append('ecoRating', ecoRating);
             formData.append('content', content);
             images.forEach((image, index) => {
                 formData.append(`image${index + 1}`, image);

@@ -7,6 +7,9 @@ import IcDelete from "../assets/images/ic_close.png";
 
 const ReviewForm = ({onSubmit}) => {
     const [rating, setRating] = useState(5);
+    const [tasteRating, setTasteRating] = useState(5);
+    const [priceRating, setPriceRating] = useState(5);
+    const [ecoRating, setEcoRating] = useState(5);
     const [content, setContent] = useState('');
     const [images, setImages] = useState([]);
     const [imagePreviews, setImagePreviews] = useState([]);
@@ -30,6 +33,18 @@ const ReviewForm = ({onSubmit}) => {
 
     const handleRatingChange = (newRating) => {
         setRating(newRating);
+    };
+
+    const handleTasteRatingChange = (newRating) => {
+        setTasteRating(newRating);
+    };
+
+    const handlePriceRatingChange = (newRating) => {
+        setPriceRating(newRating);
+    };
+
+    const handleEcoRatingChange = (newRating) => {
+        setEcoRating(newRating);
     };
 
     const handleImageChange = (e) => {
@@ -57,12 +72,12 @@ const ReviewForm = ({onSubmit}) => {
     };
 
     const handleSubmit = () => {
-        onSubmit(rating, content, images);
+        onSubmit(rating, tasteRating, priceRating, ecoRating, content, images);
         setHasReviewed(true);
-        setRating(5);
-        setContent('');
-        setImages([]);
-        setImagePreviews([]);
+        // setRating(5);
+        // setContent('');
+        // setImages([]);
+        // setImagePreviews([]);
     };
 
     return (
@@ -90,15 +105,15 @@ const ReviewForm = ({onSubmit}) => {
                     </div>
                     <div className="form-review rating rating-sub">
                         <span className="tit">맛</span>
-                        <StarRating value={rating} onChange={handleRatingChange}/>
+                        <StarRating value={tasteRating} onChange={handleTasteRatingChange}/>
                     </div>
                     <div className="form-review rating rating-sub">
                         <span className="tit">가성비</span>
-                        <StarRating value={rating} onChange={handleRatingChange}/>
+                        <StarRating value={priceRating} onChange={handlePriceRatingChange}/>
                     </div>
                     <div className="form-review rating rating-sub rating-last">
                         <span className="tit">친환경 포장</span>
-                        <StarRating value={rating} onChange={handleRatingChange}/>
+                        <StarRating value={ecoRating} onChange={handleEcoRatingChange}/>
                     </div>
                     <div className="form-review text">
                         <div className="review-write">
