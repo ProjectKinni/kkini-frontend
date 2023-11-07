@@ -49,7 +49,7 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
             const formData = new FormData();
             formData.append('rating', rating);
             formData.append('tasteRating', tasteRating);
-            formData.append('priceRaiting', priceRating);
+            formData.append('priceRating', priceRating);
             formData.append('ecoRating', ecoRating);
             formData.append('content', content);
             images.forEach((image, index) => {
