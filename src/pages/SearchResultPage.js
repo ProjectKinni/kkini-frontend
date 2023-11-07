@@ -66,6 +66,8 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
               onCategoryChange={setSelectedCategories}
               onFilterChange={handleFilterChange}
               searchTerm={searchTerm}
+              autocompleteItems={autocompleteItems}
+              setAutocompleteItems={setAutocompleteItems}
               filters={filters}
               kkiniGreenCheck={kkiniGreenCheck}
           />

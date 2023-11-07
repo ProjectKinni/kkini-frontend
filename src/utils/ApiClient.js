@@ -26,7 +26,6 @@ export function fetchPickProducts(userId, categoryName, filterDTO) {
         });
 }
 
-
 export function fetchRankingProducts(page) {
 
     return axios.get(`${SERVER_URL}/products/kkini-ranking` + `?page=${page}`)
@@ -55,9 +54,10 @@ export function fetchGreenProducts(page) {
 export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked, page) => {
     let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}&page=${page}`;
 
+    console.log(`Fetching products with searchTerm: ${searchTermFromParams}, page: ${page}`); // 로그 추가
 
     if (selectedCategories && selectedCategories.length > 0) {
-        endpoint += `&categoryName=${selectedCategories.join(",")}`;
+        endpoint += `&category=${selectedCategories.join(",")}`;
     }
 
     if (isKkiniChecked) {
@@ -90,25 +90,25 @@ export const fetchProducts = async (searchTermFromParams, selectedCategories, fi
         return {error: error.message || "Error fetching products.", items: []};
     }
 };
- 
-export const fetchAutocompleteSuggestions = async (searchTerm) => {
-    let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
-
-    try {
-        const response = await fetch(endpoint);
-        if (!response.ok) {
-            return {error: "Network response was not ok", items: []};
-        }
-        const data = await response.json();
-        if (Array.isArray(data)) {
-            return {items: [...new Set(data)]};
-        } else {
-            return {error: "Unexpected response format.", items: []};
-        }
-    } catch (error) {
-        return {error: error.message || "Error fetching autocomplete suggestions.", items: []};
-    }
-};
+//
+// export const fetchAutocompleteSuggestions = async (searchTerm) => {
+//     let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
+//
+//     try {
+//         const response = await fetch(endpoint);
+//         if (!response.ok) {
+//             return {error: "Network response was not ok", items: []};
+//         }
+//         const data = await response.json();
+//         if (Array.isArray(data)) {
+//             return {items: [...new Set(data)]};
+//         } else {
+//             return {error: "Unexpected response format.", items: []};
+//         }
+//     } catch (error) {
+//         return {error: error.message || "Error fetching autocomplete suggestions.", items: []};
+//     }
+// };
 
 export const fetchProductDetail = async (productId, userId) => {
     try {
