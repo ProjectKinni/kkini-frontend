@@ -52,7 +52,7 @@ function GreenRankingPage({
             {/*/>*/}
 
             <div className="page-tit content-max green">
-                <h1>끼니 그린 랭킹</h1>
+                <h1>끼니 그린</h1>
             <p>간편하게, 건강하게!</p>
             </div>
             <div className="product-wrap content-max">

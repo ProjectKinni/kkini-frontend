@@ -18,7 +18,12 @@ function RankingList({fetchFunction}) {
 
     const loadMore = async () => {
         try {
-            const response = await fetchFunction(page) // 페이지 번호를 인자로 전달
+            let response;
+            if (fetchFunction.isPickProduct) {
+                response = await fetchFunction(user.userId, page)
+            } else {
+                response = await fetchFunction(page) // 페이지 번호를 인자로 전달
+            }
             setProducts([...products, ...response])
         } catch (error) {
             console.error('Error fetching reviews:', error);

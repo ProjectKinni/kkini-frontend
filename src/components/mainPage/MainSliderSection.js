@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import icLink from "../../assets/images/ic_link.svg";
 import icLinkGreen from "../../assets/images/ic_link_green.svg";
 import ProductSlickSlider from "../mainPage/ProductSlickSlider";
-import { fetchPickProducts, fetchTopRankingProducts, fetchTopGreenProducts } from "../../utils/ApiClient";
+import { fetchPickTopProducts, fetchTopRankingProducts, fetchTopGreenProducts } from "../../utils/ApiClient";
 import { useUser } from "../UserContext";
 
 function MainSliderSection({
@@ -22,7 +22,7 @@ function MainSliderSection({
     const fetchFunction = useMemo(() => {
         switch (type) {
             case "pick":
-                return () => fetchPickProducts(user.userId, selectedCategories, filters)
+                return () => fetchPickTopProducts(user.userId, selectedCategories, filters)
                     .then(data => {
                         if (data.length === 0) {
                             throw new Error("추천 드릴 상품이 없습니다");
@@ -48,12 +48,12 @@ function MainSliderSection({
             break;
         case "ranking":
             title = "끼니 랭킹";
-            subtitle = "현재 인기만점 제품";
+            subtitle = "끼니가 선정한 최고의 제품";
             buttonLink = "/ranking";
             buttonImage = icLink;
             break;
         case "green":
-            title = "끼니 그린 랭킹";
+            title = "끼니 그린";
             subtitle = "간편하고, 건강하게!";
             buttonLink = "/green-ranking";
             buttonImage = icLinkGreen;
