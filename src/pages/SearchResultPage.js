@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../styles/SearchResultPage.css";
 import { useLocation } from "react-router-dom";
 import useSearchResults from "../components/UseSearchResults";
-import NavigationContainer from "../containers/NavigationBarContainer";
+import NavigationBarContainer from "../containers/NavigationBarContainer";
 import CategoryBarContainer from "../containers/CategoryBarContainer";
 import ProductList from "../components/ProductList";
 import Footer from "../components/Footer";
 
-function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
+function SearchResultPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialSearchTerm = queryParams.get("searchTerm");
@@ -18,29 +18,34 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [filters, setFilters] = useState({
     isLowCalorie: false,
+    isHighCalorie: false,
     isSugarFree: false,
     isLowSugar: false,
     isLowCarb: false,
+    isHighCarb: false,
     isKeto: false,
-    isTransFat: false,
+    isLowTransFat: false,
     isHighProtein: false,
     isLowSodium: false,
-    isCholesterol: false,
-    isSaturatedFat: false,
+    isLowCholesterol: false,
+    isLowSaturatedFat: false,
     isLowFat: false,
+    isHighFat: false
   });
 
   useEffect(() => {
-    setSearchTerm(initialSearchTerm);
-  }, [location]);
+    // URL이 변경될 때마다 searchTerm을 업데이트
+    const newSearchTerm = queryParams.get("searchTerm");
+    setSearchTerm(newSearchTerm); // 이 부분에서 initialSearchTerm 대신 newSearchTerm 사용
+  }, [location]); // 의존성 배열에 location 추가
 
-  const { categoryGroups, loading, error, noProductsFound } = useSearchResults(
+  // useSearchResults 훅을 사용하여 검색 결과와 상태 관리
+  const { categoryGroups, loading, error, noProductsFound, products } = useSearchResults(
       searchTerm,
       selectedCategories,
       filters,
       kkiniGreenCheck
   );
-
   const handleFilterChange = (updatedFilters) => {
     setFilters(updatedFilters);
   };
@@ -51,12 +56,6 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
 
   return (
       <div className="search-result-page">
-        {/*<NavigationContainer*/}
-        {/*    searchTerm={searchTerm}*/}
-        {/*    setSearchTerm={setSearchTerm}*/}
-        {/*    autocompleteItems={autocompleteItems}*/}
-        {/*    setAutocompleteItems={setAutocompleteItems}*/}
-        {/*/>*/}
         <div className="page-tit content-max">
           <h1>"{searchTerm}"에 대한 검색결과</h1>
         </div>
@@ -72,7 +71,9 @@ function SearchResultPage({ setSearchTerm: initialSetSearchTerm }) {
               kkiniGreenCheck={kkiniGreenCheck}
           />
           <div className="product-list-wrapper">
+            { noProductsFound && <div>검색 결과가 없습니다.</div> }
             <ProductList
+                products={products}
                 categoryGroups={categoryGroups}
                 noProductsFound={noProductsFound}
                 searchTerm={searchTerm}
