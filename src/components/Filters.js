@@ -11,16 +11,19 @@ function Filters({
 }) {
   const [filters, setFilters] = useState({
     isLowCalorie: false,
+    isHighCalorie: false,
     isSugarFree: false,
     isLowSugar: false,
     isLowCarb: false,
+    isHighCarb: false,
     isKeto: false,
-    isTransFat: false,
+    isLowTransFat: false,
     isHighProtein: false,
     isLowSodium: false,
-    isCholesterol: false,
-    isSaturatedFat: false,
+    isLowCholesterol: false,
+    isLowSaturatedFat: false,
     isLowFat: false,
+    isHighFat: false
   });
 
   // 0919 최진주 작성 Accordion 추가
@@ -63,24 +66,25 @@ function Filters({
     });
   };
 
-  //송민지 필터명 변경
   function filterLabel(filterName) {
     const labels = {
       isLowCalorie: "저칼로리",
+      isHighCalorie: "고칼로리",
       isSugarFree: "무설탕",
       isLowSugar: "저당",
       isLowCarb: "저탄수화물",
+      isHighCarb: "고탄수화물",
       isKeto: "키토",
-      isTransFat: "저트랜스지방",
+      isLowTransFat: "저트랜스지방",
       isHighProtein: "고단백",
       isLowSodium: "저염",
-      isCholesterol: "저콜레스테롤",
-      isSaturatedFat: "저포화지방",
-      isLowFat: "저지방"
+      isLowCholesterol: "저콜레스테롤",
+      isLowSaturatedFat: "저포화지방",
+      isLowFat: "저지방",
+      isHighFat: "고지방"
     };
     return labels[filterName] || filterName;
   }
-
 
   return (
     <div className={`category-wrap accordion ${accordionOpen ? "on" : "off"}`}>

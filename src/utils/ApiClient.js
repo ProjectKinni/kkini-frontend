@@ -26,7 +26,6 @@ export function fetchPickProducts(userId, categoryName, filterDTO) {
         });
 }
 
-
 export function fetchRankingProducts(page) {
 
     return axios.get(`${SERVER_URL}/products/kkini-ranking` + `?page=${page}`)
@@ -55,58 +54,50 @@ export function fetchGreenProducts(page) {
 export const fetchProducts = async (searchTermFromParams, selectedCategories, filters, isKkiniChecked, page) => {
     let endpoint = `${SERVER_URL}/api/products/search?searchTerm=${encodeURIComponent(searchTermFromParams)}&page=${page}`;
 
+    console.log(`Fetching products with searchTerm: ${searchTermFromParams}, categories: ${selectedCategories}, filters: ${JSON.stringify(filters)}, isGreen: ${isKkiniChecked}, page: ${page}`);
 
     if (selectedCategories && selectedCategories.length > 0) {
-        endpoint += `&categoryName=${selectedCategories.join(",")}`;
+        endpoint += `&category=${selectedCategories.join(",")}`;
     }
 
     if (isKkiniChecked) {
         endpoint += `&isGreen=true`;
     }
+
     Object.entries(filters).forEach(([key, value]) => {
         if (value) {
-            endpoint += `&${key}=${value}`;
+            endpoint += `&${key}=${encodeURIComponent(value)}`;
         }
     });
-    try {
-        const response = await fetch(endpoint);
-        if (!response.ok) {
-            const text = await response.text();
-            console.error("Server Error:", text);
-            throw new Error('Network response was not ok');
-        }
-        const text = await response.text();
-        const data = text ? JSON.parse(text) : null;
-        if (data === null) {
-            return {noProductsFound: true, items: []};
-        } else if (data.message) {
-            return {error: data.message, items: []};
-        } else if (Array.isArray(data)) {
-            return {items: data};
-        } else {
-            return {error: "Unexpected response format.", items: []};
-        }
-    } catch (error) {
-        return {error: error.message || "Error fetching products.", items: []};
-    }
-};
- 
-export const fetchAutocompleteSuggestions = async (searchTerm) => {
-    let endpoint = `${SERVER_URL}/api/products/autocomplete?searchTerm=${encodeURIComponent(searchTerm)}`;
+
+    console.log(`Final endpoint: ${endpoint}`); // 최종 요청 URL 로그
 
     try {
         const response = await fetch(endpoint);
-        if (!response.ok) {
-            return {error: "Network response was not ok", items: []};
-        }
+
+        console.log(`Received response status: ${response.status}`); // 응답 상태 코드 로그
+
         const data = await response.json();
-        if (Array.isArray(data)) {
-            return {items: [...new Set(data)]};
+        console.log('Received data:', data); // 전체 응답 데이터 로그
+
+        if (data && Array.isArray(data)) { // Postman 테스트 결과에 따르면 배열로 응답을 받습니다.
+            // API 응답이 배열일 경우 바로 아이템으로 간주합니다.
+            return { items: data, pageDetails: null }; // 페이지 상세는 이 경우 null로 설정합니다.
+        } else if (data && data.content && Array.isArray(data.content)) {
+            // 'content'가 있는 경우 이 구조를 따릅니다.
+            return { items: data.content, pageDetails: {
+                    last: data.last,
+                    totalPages: data.totalPages,
+                    totalElements: data.totalElements,
+                    size: data.size,
+                    number: data.number,
+                }};
         } else {
-            return {error: "Unexpected response format.", items: []};
+            throw new Error("Unexpected response format, no 'content' array found.");
         }
     } catch (error) {
-        return {error: error.message || "Error fetching autocomplete suggestions.", items: []};
+        console.error(`Error fetching products: ${error}`, error); // 에러 로깅 강화
+        return { error: error.message || "Error fetching products.", items: [] };
     }
 };
 

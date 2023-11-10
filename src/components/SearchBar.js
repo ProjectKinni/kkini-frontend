@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { debounce } from "lodash";
-import { fetchAutocompleteSuggestions } from "../utils/ApiClient";
+import { fetchProducts } from "../utils/ApiClient";
 
 const SERVER_URL = "http://localhost:8080";
 
@@ -29,15 +28,6 @@ function SearchBar({ autocompleteItems, setAutocompleteItems }) {
     navigate(`/search-results?searchTerm=${searchTerm}`);
   };
 
-  const debouncedFetch = debounce(async (value) => {
-    const { error, items } = await fetchAutocompleteSuggestions(value);
-    if (error) {
-      setAutocompleteItems([]);
-    } else {
-      // setAutocompleteItems(items);
-    }
-  }, 1000);
-
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
@@ -48,8 +38,6 @@ function SearchBar({ autocompleteItems, setAutocompleteItems }) {
     } else {
       setErrorMessage(null);
     }
-
-    debouncedFetch(value);
   };
 
   return (

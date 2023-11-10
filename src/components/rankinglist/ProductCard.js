@@ -3,7 +3,7 @@ import IcStar from "../../assets/images/star_on.png";
 import TagComponent from './TagComponent'
 import ProductLikeButton from "../ProductLikeButton";
 import { useNavigate } from "react-router-dom";
-import StarRatingForProductCard from "../rankinglist/StarRatingForProductCard"
+import StarRatingForProductCard from '../rankinglist/StarRatingForProductCard';
 
 function ProductCard({ productLink, imgSrc, productName, reviewCount,
                          filters, category, isGreen,

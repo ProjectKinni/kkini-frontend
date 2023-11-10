@@ -2,8 +2,10 @@ import React from 'react';
 import KkiniChecked from '../components/KkiniChecked';
 import Categories from '../components/Categories';
 import Filters from '../components/Filters';
+import SearchBar from '../components/SearchBar';
 
-function CategoryBarContainer({ onKkiniChecked, onCategoryChange, onFilterChange, filters }) {
+function CategoryBarContainer({ onKkiniChecked, onCategoryChange, onFilterChange,
+                                  filters, autocompleteItems, setAutocompleteItems }) {
     return (
         <div className="category-bar-container">
             <KkiniChecked onKkiniChecked={onKkiniChecked} />
