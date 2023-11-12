@@ -33,7 +33,7 @@ function NavButtonsComponent() {
         className={`tab-green ${getButtonClassName("/green-ranking")}`}
         onClick={() => navigate("/green-ranking")}
       >
-        끼니 그린 랭킹
+        끼니 그린
       </button>
       <button
         className={getButtonClassName("/community")}

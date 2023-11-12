@@ -3,13 +3,13 @@ import axios from 'axios';
 const SERVER_URL = "http://localhost:8080";
 
 
-export function fetchPickProducts(userId, categoryName, filterDTO) {
+export function fetchPickTopProducts(userId, categoryName, filterDTO) {
     console.log("API Params:", {
         userId,
         categoryName,
         ...filterDTO
     });
-    return axios.get(`${SERVER_URL}/products/kkini-pick-products`, {
+    return axios.get(`${SERVER_URL}/products/kkini-pick-products/top`, {
         params: {
             userId: userId,
             categoryName: categoryName,
@@ -26,17 +26,24 @@ export function fetchPickProducts(userId, categoryName, filterDTO) {
         });
 }
 
-export function fetchRankingProducts(page) {
-
-    return axios.get(`${SERVER_URL}/products/kkini-ranking` + `?page=${page}`)
+export function fetchPickProducts(userId, page) {
+    console.log("API Params:", {
+        userId,
+        page
+    });
+    return axios.get(`${SERVER_URL}/products/kkini-pick?userId=${userId}&page=${page}`)
         .then(response => {
+            console.log(response.data);
             return response.data;
         })
-        .catch(error => {
-            console.error('Error fetching products:', error);
-            throw error;
+        .catch((error) => {
+            console.error("Error fetching pick products:", error);
+            console.error("Error Details:", error.response || error.request);
         });
-};
+}
+
+fetchPickProducts.isPickProduct = true;
+
 
 export function fetchGreenProducts(page) {
 

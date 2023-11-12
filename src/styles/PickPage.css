@@ -1,0 +1,55 @@
+@import url(./Reset.css);
+
+.btn-login {
+    width: auto;
+    height: 26px;
+    background: #f60;
+    padding: 0px 12px;
+    border-radius: 16px;
+    color: #fff;
+}
+
+.btn-login + p,
+.ranking-section .no-data {
+    margin-top: 20px;
+    font-size: 15px;
+    color: #8a8a8a;
+    background: #f7f7f7;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.btn-login + p {
+    position: relative;
+    padding: 128px 0 80px;
+}
+.btn-login + p::before {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 74px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url(../assets/images/ic_lock.svg) no-repeat center;
+    background-size: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .btn-login {
+        height: 22px;
+        font-size: 11px;
+        padding: 0 7px;
+    }
+    .btn-login + p {
+        font-size: 13px;
+        line-height: 1.4em;
+        padding: 78px 0 40px;
+    }
+    .btn-login + p::before {
+        background-size: 24px;
+        top: 34px;
+    }
+
+}

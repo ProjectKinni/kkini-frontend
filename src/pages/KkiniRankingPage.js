@@ -45,7 +45,7 @@ function KkiniRankingPage({
         <>
             <div className="page-tit content-max">
                 <h1>끼니 랭킹</h1>
-                <p>인기만점상품</p>
+                <p>끼니가 선정한 최고의 제품</p>
             </div>
             <div className="product-wrap content-max">
                 <CategoryBarContainer
