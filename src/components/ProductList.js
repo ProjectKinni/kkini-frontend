@@ -21,9 +21,16 @@ function ProductList({ categoryGroups, noProductsFound, searchTerm }) {
     };
 
     const allProducts = Object.values(categoryGroups).flat();
+    console.log("카테고리 그룹", categoryGroups); // 로깅 추가
+    console.log("검색 결과 없음:", noProductsFound); // 로깅 추가
+    console.log("검색어:", searchTerm); // 로깅 추가
 
     if (noProductsFound || searchTerm === "") {
         return <p className="no-data">해당 상품이 없습니다.</p>;
+    }
+
+    if (!allProducts.length) {
+        return <p className="no-data">상품을 찾을 수 없습니다. 검색 조건을 확인해주세요.</p>;
     }
 
     return (
@@ -32,6 +39,7 @@ function ProductList({ categoryGroups, noProductsFound, searchTerm }) {
                 <div
                     key={item.productId}
                     className="product-item"
+                    onClick={() => handleProductClick(item.productId)}
                 >
                     {user && (
                         <ProductLikeButton
@@ -39,18 +47,16 @@ function ProductList({ categoryGroups, noProductsFound, searchTerm }) {
                             productId={item.productId}
                         />
                     )}
-                    <div onClick={() => handleProductClick(item.productId)}>
-                        <div className="img-wrapper">
-                            <img src={item.image} alt={item.productName} />
-                        </div>
-                        <h4>{item.productName}</h4>
-                        <p className="rating-display">
-                            <img src={IcStar} alt="별점" />
-                            {(item.averageRating !== null && item.averageRating !== 'n')
-                                ? item.averageRating
-                                : "0.0"} (리뷰 {item.reviewCount ? item.reviewCount : 0}개)
-                        </p>
+                    <div className="img-wrapper">
+                        <img src={item.image} alt={item.productName} />
                     </div>
+                    <h4>{item.productName}</h4>
+                    <p className="rating-display">
+                        <img src={IcStar} alt="별점" />
+                        {(item.averageRating !== null && item.averageRating !== 'n')
+                            ? item.averageRating.toFixed(1) // 평점 표시를 위한 toFixed(1) 추가
+                            : "0.0"} (리뷰 {item.reviewCount ? item.reviewCount : 0}개)
+                    </p>
                 </div>
             ))}
         </main>
