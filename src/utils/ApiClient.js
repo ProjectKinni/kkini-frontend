@@ -235,7 +235,17 @@ export function fetchTopGreenProducts() {
         });
 };
 
+export function fetchRankingProducts(page) {
 
+    return axios.get(`${SERVER_URL}/products/kkini-ranking` + `?page=${page}`)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            throw error;
+        });
+};
 export function fetchTopRankingProducts() {
     return axios.get(`${SERVER_URL}/products/kkini-ranking/top`)
         .then(response => {
