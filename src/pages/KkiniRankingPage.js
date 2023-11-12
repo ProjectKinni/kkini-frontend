@@ -18,16 +18,19 @@ function KkiniRankingPage({
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [filters, setFilters] = useState({
         isLowCalorie: false,
+        isHighCalorie: false,
         isSugarFree: false,
         isLowSugar: false,
         isLowCarb: false,
+        isHighCarb: false,
         isKeto: false,
-        isTransFat: false,
+        isLowTransFat: false,
         isHighProtein: false,
         isLowSodium: false,
-        isCholesterol: false,
-        isSaturatedFat: false,
+        isLowCholesterol: false,
+        isLowSaturatedFat: false,
         isLowFat: false,
+        isHighFat: false
     });
 
     const handleFilterChange = (updatedFilters) => {
@@ -40,13 +43,6 @@ function KkiniRankingPage({
 
     return (
         <>
-            {/*기본속성*/}
-            {/*<NavigationContainer*/}
-            {/*    searchTerm={searchTerm}*/}
-            {/*    setSearchTerm={setSearchTerm}*/}
-            {/*    autocompleteItems={autocompleteItems}*/}
-            {/*    setAutocompleteItems={setAutocompleteItems}*/}
-            {/*/>*/}
             <div className="page-tit content-max">
                 <h1>끼니 랭킹</h1>
                 <p>인기만점상품</p>

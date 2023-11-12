@@ -200,8 +200,6 @@ export function removeLikedProduct(userId, productId) {
         });
 }
 
-// ... (기존 코드)
-
 export function checkUserReviewedProduct(productId, userId) {
 
     return fetch(`${SERVER_URL}/reviews/hasReviewed/${productId}/${userId}`)

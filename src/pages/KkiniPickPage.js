@@ -24,16 +24,19 @@ function KkiniPickPage({
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [filters, setFilters] = useState({
         isLowCalorie: false,
+        isHighCalorie: false,
         isSugarFree: false,
         isLowSugar: false,
         isLowCarb: false,
+        isHighCarb: false,
         isKeto: false,
-        isTransFat: false,
+        isLowTransFat: false,
         isHighProtein: false,
         isLowSodium: false,
-        isCholesterol: false,
-        isSaturatedFat: false,
+        isLowCholesterol: false,
+        isLowSaturatedFat: false,
         isLowFat: false,
+        isHighFat: false
     });
 
     useEffect(() => {
@@ -69,12 +72,6 @@ function KkiniPickPage({
 
     return (
         <>
-            {/*<NavigationContainer*/}
-            {/*    searchTerm={searchTerm}*/}
-            {/*    setSearchTerm={setSearchTerm}*/}
-            {/*    autocompleteItems={autocompleteItems}*/}
-            {/*    setAutocompleteItems={setAutocompleteItems}*/}
-            {/*/>*/}
             <div className="page-tit content-max">
                 <h1>끼니 PICK</h1>
                 <p>끼니의 취향저격상품</p>
