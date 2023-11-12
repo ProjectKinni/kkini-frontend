@@ -30,7 +30,7 @@ const Information = () => {
   };
 
   const greenRank =
-    '"끼니 그린 랭킹"은 건강한 식단을 추구하는 이들을 위한 완벽한 선택지입니다.\n영양 성분을 고려하여 선별된 간편식들을 확인하고, 건강과 맛을 모두 만족시키세요.\n끼니 그린 랭킹으로 올바른 영양소를 놓치지 않고 더 나은 선택을 해보세요!\n';
+    '"끼니 그린"은 건강한 식단을 추구하는 이들을 위한 완벽한 선택지입니다.\n영양 성분을 고려하여 선별된 간편식들을 확인하고, 건강과 맛을 모두 만족시키세요.\n끼니 그린 랭킹으로 올바른 영양소를 놓치지 않고 더 나은 선택을 해보세요!\n';
   const handleGreenClick = () => {
     // "/pick" 경로로 이동
     navigate('/green-ranking');
@@ -75,9 +75,9 @@ const Information = () => {
           />
           <div className="info-txt ranking-section ranking-kkini-green">
             <div className="tit">
-              <h2>끼니 그린 랭킹</h2>
+              <h2>끼니 그린</h2>
               <button onClick={handleGreenClick}>
-                <img src={icLinkGreen} alt="끼니 그린 랭킹 바로가기" />
+                <img src={icLinkGreen} alt="끼니 그린 바로가기" />
               </button>
             </div>
             <div className="txt">{greenRank}</div>
