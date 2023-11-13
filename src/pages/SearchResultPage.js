@@ -32,19 +32,6 @@ function SearchResultPage() {
     isLowFat: false,
     isHighFat: false
   });
-  const [reviewPosted, setReviewPosted] = useState(false);
-  useEffect(() => {
-    if (reviewPosted) {
-      // 리뷰가 추가된 경우 검색 결과를 새로고침합니다.
-      // 여기서는 단순 예시로 상태를 재설정하는 것을 보여주며,
-      // 실제로는 useSearchResults 훅을 통해 데이터를 새로고침하는 로직을 구현해야 합니다.
-      setReviewPosted(false); // 상태를 초기화하여 중복 새로고침을 방지합니다.
-      // 새로고침 로직을 여기에 추가합니다.
-    }
-  }, [reviewPosted]);
-  const onReviewPosted = () => {
-    setReviewPosted(true);
-  };
 
   useEffect(() => {
     // URL이 변경될 때마다 searchTerm을 업데이트
@@ -96,7 +83,6 @@ function SearchResultPage() {
                 categoryGroups={categoryGroups}
                 noProductsFound={noProductsFound}
                 searchTerm={searchTerm}
-                onReviewPosted={onReviewPosted}
             />
           </div>
         </div>

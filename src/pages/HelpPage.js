@@ -18,12 +18,6 @@ function HelpPage({
 
   return (
     <>
-      {/*<NavigationContainer*/}
-      {/*  searchTerm={searchTerm}*/}
-      {/*  setSearchTerm={setSearchTerm}*/}
-      {/*  autocompleteItems={autocompleteItems}*/}
-      {/*  setAutocompleteItems={setAutocompleteItems}*/}
-      {/*/>*/}
       <div className="page-tit content-max">
         <h1>도움말</h1>
       </div>

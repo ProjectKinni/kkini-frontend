@@ -17,8 +17,6 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
     //그린태그
     const greenTag = isGreen ? [{ index :2 }] : [];
 
-    // const allTags = [ ...filterTags, ...categoryTag, ...greenTag]
-
     const allTags = [...categoryTag, ...greenTag]
 
 

@@ -18,12 +18,6 @@ function InformationPage({
 
   return (
     <>
-      {/*<NavigationContainer*/}
-      {/*  searchTerm={searchTerm}*/}
-      {/*  setSearchTerm={setSearchTerm}*/}
-      {/*  autocompleteItems={autocompleteItems}*/}
-      {/*  setAutocompleteItems={setAutocompleteItems}*/}
-      {/*/>*/}
       <div className="info-banner">
         <img src={infoBanner} alt="소개 이미지" />
       </div>

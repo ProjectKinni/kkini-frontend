@@ -18,12 +18,6 @@ function MainPage({
 
   return (
     <>
-      {/*<NavigationContainer*/}
-      {/*  searchTerm={searchTerm}*/}
-      {/*  setSearchTerm={setSearchTerm}*/}
-      {/*  autocompleteItems={autocompleteItems}*/}
-      {/*  setAutocompleteItems={setAutocompleteItems}*/}
-      {/*/>*/}
       <BannerAd className="banner-ad" />
       <RankingSection className="ranking-section" />
       <Footer className="footer" />

@@ -9,7 +9,6 @@ import kakaoLogo from "../assets/images/ic_kakao.png";
 function LoginPage() {
   return (
     <>
-      {/*<NavigationContainer />*/}
       <div className="login page-tit content-max">
         <h1>로그인</h1>
         <p>

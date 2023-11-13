@@ -17,7 +17,6 @@ function UseSearchResult(productsResult) {
         setItems(resultItems);
 
         if (error) {
-            console.error("Error fetching search results:", error);
             setError(error);
         } else if (noProductsFound) {
             setNoProductsFound(true);

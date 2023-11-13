@@ -3,8 +3,7 @@ import ArrowRight from "../assets/images/arrow_right.png";
 
 function Categories({ onCategoryChange, searchTerm }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
-
-  // 0919 최진주 작성 Accordion 추가
+  
   const [accordionOpen, setAccordionOpen] = useState(true);
 
   useEffect(() => {
@@ -16,11 +15,9 @@ function Categories({ onCategoryChange, searchTerm }) {
       }
     }
 
-    // 컴포넌트가 마운트될 때 한 번 실행하고, 창 크기가 변경될 때마다 실행합니다.
     handleResize(); // 초기 설정
     window.addEventListener("resize", handleResize);
 
-    // 컴포넌트가 언마운트될 때 이벤트 리스너를 제거합니다.
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -29,7 +26,6 @@ function Categories({ onCategoryChange, searchTerm }) {
   const toggleAccordion = () => {
     setAccordionOpen(!accordionOpen);
   };
-  // 0919 최진주 작성 Accordion 여기까지
 
   useEffect(() => {
     onCategoryChange(selectedCategories);

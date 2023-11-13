@@ -8,7 +8,6 @@ async function UpdateUserNickname(newNickname) {
     const token = Cookies.get('access_token');
 
     try {
-        // 서버에 닉네임 중복 여부를 확인하는 요청을 보냅니다.
         const isNicknameAvailable = await IsNicknameAvailable(newNickname);
 
         if (!isNicknameAvailable) {

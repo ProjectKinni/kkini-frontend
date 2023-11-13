@@ -6,16 +6,7 @@ import Footer from "../components/Footer";
 import RankingList from "../components/rankinglist/RankingList";
 import {fetchGreenProducts} from "../utils/ApiClient"
 
-function GreenRankingPage({
-                              // searchTerm: initialSearchTerm,
-                              // setSearchTerm: initialSetSearchTerm,
-                              // autocompleteItems: initialAutocompleteItems,
-                              // setAutocompleteItems: initialSetAutocompleteItems,
-                          }) {
-    // const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
-    // const [autocompleteItems, setAutocompleteItems] = useState(
-    //     initialAutocompleteItems
-    // );
+function GreenRankingPage() {
 
     const [kkiniGreenCheck, setKkiniGreenCheck] = useState(false);
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -43,15 +34,7 @@ function GreenRankingPage({
 
     return (
         <div className="search-result-page">
-            {/*기본속성*/}
-            {/*<NavigationContainer*/}
-            {/*    searchTerm={searchTerm}*/}
-            {/*    setSearchTerm={setSearchTerm}*/}
-            {/*    autocompleteItems={autocompleteItems}*/}
-            {/*    setAutocompleteItems={setAutocompleteItems}*/}
-            {/*/>*/}
-
-            <div className="page-tit content-max green">
+             <div className="page-tit content-max green">
                 <h1>끼니 그린</h1>
             <p>간편하게, 건강하게!</p>
             </div>

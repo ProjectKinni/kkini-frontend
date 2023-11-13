@@ -74,26 +74,9 @@ const ReviewForm = ({onSubmit}) => {
     const handleSubmit = () => {
         onSubmit(rating, tasteRating, priceRating, ecoRating, content, images);
         setHasReviewed(true);
-        // setRating(5);
-        // setContent('');
-        // setImages([]);
-        // setImagePreviews([]);
     };
 
     return (
-// <<<<<<< HEAD
-//         <div className="review-form">
-//             <h2>리뷰 작성하기</h2>
-//             <div className="form-group">
-//                 <label>평점</label>
-//                 <input type="number" value={rating}
-//                        onChange={(e) => setRating(e.target.value)} />
-//             </div>
-//             <div className="form-group">
-//                 <label>내용</label>
-//                 <textarea value={content}
-//                           onChange={(e) => setContent(e.target.value)} />
-// =======
         <div className="review-form content-max">
 
             {!hasReviewed && (

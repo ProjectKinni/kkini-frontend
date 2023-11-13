@@ -8,17 +8,12 @@ function TagComponent({ texts }) {
                 let tagStyle, textStyle, imageSrc;
 
                 switch(index) {
-                        //필터
-                    // case 0:
-                    //     tagStyle = { backgroundColor: '#FF6600', border: '1px solid #FF6600' };
-                    //     textStyle = { color: '#fff' };
-                    //     break;
-                        //카테고리
                     case 1:
                         tagStyle = { backgroundColor: '#fff', border: '1px solid #FF6600' };
                         textStyle = { color: '#FF6600' };
                         break;
-                        //끼니 그린
+                        
+                    //끼니 그린
                     case 2:
                         tagStyle = { backgroundColor: '#69CF23', border: '1px solid #69CF23' };
                         textStyle = { color: '#fff' };
