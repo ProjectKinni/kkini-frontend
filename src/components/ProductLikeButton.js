@@ -9,7 +9,6 @@ function ProductLikeButton({ userId, productId }) {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    // 서버에서 현재 좋아요 상태를 가져와 설정
     if (userId) {
       axios
         .get(`${SERVER_URL}/like/${userId}/${productId}`)

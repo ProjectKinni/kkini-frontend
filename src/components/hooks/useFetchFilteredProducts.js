@@ -8,7 +8,6 @@ export default function useFetchFilteredProducts(fetchFunction, initialSearchTer
         const fetchData = async () => {
             try {
               const searchParam = searchTerm || initialSearchTerm;
-              console.log("Fetching results for:", searchParam);
       
               const result = await fetchFunction(searchParam, selectedCategories, filters, kkiniGreenCheck);
               setProductsResult({ ...result, loading: false });

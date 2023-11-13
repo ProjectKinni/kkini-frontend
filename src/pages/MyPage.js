@@ -40,12 +40,6 @@ function MyPage({
 
     return (
         <>
-            {/*<NavigationContainer*/}
-            {/*    searchTerm={searchTerm}*/}
-            {/*    setSearchTerm={setSearchTerm}*/}
-            {/*    autocompleteItems={autocompleteItems}*/}
-            {/*    setAutocompleteItems={setAutocompleteItems}*/}
-            {/*/>*/}
             <div className="page-tit content-max">
                 <h1>마이페이지</h1>
             </div>

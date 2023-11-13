@@ -32,8 +32,6 @@ function SearchBar({ autocompleteItems, setAutocompleteItems }) {
     const value = e.target.value;
     setSearchTerm(value);
     if (value.length < 1) {
-      //setErrorMessage("검색어를 2자 이상 입력해주세요");
-      // setAutocompleteItems([]);
       return;
     } else {
       setErrorMessage(null);

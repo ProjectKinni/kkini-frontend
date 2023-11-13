@@ -25,7 +25,6 @@ function RankingList({fetchFunction}) {
             }
             setProducts([...products, ...response])
         } catch (error) {
-            console.error('Error fetching reviews:', error);
             setError(error.message || "Error fetching reviews.");
         }
     };
@@ -39,7 +38,6 @@ function RankingList({fetchFunction}) {
                 setPage((prevPage) => prevPage + 1); // 페이지 번호 증가
             }
         };
-
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);

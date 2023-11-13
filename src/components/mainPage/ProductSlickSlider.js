@@ -11,10 +11,8 @@ function ProductSlickSlider({ fetchFunction }) {
   const {user} = useUser();
 
   useEffect(() => {
-    console.log("Fetching products...");
     fetchFunction()
         .then((data) => {
-          console.log("Fetched products:", data);
           setProducts(data);
         })
         .catch((err) => setError(err));

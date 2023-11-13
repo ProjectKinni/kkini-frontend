@@ -3,7 +3,7 @@ import '../styles/LoadingOverlay.css';
 
 function LoadingOverlay({ isLoading }) {
   if (!isLoading) {
-    return null; // 로딩 중이 아닐 때는 아무것도 렌더링하지 않음
+    return null; 
   }
 
   return (

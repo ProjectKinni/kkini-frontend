@@ -67,12 +67,6 @@ const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
 
         return (
             <div className="product-detail-page">
-                {/*<NavigationBarContainer*/}
-                {/*    searchTerm={searchTerm}*/}
-                {/*    setSearchTerm={setSearchTerm}*/}
-                {/*    autocompleteItems={autocompleteItems}*/}
-                {/*    setAutocompleteItems={setAutocompleteItems}*/}
-                {/*/>*/}
                 {product && <ProductDetailContainer productId={product.productId} product={product} viewCount={viewCount}
                                                     userId={user?.userId}/>}
                 {user && <ReviewForm onSubmit={handleSubmitReview}/>}

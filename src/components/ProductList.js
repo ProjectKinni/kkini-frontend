@@ -22,9 +22,6 @@ function ProductList({ categoryGroups, noProductsFound, searchTerm, onReviewPost
     };
 
     const allProducts = Object.values(categoryGroups).flat();
-    console.log("카테고리 그룹", categoryGroups); // 로깅 추가
-    console.log("검색 결과 없음:", noProductsFound); // 로깅 추가
-    console.log("검색어:", searchTerm); // 로깅 추가
 
     if (noProductsFound || searchTerm === "") {
         return <p className="no-data">해당 상품이 없습니다.</p>;
@@ -37,8 +34,6 @@ function ProductList({ categoryGroups, noProductsFound, searchTerm, onReviewPost
     return (
         <main className="product-list">
             {allProducts.map((product) => {
-                // averageRating이 숫자가 아닌 경우를 대비하여 parseFloat을 사용하여 변환을 시도합니다.
-                // 이것은 null, undefined, 또는 숫자가 아닌 값을 걸러내고, 0을 기본값으로 제공합니다.
                 const averageRating = parseFloat(product.averageRating) || 0;
                 const averageTasteRating = parseFloat(product.averageTasteRating) || 0;
                 const averagePriceRating = parseFloat(product.averagePriceRating) || 0;

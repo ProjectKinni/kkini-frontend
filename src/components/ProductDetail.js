@@ -60,20 +60,7 @@ const ProductDetail = () => {
                           <a href={product.productLink} className="btn-text btn-with-icon btn-buy">구매하기</a>
                       ) : null}
                   </dd>
-
                 </dl>
-                {/*<dl>*/}
-                {/*  <dt>상품번호</dt>*/}
-                {/*  <dd>{product.productId}</dd>*/}
-                {/*</dl>*/}
-                {/*<dl>*/}
-                {/*  <dt>조회수</dt>*/}
-                {/*  <dd>{viewCount || '0'}</dd>*/}
-                {/*</dl>*/}
-                {/*<dl>*/}
-                {/*  <dt>랭킹</dt>*/}
-                {/*  <dd></dd>*/}
-                {/*</dl>*/}
                 <dl>
                   <dt>단위 중량</dt>
                   <dd>{product.servingSize}g</dd>
