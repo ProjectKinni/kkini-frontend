@@ -207,8 +207,6 @@ export function removeLikedProduct(userId, productId) {
         });
 }
 
-// ... (기존 코드)
-
 export function checkUserReviewedProduct(productId, userId) {
 
     return fetch(`${SERVER_URL}/reviews/hasReviewed/${productId}/${userId}`)
@@ -237,7 +235,17 @@ export function fetchTopGreenProducts() {
         });
 };
 
+export function fetchRankingProducts(page) {
 
+    return axios.get(`${SERVER_URL}/products/kkini-ranking` + `?page=${page}`)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            throw error;
+        });
+};
 export function fetchTopRankingProducts() {
     return axios.get(`${SERVER_URL}/products/kkini-ranking/top`)
         .then(response => {

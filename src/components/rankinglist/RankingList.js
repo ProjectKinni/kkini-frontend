@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import ProductCard from "./ProductCard"
-
 import {incrementViewCount, fetchGreenProducts} from "../../utils/ApiClient";
 import {useNavigate} from "react-router-dom";
 import {useUser} from "../UserContext";
