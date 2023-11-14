@@ -19,7 +19,7 @@ function ProductSlickSlider({ fetchFunction }) {
   }, [fetchFunction]);
 
   if (error) {
-    return <div className="no-data">{user?.nickname}님의 정보가 부족합니다! 저희 KKINI를 많이 사용해 주세요.</div>;
+    return <div className="no-data">{user?.nickname}님의 정보가 부족합니다! 저희 KKINI를 많이 이용해 주세요.</div>;
   }
 
   const numberOfSlides = products.length <= 4 ? products.length : 4;

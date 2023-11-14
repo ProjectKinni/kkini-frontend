@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../utils/ApiClient";
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "http://223.130.139.40:8080";
 
 function SearchBar({ autocompleteItems, setAutocompleteItems }) {
   const [searchTerm, setSearchTerm] = useState("");
