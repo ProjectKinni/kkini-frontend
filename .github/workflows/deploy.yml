@@ -12,30 +12,30 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18
-
-      - name: Install Dependencies
-        run: |
-          npm install
-          npm install react-router-dom
-          npm install lodash
-          npm install js-cookie
-          npm install react-slick --save
-          npm install slick-carousel --save
-          npm install react-modal
-      - name: Build
-        run: CI=false npm run build
-
-      - name: Deploy to Server
+      - name: Copy Files to Server
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
         run: |
           echo "$DEPLOY_KEY" > deploy_key.pem
           chmod 600 deploy_key.pem
-          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r build/* ${{ secrets.SERVER_URL }}:/root/frontend/deploy
-      - name: Clean up SSH key
-        if: always()
-        run: rm -f deploy_key.pem
+          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r . ${{ secrets.SERVER_URL }}:/root/frontend/deploy
+          rm -f deploy_key.pem
+
+      - name: Build and Deploy on Server
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          echo "$DEPLOY_KEY" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -o StrictHostKeyChecking=no -i deploy_key.pem ${{ secrets.SERVER_URL }} << 'ENDSSH'
+            cd /path/to/server/source
+            npm install
+            npm install react-router-dom
+            npm install lodash
+            npm install js-cookie
+            npm install react-slick --save
+            npm install slick-carousel --save
+            npm install react-modal
+            CI=false npm run build
+          ENDSSH
+          rm -f deploy_key.pem
