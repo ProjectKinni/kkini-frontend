@@ -28,7 +28,7 @@ jobs:
           echo "$DEPLOY_KEY" > deploy_key.pem
           chmod 600 deploy_key.pem
           ssh -o StrictHostKeyChecking=no -i deploy_key.pem ${{ secrets.SERVER_URL }} << 'ENDSSH'
-            cd /path/to/server/source
+            cd /root/frontend/deploy
             npm install
             npm install react-router-dom
             npm install lodash
