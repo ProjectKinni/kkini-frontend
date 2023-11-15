@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 18
 
       - name: Install Dependencies
         run: |
@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "$DEPLOY_KEY" > deploy_key.pem
           chmod 600 deploy_key.pem
-          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r build/* ${{ secrets.SERVER_URL }}:/var/www/html
+          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r build/* ${{ secrets.SERVER_URL }}:/~/frontend/deploy
       - name: Clean up SSH key
         if: always()
         run: rm -f deploy_key.pem
