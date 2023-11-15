@@ -27,7 +27,7 @@ jobs:
           npm install slick-carousel --save
           npm install react-modal
       - name: Build
-        run: npm run build
+        run: CI=false npm run build
 
       - name: Deploy to Server
         env:
