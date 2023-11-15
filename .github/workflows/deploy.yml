@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "$DEPLOY_KEY" > deploy_key.pem
           chmod 600 deploy_key.pem
-          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r build/* ${{ secrets.SERVER_URL }}:/~/frontend/deploy
+          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r build/* ${{ secrets.SERVER_URL }}:/root/frontend/deploy
       - name: Clean up SSH key
         if: always()
         run: rm -f deploy_key.pem
