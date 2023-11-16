@@ -6,7 +6,7 @@ function BannerAd({ imageUrl, altText, linkUrl }) {
   return (
     <div className="banner-ad">
       <a
-        href="http://223.130.139.40:3000/"
+        href="https://223.130.139.40:3000/"
         target="_blank"
         rel="noopener noreferrer"
       >

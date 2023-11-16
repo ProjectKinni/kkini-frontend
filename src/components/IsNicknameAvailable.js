@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from "js-cookie";
 
-const SERVER_URL = "http://223.130.139.40:8080";
+const SERVER_URL = "https://223.130.139.40:8080";
 
 async function IsNicknameAvailable(nickname) {
     const token = Cookies.get('access_token');
