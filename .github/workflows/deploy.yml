@@ -1,0 +1,41 @@
+name: Deploy React Project
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Copy Files to Server
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          echo "$DEPLOY_KEY" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r * ${{ secrets.SERVER_URL }}:/root/frontend/deploy
+          rm -f deploy_key.pem
+
+      - name: Build and Deploy on Server
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          echo "$DEPLOY_KEY" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          ssh -o StrictHostKeyChecking=no -i deploy_key.pem ${{ secrets.SERVER_URL }} << 'ENDSSH'
+            cd /root/frontend/deploy
+            npm install
+            npm install react-router-dom
+            npm install lodash
+            npm install js-cookie
+            npm install react-slick --save
+            npm install slick-carousel --save
+            npm install react-modal
+            CI=false npm run build
+          ENDSSH
+          rm -f deploy_key.pem
