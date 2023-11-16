@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import ReviewCard from './ReviewCard';
 
-const SERVER_URL = "https://223.130.139.40:8080";
+const SERVER_URL = "https://kkini.net";
 
 const ReviewListForCommunity = () => {
         const [reviews, setReviews] = useState([]);

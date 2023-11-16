@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = "https://223.130.139.40:8080";
+const SERVER_URL = "https://kkini.net";
 
 export const fetchLikedProducts = (user, setLikedProducts) => {
     if (user) {
