@@ -18,7 +18,7 @@ function LoginPage() {
       <div className="login-wrap content-max">
         <a
           className="login-google"
-          href="http://kkini.net:8080/oauth2/authorization/google"
+          href="https://kkini.net/oauth2/authorization/google"
         >
           <img src={googleLogo} alt="Google" />
           구글계정으로 로그인
