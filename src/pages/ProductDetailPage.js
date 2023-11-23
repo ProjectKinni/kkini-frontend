@@ -8,7 +8,7 @@ import ReviewList from '../components/ReviewList';
 import getUserInfo from '../components/GetUserInfo';
 import ReviewForm from '../components/ReviewForm';
 
-const SERVER_URL = "http://localhost:8080";
+const SERVER_URL = "https://kkini.net";
 
 const ProductDetailPage = ({setSearchTerm: initialSetSearchTerm}) => {
         const {productId} = useParams();
