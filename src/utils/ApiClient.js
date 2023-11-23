@@ -159,7 +159,6 @@ export const handleReviewSubmit = async (userId, productId, formData) => {
     }
 };
 
-
 export function fetchReviews(userId, page) {
     return axios.get(`${SERVER_URL}/reviews/users/${userId}`, {params: {page, size: 10}})
         .then(response => response.data)
@@ -175,6 +174,51 @@ export function handleDeleteReview(reviewId) {
             console.error('Error deleting review:', error);
             throw error;
         });
+}
+
+export function handleUpdateReview(userId, reviewId, reviewData) {
+    const url = `${SERVER_URL}/reviews/${userId}/${reviewId}`;
+    const formData = new FormData();
+
+    // 로그 추가: userId, reviewId, reviewData 값 확인
+    console.log(`Updating review: userId=${userId}, reviewId=${reviewId}, reviewData=`, reviewData);
+
+    // reviewData가 유효한 객체인지 확인
+    if (!reviewData || typeof reviewData !== 'object') {
+        console.error('Invalid reviewData:', reviewData);
+        return Promise.reject('Invalid reviewData'); // 적절한 오류 처리
+    }
+
+    // 필요한 데이터를 formData에 추가
+    Object.keys(reviewData).forEach(key => {
+        if (reviewData[key] != null) {
+            // 파일 데이터 처리
+            if (key === 'images' && Array.isArray(reviewData[key])) {
+                reviewData[key].forEach((file, index) => {
+                    if (file instanceof File) {
+                        formData.append(`image${index + 1}`, file);
+                    }
+                });
+            } else {
+                formData.append(key, reviewData[key]);
+            }
+        }
+    });
+
+    // 서버에 요청 보내기
+    return axios.put(url, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data', // 폼 데이터 형식 지정
+        },
+    }).then(response => {
+        // 응답 처리 로직
+        console.log('Update review response:', response.data); // 응답 로그 추가
+        return response.data;
+    }).catch(error => {
+        // 오류 처리 로직
+        console.error('Error updating review:', error);
+        return Promise.reject(error); // 오류를 반환하여 catch 블록에서 처리할 수 있도록 함
+    });
 }
 
 export function fetchLikedProducts(userId, page, size) {

@@ -1,0 +1,97 @@
+/* Review Update Modal 기본 스타일 */
+.review-update-modal {
+    width: 800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 40px;
+    border-radius: 18px;
+    outline: none;
+}
+
+/* 모달 내부 컨텐츠 스타일링 */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 별점 이미지 및 텍스트 입력 영역 스타일 */
+.rating-area, .text-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 별점 이미지 스타일링 */
+.rating-area img {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+/* 텍스트 입력 영역 스타일 */
+.text-area textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 이미지 업로드 영역 스타일링 */
+.image-upload-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-upload-area label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.image-upload-area input[type="file"] {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* 버튼 스타일링 */
+.modal-body button {
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+/* 반응형 디자인 */
+@media only screen and (max-width: 1024px) {
+    .review-update-modal {
+        width: 82%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .review-update-modal {
+        width: 86%;
+        max-height: 80%;
+        overflow: auto;
+        padding: 20px 28px 30px;
+        box-sizing: border-box;
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .rating-area img {
+        width: 18px;
+        height: 18px;
+    }
+}
