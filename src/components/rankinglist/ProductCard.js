@@ -4,6 +4,7 @@ import TagComponent from './TagComponent'
 import ProductLikeButton from "../ProductLikeButton";
 import { useNavigate } from "react-router-dom";
 import StarRatingForProductCard from '../rankinglist/StarRatingForProductCard';
+import emptyImage from "../../assets/images/empty_image.png";
 
 function ProductCard({ productLink, imgSrc, productName, reviewCount,
                          filters, category, isGreen,
@@ -25,7 +26,7 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
         <div key={productId} className="product-item" onClick={onProductClick}>
 
             <div className="img-wrapper">
-                <img src={imgSrc} className="product-img" alt={productName} />
+                <img src={imgSrc ? imgSrc : emptyImage} className="product-img" alt={productName} />
             </div>
 
             <div className="con-wrapper">

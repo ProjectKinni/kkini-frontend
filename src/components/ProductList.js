@@ -28,9 +28,9 @@ function ProductList({categoryGroups, noProductsFound, searchTerm, onReviewPoste
         return <p className="no-data">해당 상품이 없습니다.</p>;
     }
 
-    if (!allProducts.length) {
-        return <p className="no-data">상품을 찾을 수 없습니다. 검색 조건을 확인해주세요.</p>;
-    }
+    // if (!allProducts.length) {
+    //     return <p className="no-data">상품을 찾을 수 없습니다. 검색 조건을 확인해주세요.</p>;
+    // }
 
     return (
         <main className="product-list">

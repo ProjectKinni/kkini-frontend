@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {useUser} from "../UserContext";
 import emptyImage from "../../assets/images/empty_image.png"
 
-function RankingList({fetchFunction}) {
+function RankingList({categoryGroups, noProductsFound, fetchFunction}) {
 
     //제품클릭 했을 때 나오는 동작수행 할 hook
     const navigate = useNavigate();
@@ -29,6 +29,10 @@ function RankingList({fetchFunction}) {
             setError(error.message || "Error fetching reviews.");
         }
     };
+
+    if (noProductsFound || searchTerm === "") {
+        return <p className="no-data">해당 상품이 없습니다.</p>;
+    }
 
     useEffect(() => {
         const handleScroll = () => {
