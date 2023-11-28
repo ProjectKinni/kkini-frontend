@@ -7,8 +7,8 @@
   display: flex;
 }
 .product-detail .img-wrapper {
-  width: 30%;
-  padding-bottom: 38%;
+  width: 38%;
+  padding-bottom: 0%;
   margin-right: 40px;
 }
 .product-detail .info {
