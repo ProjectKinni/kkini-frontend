@@ -26,7 +26,7 @@ function ProductCard({ productLink, imgSrc, productName, reviewCount,
         <div key={productId} className="product-item" onClick={onProductClick}>
 
             <div className="img-wrapper">
-                <img src={imgSrc ? imgSrc : emptyImage} className="product-img" alt={productName} />
+                <img src={imgSrc ? imgSrc : emptyImage} className="product-img" alt={emptyImage} />
             </div>
 
             <div className="con-wrapper">
