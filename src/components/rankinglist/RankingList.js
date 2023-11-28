@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard"
 import {incrementViewCount, fetchGreenProducts} from "../../utils/ApiClient";
 import {useNavigate} from "react-router-dom";
 import {useUser} from "../UserContext";
+import emptyImage from "../../assets/images/empty_image.png"
 
 function RankingList({fetchFunction}) {
 
@@ -65,11 +66,11 @@ function RankingList({fetchFunction}) {
 
     return (
         <div className="product-list">
-            { products && products.map(product => (
+            {products && products.map(product => (
                 <ProductCard
                     key={product.productId}
                     productLink={product.productLink}
-                    imgSrc={product.image}
+                    imgSrc={product.image ? product.image : emptyImage}
                     productName={product.productName}
                     onProductClick={() => handleProductClick(product.productId)}
                     averageRating={product.averageRating}
