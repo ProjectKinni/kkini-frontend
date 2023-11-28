@@ -30,10 +30,6 @@ function RankingList({categoryGroups, noProductsFound, fetchFunction}) {
         }
     };
 
-    if (noProductsFound || searchTerm === "") {
-        return <p className="no-data">해당 상품이 없습니다.</p>;
-    }
-
     useEffect(() => {
         const handleScroll = () => {
             if (
