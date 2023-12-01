@@ -18,7 +18,7 @@ function MainPage({
 
   return (
     <>
-      <BannerAd className="banner-ad" />
+      {/*<BannerAd className="banner-ad" />*/}
       <RankingSection className="ranking-section" />
       <Footer className="footer" />
     </>
