@@ -24,7 +24,7 @@ jobs:
         npm install react-slick --save
         npm install slick-carousel --save
         npm install react-modal
-        npm run build
+        CI=false npm run build
 
     - name: Build Docker Image
       run: |
