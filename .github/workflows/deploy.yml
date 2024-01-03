@@ -1,41 +1,59 @@
-name: Deploy React Project
+name: React EC2 Deployment
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Copy Files to Server
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-        run: |
-          echo "$DEPLOY_KEY" > deploy_key.pem
-          chmod 600 deploy_key.pem
-          scp -o StrictHostKeyChecking=no -i deploy_key.pem -r * ${{ secrets.SERVER_URL }}:/root/frontend/deploy
-          rm -f deploy_key.pem
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18
 
-      - name: Build and Deploy on Server
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-        run: |
-          echo "$DEPLOY_KEY" > deploy_key.pem
-          chmod 600 deploy_key.pem
-          ssh -o StrictHostKeyChecking=no -i deploy_key.pem ${{ secrets.SERVER_URL }} << 'ENDSSH'
-            cd /root/frontend/deploy
-            npm install
-            npm install react-router-dom
-            npm install lodash
-            npm install js-cookie
-            npm install react-slick --save
-            npm install slick-carousel --save
-            npm install react-modal
-            CI=false npm run build
-          ENDSSH
-          rm -f deploy_key.pem
+    - name: Build React Project
+      run: |
+        npm install
+        npm install react-router-dom
+        npm install lodash
+        npm install js-cookie
+        npm install react-slick --save
+        npm install slick-carousel --save
+        npm install react-modal
+        npm run build
+
+    - name: Build Docker Image
+      run: |
+        docker build -t frontend .
+        docker save frontend > image.tar
+
+    - name: Copy Docker Image to EC2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SERVER_URL }}
+        username: ubuntu
+        key: ${{ secrets.DEPLOY_KEY }}
+        source: "image.tar"
+        target: "~/frontend"
+
+    - name: Login to EC2 and deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_URL }}
+        username: ubuntu
+        key: ${{ secrets.DEPLOY_KEY }}
+        script: |
+          # 기존 컨테이너 정지 및 제거
+          sudo docker stop frontend || true
+          sudo docker rm frontend || true
+
+          # 기존 이미지 제거
+          sudo docker rmi frontend || true
+
+          # 새 이미지 로드 및 컨테이너 실행
+          sudo docker load < ~/frontend/image.tar
+          sudo docker run --rm -d -p 3000:3000 --name frontend frontend
