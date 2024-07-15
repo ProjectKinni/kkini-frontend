@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../utils/ApiClient";
 
-const SERVER_URL = "https://kkini.net";
+const SERVER_URL = "https://kkini.net:8080";
 
 function SearchBar({ autocompleteItems, setAutocompleteItems }) {
   const [searchTerm, setSearchTerm] = useState("");

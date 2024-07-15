@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = "https://kkini.net";
+const SERVER_URL = "https://kkini.net:8080";
 
 
 export function fetchPickTopProducts(userId, categoryName, filterDTO) {

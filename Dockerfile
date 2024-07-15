@@ -2,6 +2,7 @@ FROM node:18
 WORKDIR /app
 COPY package.json .
 RUN npm install
+RUN npm update
 RUN npm install lodash
 RUN npm install react-router-dom
 RUN npm install js-cookie
