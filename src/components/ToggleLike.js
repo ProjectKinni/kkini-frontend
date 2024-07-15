@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVER_URL = "https://kkini.net:8080";
+const SERVER_URL = "https://kkini.net";
 
 export async function toggleLike(userId, productId, setIsLiked) {
     if (!userId) {

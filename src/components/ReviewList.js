@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import ReviewCard from './ReviewCard';
 
-const SERVER_URL = "https://kkini.net:8080";
+const SERVER_URL = "https://kkini.net";
 
 const ReviewList = ({productId, refreshReviews}) => {
         const [reviews, setReviews] = useState([]);
