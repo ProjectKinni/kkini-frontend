@@ -29,31 +29,36 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t frontend .
-        docker save frontend > image.tar
 
-    - name: Copy Docker Image to EC2
-      uses: appleboy/scp-action@master
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+    - name: Push Docker Image to Docker Hub
+      run: |
+        docker tag frontend ${{ secrets.DOCKER_HUB_USERNAME }}/frontend:latest
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/frontend:latest
+
+    - name: Set up gcloud
+      uses: google-github-actions/setup-gcloud@v2
       with:
-        host: ${{ secrets.SERVER_URL }}
-        username: ubuntu
-        key: ${{ secrets.DEPLOY_KEY }}
-        source: "image.tar"
-        target: "~/frontend"
+        version: 'latest'
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-    - name: Login to EC2 and deploy
+    - name: SSH to GCP and deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.SERVER_URL }}
-        username: ubuntu
-        key: ${{ secrets.DEPLOY_KEY }}
+        host: ${{ secrets.GCP_SERVER_URL }}
+        username: ${{ secrets.GCP_SSH_USERNAME }}
+        key: ${{ secrets.GCP_SSH_KEY }}
         script: |
           # 기존 컨테이너 정지 및 제거
           sudo docker stop frontend || true
           sudo docker rm frontend || true
 
-          # 기존 이미지 제거
-          sudo docker rmi frontend || true
+          # Docker Hub에서 최신 이미지 가져오기
+          sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/frontend:latest
 
-          # 새 이미지 로드 및 컨테이너 실행
-          sudo docker load < ~/frontend/image.tar
+          # 컨테이너 실행
+          sudo docker run --rm -d -p 80:8080 --name frontend ${{ secrets.DOCKER_HUB_USERNAME }}/frontend:latest
+
           sudo docker run --rm -d -p 3000:3000 --name frontend frontend
